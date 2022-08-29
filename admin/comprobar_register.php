@@ -19,10 +19,10 @@
     $contraseñaful = md5($salt.$pass1);
     
     //llamamos a la conexion de base datos
-    include('conexion.php');
+    include('../importante\conexion.php');
 
     //Hacemos la consulta de nuestro codigo sql 
-    $consutaRegistro = "SELECT nCuenta FROM trabajadores WHERE nCuenta='$cuenta'";
+    $consutaRegistro = "SELECT * FROM trabajadores WHERE nCuenta='$cuenta'";
     
     //usamos el mysqli_query donde enviamos nuestra conexion y enviamos la consuta
     $resultado = mysqli_query($mysqli,$consutaRegistro);
@@ -35,12 +35,12 @@
     }
 
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `usuarios` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `telefono`,`fecNac`, `email`, `curp`, `password`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$telefonoR','$nacimiento', '$correoR', '$curp', '$contraseñaful')")){
+        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `telefono`,`fecNac`, `email`, `curp`, `password`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$telefonoR','$nacimiento', '$correoR', '$curp', '$contraseñaful')")){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
-            echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="index.php"</script>';
+            echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="../index.php"</script>';
         }
     }else{
-        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="index.php"</script>';
+        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="../index.php"</script>';
     }
 ?>

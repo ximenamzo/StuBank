@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/src/StuBank.png" width="100pc">
+            <img src="  src\StuBank.png" width="100pc">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/admin/admin.php">Administracion</a></li>
-                            <li><a class="dropdown-item" href="/importante/logout.php">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" href="importante\logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php }else if($rol == 2){?>
@@ -43,11 +43,11 @@
                     <!-- Opciones del cliente -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person"></i>
+                            <i class="bi bi-gear"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="index-clientes.php">Mi credito</a></li>
+                            <li><a class="dropdown-item" href="importante\logout.php">Cerrar session</a></li>
                         </ul>
                     </li>
                 <?php }else{?>

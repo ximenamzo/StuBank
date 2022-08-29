@@ -1,6 +1,5 @@
 <?php 
     session_start();
-
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 ?>
@@ -18,7 +17,7 @@
 </head>
 
 <header>
-    <?php include('importante/navbar.php'); ?>
+    <?php include('navbar.php'); ?>
 </header>
 <body>
     <div style="width: 70%;" class="container">

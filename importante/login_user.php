@@ -8,7 +8,7 @@
         $cuenta = $_POST['nCuenta'];
         $password = $_POST['passw_user'];
 
-        $sql = "SELECT * FROM trabajadores WHERE nCuenta = '$cuenta'";
+        $sql = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
         $resultado = $mysqli->query($sql);
         $num = $resultado->num_rows;
 

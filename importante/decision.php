@@ -7,7 +7,7 @@
 </head>
 <body>
 	<p>¿Eres un cliente o un trabajador?</p>
-	<a href="login_cl.php">Cliente</a>
+	<a href="login_user.php">Cliente</a>
 	<a href="login_tr.php">Trabajador</a>
 </body>
 </html>

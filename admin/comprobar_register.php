@@ -4,7 +4,7 @@
     $pass2 = $_POST['passw_user2'];
 
     if($pass1 != $pass2){
-        echo '<script language="javascript">alert("Las contraseñas deben coincidir");window.location.href="index.html"</script>';
+        echo '<script language="javascript">alert("Las contraseñas deben coincidir");window.location.href="register.php"</script>';
     }
 
     $cuenta = $_POST['nCuenta'];
@@ -22,7 +22,7 @@
     include('conexion.php');
 
     //Hacemos la consulta de nuestro codigo sql 
-    $consutaRegistro = "SELECT nCuenta FROM usuarios WHERE nCuenta='$cuenta'";
+    $consutaRegistro = "SELECT nCuenta FROM trabajadores WHERE nCuenta='$cuenta'";
     
     //usamos el mysqli_query donde enviamos nuestra conexion y enviamos la consuta
     $resultado = mysqli_query($mysqli,$consutaRegistro);
@@ -35,7 +35,7 @@
     }
 
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `usuarios` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `telefono`,`fecNac`, `email`, `curp`, `password`, `rol`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$telefonoR','$nacimiento', '$correoR', '$curp', '$contraseñaful', '0')")){
+        if (!$mysqli->query("INSERT INTO `usuarios` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `telefono`,`fecNac`, `email`, `curp`, `password`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$telefonoR','$nacimiento', '$correoR', '$curp', '$contraseñaful')")){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
             echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="index.php"</script>';

@@ -93,11 +93,11 @@ CREATE TABLE `trabajadores` (
   `fecNac` date NOT NULL,
   `email` text NOT NULL,
   `curp` text NOT NULL,
-  `password` text NOT NULL,
+  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `rol` int NOT NULL DEFAULT '2',
   `estatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `trabajadores` (
 
 LOCK TABLES `trabajadores` WRITE;
 /*!40000 ALTER TABLE `trabajadores` DISABLE KEYS */;
-INSERT INTO `trabajadores` VALUES (1,'2022AAAA','Carlos','Nolazco','Lagunas','3141737914','2003-04-15','cnolazco@ucol.mx','NOLC030415HCMLGRA2','2ac3510fc601c5b63a510ad408d41199',1,1),(2,'2022AAAB','c','c','c','1111111111','2022-08-03','a@a.com','si','d252da3cdd35b2373a247a08de68c326',1,1);
+INSERT INTO `trabajadores` VALUES (1,'2022AAAA','Carlos','Nolazco','Lagunas','3141737914','2003-04-15','cnolazco@ucol.mx','NOLC030415HCMLGRA2','2ac3510fc601c5b63a510ad408d41199',1,1),(2,'2022AAAB','c','c','c','1111111111','2022-08-03','a@a.com','si','d252da3cdd35b2373a247a08de68c326',1,1),(3,'2022AAAC','Si','Si','Si','1111111111','0001-01-01','a@a.com','aaaaaaaaaaa','766ed26431edaca1aeabf0b96712123c',2,1),(4,'2022AAAD','kkk','kkk','kkk','1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',2,1);
 /*!40000 ALTER TABLE `trabajadores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -119,4 +119,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-27 20:26:27
+-- Dump completed on 2022-08-30 23:00:55

@@ -44,25 +44,10 @@
     <title>StuBank</title>
 </head>
 <body>
-    <form action="comprobar_register.php" method="post">
+    <form action="comprobar_eje.php" method="post">
 
 		<label>Numero de cuenta:</label>
         <input type="text" name="nCuenta" required>
-
-        <label>Usuario:</label>
-        <input type="text" name="name_user" onkeypress="return SoloLetras(event);" required>
-
-        <label>Apellido paterno:</label>
-        <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" required>
-
-        <label>Apellido materno:</label>
-        <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" required>
-
-		<label>Telefono:</label>
-		<input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" required>
-
-		<label>Fecha de nacimiento:</label>
-        <input type="date" name="fecNac" required>
 
 		<label>Correo electronico:</label>
 		<input type="email" name="correo_user" required>

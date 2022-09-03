@@ -3,7 +3,14 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    include('../importante/conexion.php');
+
+    $obtencion = "SELECT * FROM trabajadores WHERE rol = '2'";
+    $resultado = mysqli_query($mysqli,$obtencion);
+    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +27,7 @@
 <header>
     <?php include('../importante/navbar.php'); ?>
 </header>
-<body style="height: 100vh; display: flex; flex-flow: column;">
+<body>
     <div class="row">
         <div class="col-md-3" style="background-color: #8E1EDC;">
             <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
@@ -34,7 +41,29 @@
             </div>
         </div>
         <div class="col-md-9">
-            Pagina de administración, aqui planeo poner una tabla con los movimientos hechos hasta ese momento
+            <a href="register.php">Registrar ejecutivo</a><br>
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">N. trabajador</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido paterno</th>
+                    <th scope="col">Apellido materno</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Correo electronico</th>
+                </thead>
+                <tbody>
+                    <?php foreach($ejecutivos as $ejecutivo): ?>
+                        <tr>
+                            <td><?=$ejecutivo['nCuenta'] ?></td>
+                            <td><?=$ejecutivo['nombre'] ?></td>
+                            <td><?=$ejecutivo['apelldoP'] ?></td>
+                            <td><?=$ejecutivo['apellidoM'] ?></td>
+                            <td><?=$ejecutivo['telefono'] ?></td>
+                            <td><?=$ejecutivo['email'] ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

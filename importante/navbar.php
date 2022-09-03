@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="/index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="https://c.tenor.com/ZLda9M-H1hYAAAAC/cat-cute.gif">Información</a>
@@ -58,7 +58,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="importante/decision.php">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="importante/decision_re.php">Registrarse</a></li>
                         </ul>
                     </li>
                 <?php } ?>

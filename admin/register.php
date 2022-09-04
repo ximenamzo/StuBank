@@ -1,10 +1,17 @@
+<?php 
+    session_start();
+    $nombre = $_SESSION['nombre'];
+    $rol = $_SESSION['rol'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="../css/styles-register.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script type="text/javascript">
         function valideKey(evt){
             
@@ -43,42 +50,28 @@
 
     <title>StuBank</title>
 </head>
+<header>
+    <?php include('../navbar.php'); ?>
+</header>
 <body>
-    <form action="comprobar_register.php" method="post">
-
-		<label>Numero de cuenta:</label>
-        <input type="text" name="nCuenta" required>
-
-        <label>Usuario:</label>
-        <input type="text" name="name_user" onkeypress="return SoloLetras(event);" required>
-
-        <label>Apellido paterno:</label>
-        <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" required>
-
-        <label>Apellido materno:</label>
-        <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" required>
-
-		<label>Telefono:</label>
-		<input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" required>
-
-		<label>Fecha de nacimiento:</label>
-        <input type="date" name="fecNac" required>
-
-		<label>Correo electronico:</label>
-		<input type="email" name="correo_user" required>
-
-		<label>CURP:</label>
-        <input type="text" name="curp" required>
-
-        <label>Contraseña:</label>
-        <input type="password" name="passw_user" required>
-
-        <label>Confirmar contraseña:</label>
-        <input type="password" name="passw_user2" required>
-
-		<center>
-			<input type="submit" value="Registrarse">
-		</center>
-    </form>
+    <div class="container">
+        <img src="../src/registro.jpg" class="imagen">
+        <form action="comprobar_register.php" method="post" class="form-registro">
+            <h1>Crear una cuenta</h1>
+            <div class="contenedor-inputs">
+                <input type="text" name="nCuenta" placeholder="Numero de cuenta" class="input-50" required>
+                <input type="text" name="name_user" onkeypress="return SoloLetras(event);" placeholder="Nombre" class="input-50" required>
+                <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" placeholder="Apellido Paterno" class="input-50" required>
+                <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
+                <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
+                <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
+                <input type="text" name="curp" class="input-100" placeholder="CURP" required>
+                <input type="password" name="passw_user" class="input-50" placeholder="Contraseña" required>
+                <input type="password" name="passw_user2" class="input-50" placeholder="Confirmar contraseña" required>
+                <input type="date" name="fecNac" class="input-50" required>
+                <input type="submit" value="Registrarse" class="btn_enviar">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

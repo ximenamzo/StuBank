@@ -4,13 +4,6 @@ body{
     height: 1024px;
     background: #ffffff;
 }
-.navbar-brand{
-    left: 34px;
-    top: 20px;
-    display: block;
-    z-index: 999;
-    position: absolute;
-}
 .texto-encima{
     height: 48px;
     width: 113px;
@@ -70,7 +63,7 @@ body{
     bottom: 0%;
     z-index: 1;
     opacity: 0.96;
-    background: #AD00FF;
+    background: #8C52FF;
 }
 #dinero{
     position: absolute;
@@ -80,7 +73,7 @@ body{
     top: 167px;
     border-radius: 12px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    background: #AD00FF;
+    background: #8C52FF;
 }
 #dinero2{
     box-sizing: border-box;
@@ -90,7 +83,7 @@ body{
     top: 0%;
     bottom: 0%;
     background: #FFFFFF;
-    border: 1px solid #AD00FF;
+    border: 1px solid #8C52FF;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     height: 188px;
@@ -140,7 +133,7 @@ body{
     left: 124px;
     top: 430px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    background: #AD00FF;
+    background:#8C52FF;
     border-radius: 12px;
 }
 
@@ -152,7 +145,7 @@ body{
     top: 440px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     background: #FFFFFF;
-    border: 1px solid #AD00FF;
+    border: 1px solid #8C52FF;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
 }
@@ -224,9 +217,9 @@ body{
     height: 823px;
     left: 769px;
     top: 167px;
-    background: #AD00FF;
+    background: #8C52FF;
     mix-blend-mode: normal;
-    border: 1px solid #AD00FF;
+    border: 1px solid #8C52FF;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 17px;
 }
@@ -239,7 +232,7 @@ body{
     top: 181px;
     background: #FFFFFF;
     mix-blend-mode: normal;
-    border: 1px solid #AD00FF;
+    border: 1px solid #8C52FF;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 17px;
 }
@@ -249,7 +242,7 @@ body{
     height: 0px;
     left: 758px;
     top: 268px;
-    border: 1px solid #AD00FF;
+    border: 1px solid #8C52FF;
 }
 .histotxt{
     display: block;

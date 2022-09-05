@@ -46,7 +46,7 @@
 <body>
     <form action="comprobar_eje.php" method="post">
 
-		<label>Numero de cuenta:</label>
+		<label>Numero de trabajador:</label>
         <input type="text" name="nCuenta" required>
 
 		<label>Correo electronico:</label>

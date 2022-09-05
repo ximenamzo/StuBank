@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+.container{
+    padding: 10px;
+    overflow: hidden;
+    margin-left: 200px;
+}
+h1{
+
+    text-align: center;
+    padding: 35px;
+    font-weight: 100;
+    font-size: 45px;
+    
+}
+.form-registro{
+    width: 98%;
+    max-width: 600px;
+    float: left;
+    margin: auto;
+    box-shadow: 0px 4px 12px rgb(225, 225, 225);
+}
+.contenedor-inputs{
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+input{
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+    border-style: none;
+    border-bottom: 1px solid #f988ff;
+}
+.input-50{
+    width: 48%;
+}
+.input-100{
+    width: 100%;
+}
+.btn_enviar{
+    margin: 20px auto;
+    background-color: #9120bd;
+    border-style: none;
+    color: white;
+    width: 70%;
+    border-radius: 7px;
+}
+.btn_enviar:hover{
+    background-color: #7000a2;
+}
+
+.imagen{
+    float: left;
+    margin: auto;
+}
+
+.imagen {
+    max-width: 100%;
+    display: inline-block;
+    }
+    /* 2 columnas para tablets */
+    @media (min-width: 320px) {
+    breakpoint  {
+    max-width: 48%;
+    }
+    }
+    /* 4 columnas para grandes dispositivos*/
+    @media (min-width: 600px) {
+    breakpoint  {
+    max-width: 24%;
+    }
+    }
+

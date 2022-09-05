@@ -60,10 +60,10 @@
 <body>
     <div class="container">
         <img src="../src/registro.jpg" class="imagen">
-        <form action="comprobar_register.php" method="post" class="form-registro">
-            <h1>Registrar ejecutivo</h1>
+        <form action="comprobar_cliente.php" method="post" class="form-registro">
+            <h1>Registrar cliente</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Numero de trabajador" class="input-50" required>
+                <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Numero de cuenta" class="input-50" required>
                 <input type="text" name="name_user" onkeypress="return SoloLetras(event);" placeholder="Nombre" class="input-50" required>
                 <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" placeholder="Apellido Paterno" class="input-50" required>
                 <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>

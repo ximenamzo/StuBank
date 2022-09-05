@@ -15,7 +15,7 @@
     	$salt = "invalid";
     	$contraseñaful = md5($salt.$pass1);
 
-    	if(!$mysqli->query("UPDATE `trabajadores` SET `password` = '$contraseñaful' WHERE `trabajadores`.`nCuenta`='$cuenta'")){
+    	if(!$mysqli->query("UPDATE `clientes` SET `password` = '$contraseñaful' WHERE `clientes`.`nCuenta`='$cuenta'")){
     		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
     	}else{
     		session_destroy();

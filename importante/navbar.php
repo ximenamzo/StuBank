@@ -24,30 +24,30 @@
                             <i class="bi bi-gear"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/admin.php">Administracion</a></li>
-                            <li><a class="dropdown-item" href="/importante/logout.php">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" href="../admin/admin.php">Administracion</a></li>
+                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php }else if($rol == 2){?>
                     <!-- Opciones del ejecutivo -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person"></i>
+                            <i class="bi bi-bank"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="../ejecutivo/ejecutivo.php">Clientes</a></li>
+                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php }else if($rol == 3){?>
                     <!-- Opciones del cliente -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person"></i>
+                            <i class="bi bi-coin"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="#">Administrar cuenta</a></li>
+                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php }else{?>
@@ -57,8 +57,8 @@
                             <i class="bi bi-person"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="importante/decision.php">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="importante/decision_re.php">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="../importante/decision.php">Iniciar sesion</a></li>
+                            <li><a class="dropdown-item" href="../importante/decision_re.php">Registrarse</a></li>
                         </ul>
                     </li>
                 <?php } ?>

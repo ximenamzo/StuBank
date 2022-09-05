@@ -7,7 +7,7 @@
 
 	include('../importante/conexion.php');
 
-	$consutaRegistro = "SELECT * FROM trabajadores WHERE nCuenta='$cuenta' AND email='$correoR' AND curp='$curp'";
+	$consutaRegistro = "SELECT * FROM clientes WHERE nCuenta='$cuenta' AND email='$correoR' AND curp='$curp'";
 
 	$resultado = mysqli_query($mysqli,$consutaRegistro);
 	$res = $mysqli->query($consutaRegistro);

@@ -1,38 +1,7 @@
 <?php
-
-    require "conexion.php";
-
     session_start();
 
-    if($_POST){
-        $cuenta = $_POST['nCuenta'];
-        $password = $_POST['passw_user'];
-
-        $sql = "SELECT * FROM trabajadores WHERE nCuenta = '$cuenta'";
-        $resultado = $mysqli->query($sql);
-        $num = $resultado->num_rows;
-
-        if($num > 0){
-            $salt = "invalid";
-            $row = $resultado->fetch_assoc();
-            $pass_bd = $row['password'];
-
-            $passFull = md5($salt.$password);
-
-            if($pass_bd == $passFull){
-                $_SESSION['nombre'] = $row['nombre'];
-                $_SESSION['cuenta'] = $row['nCuenta'];
-                $_SESSION['rol'] = $row['rol'];
-
-                header("Location: /index.php");
-            }else{
-                echo "La contraseña es incorrecta";
-            }
-        }else{
-            echo "Datos incorrectos";
-        }
-    }
-
+    $cuenta = $_SESSION['cuenta'];
 ?>
 
 <!DOCTYPE html>
@@ -81,15 +50,17 @@
     <title>StuBank</title>
 </head>
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form action="set_pass.php" method="post">
 
-        <label>Numero de trabajador:</label>
-        <input type="text" name="nCuenta" required>
-
-        <label>Contraseña:</label>
+		<label>Contraseña:</label>
         <input type="password" name="passw_user" required>
 
-        <center><input type="submit" value="Iniciar"></center>
+        <label>Confirmar contraseña:</label>
+        <input type="password" name="passw_user2" required>
+        
+		<center>
+			<input type="submit" value="Registrarse">
+		</center>
     </form>
 </body>
 </html>

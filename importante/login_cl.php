@@ -8,7 +8,7 @@
         $cuenta = $_POST['nCuenta'];
         $password = $_POST['passw_user'];
 
-        $sql = "SELECT * FROM trabajadores WHERE nCuenta = '$cuenta'";
+        $sql = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
         $resultado = $mysqli->query($sql);
         $num = $resultado->num_rows;
 
@@ -24,7 +24,7 @@
                 $_SESSION['cuenta'] = $row['nCuenta'];
                 $_SESSION['rol'] = $row['rol'];
 
-                header("Location: ../index.php");
+                header("Location: /index.php");
             }else{
                 echo "La contraseña es incorrecta";
             }
@@ -42,6 +42,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src\css\styles-register.css" stype="text/css">
+
     <script type="text/javascript">
         function valideKey(evt){
             

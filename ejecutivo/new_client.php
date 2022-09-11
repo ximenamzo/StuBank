@@ -59,25 +59,22 @@
 </header>
 <body>
     <div class="container">
-            <div class="imagen">
-                <img src="../src/registro1.jpg" class="imgr">
-            </div>    
-            <form action="comprobar_register.php" method="post" class="form-registro">
-                <h1>Crear una cuenta</h1>
-                <div class="contenedor-inputs">
-                    <input type="text" name="nCuenta" placeholder="Numero de cuenta" class="input-50" required>
-                    <input type="text" name="name_user" onkeypress="return SoloLetras(event);" placeholder="Nombre" class="input-50" required>
-                    <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" placeholder="Apellido Paterno" class="input-50" required>
-                    <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
-                    <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
-                    <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
-                    <input type="text" name="curp" class="input-100" placeholder="CURP" required>
-                    <input type="password" name="passw_user" class="input-50" placeholder="Contraseña" required>
-                    <input type="password" name="passw_user2" class="input-50" placeholder="Confirmar contraseña" required>
-                    <input type="date" name="fecNac" class="input-50" required>
-                    <input type="submit" value="Registrar" class="btn_enviar">
-                </div>
-            </form>
-        </div>
+        <img src="../src/registro.jpg" class="imagen">
+        <form action="comprobar_cliente.php" method="post" class="form-registro">
+            <h1>Registrar cliente</h1>
+            <div class="contenedor-inputs">
+                <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Numero de cuenta" class="input-50" required>
+                <input type="text" name="name_user" onkeypress="return SoloLetras(event);" placeholder="Nombre" class="input-50" required>
+                <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" placeholder="Apellido Paterno" class="input-50" required>
+                <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
+                <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
+                <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
+                <input type="text" name="curp" class="input-100" placeholder="CURP" required>
+                <label>Fecha de nacimiento: </label>
+                <input type="date" name="fecNac" class="input-50" required>
+                <input type="submit" value="Registrarse" class="btn_enviar">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

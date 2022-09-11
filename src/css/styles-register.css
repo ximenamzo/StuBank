@@ -8,7 +8,6 @@ body{
 .container{
     padding: 10px;
     overflow: hidden;
-    margin-left: 200px;
 }
 h1{
 
@@ -19,7 +18,7 @@ h1{
     
 }
 .form-registro{
-    width: 98%;
+    width: 40%;
     max-width: 600px;
     float: left;
     margin: auto;
@@ -57,25 +56,42 @@ input{
     background-color: #7000a2;
 }
 
-.imagen{
+.imagen {
     float: left;
-    margin: auto;
+    width: 100%;
+    max-width: 600px;
+    margin:  0 auto;
+    height: 100%;
 }
 
-.imagen {
-    max-width: 100%;
-    display: inline-block;
+.imgr{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+}
+@media screen and (max-width: 1199px){
+    .imagen {
+        margin-left: 200px;
     }
-    /* 2 columnas para tablets */
-    @media (min-width: 320px) {
-    breakpoint  {
-    max-width: 48%;
-    }
-    }
-    /* 4 columnas para grandes dispositivos*/
-    @media (min-width: 600px) {
-    breakpoint  {
-    max-width: 24%;
-    }
-    }
+    .form-registro{
+        margin-left: 200px;
+        width: 100%;
 
+    }
+}
+@media screen and (max-width: 995px){
+    .imagen {
+        margin-left: 70px;
+    }
+    .form-registro{
+        margin-left: 70px;
+    }
+}
+@media screen and (max-width: 760px){
+    .imagen {
+        margin: 0 auto;
+    }
+    .form-registro{
+        margin: 0 auto;
+    }
+}

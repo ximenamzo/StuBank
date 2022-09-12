@@ -70,7 +70,7 @@
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
                 <input type="text" name="curp" class="input-100" placeholder="CURP" required>
-                <label>Fecha de nacimiento: </label>
+                <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
                 <input type="submit" value="Registrarse" class="btn_enviar">
             </div>

@@ -22,7 +22,7 @@
 	$con = $row['password'];
 	
     if($con != null){
-		echo '<script language="javascript">alert("Usuario ya registrado");window.location.href="../index.php"</script>';
+		echo '<script language="javascript">alert("Usuario ya registrado");window.location.href="/index.php"</script>';
 	}
 
     if($cont==1){

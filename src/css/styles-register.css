@@ -3,11 +3,12 @@
 }
 
 body{
-    margin: 0;
+    margin: 0 auto;
 }
 .container{
     padding: 10px;
     overflow: hidden;
+    margin: auto;
 }
 h1{
 
@@ -24,6 +25,24 @@ h1{
     margin: auto;
     box-shadow: 0px 4px 12px rgb(225, 225, 225);
 }
+/*CONTENEDOR DEL LOGIN*/
+.form-login{
+    width: 40%;
+    max-width: 600px;
+    float: left;
+    margin: auto;
+    box-shadow: 0px 4px 12px rgb(225, 225, 225);
+    height: 625px;
+}
+.btn_login{
+    margin: 90px auto;
+    background-color: #9120bd;
+    border-style: none;
+    color: white;
+    width: 90%;
+    border-radius: 7px;
+}
+/*---------------*/
 .contenedor-inputs{
     padding: 10px 30px;
     display: flex;
@@ -55,7 +74,9 @@ input{
 .btn_enviar:hover{
     background-color: #7000a2;
 }
-
+.yearday{
+    padding: 22px 0px;
+}
 .imagen {
     float: left;
     width: 100%;
@@ -78,6 +99,11 @@ input{
         width: 100%;
 
     }
+    .form-login{
+        margin-left: 200px;
+        width: 100%;
+
+    }
 }
 @media screen and (max-width: 995px){
     .imagen {
@@ -86,12 +112,18 @@ input{
     .form-registro{
         margin-left: 70px;
     }
+    .form-login{
+        margin-left: 70px;
+    }
 }
 @media screen and (max-width: 760px){
     .imagen {
         margin: 0 auto;
     }
     .form-registro{
+        margin: 0 auto;
+    }
+    .form-login{
         margin: 0 auto;
     }
 }

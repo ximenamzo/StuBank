@@ -6,9 +6,9 @@
 
     include('../importante/conexion.php');
 
-    $obtencion = "SELECT * FROM trabajadores WHERE rol = '2' AND estatus = '1'";
+    $obtencion = "SELECT * FROM clientes WHERE estatus = '1'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 
@@ -31,33 +31,24 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="register.php">Registrar ejecutivo</a><br>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">N. trabajador</th>
+                    <th scope="col">N. de cuenta</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido paterno</th>
                     <th scope="col">Apellido materno</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Correo electronico</th>
-                    <th scope="col">Opciones</th>
                 </thead>
                 <tbody>
-                    <?php foreach($ejecutivos as $ejecutivo): ?>
+                    <?php foreach($clientes as $cliente): ?>
                         <tr>
-                            <td><?=$ejecutivo['nCuenta'] ?></td>
-                            <td><?=$ejecutivo['nombre'] ?></td>
-                            <td><?=$ejecutivo['apelldoP'] ?></td>
-                            <td><?=$ejecutivo['apellidoM'] ?></td>
-                            <td><?=$ejecutivo['telefono'] ?></td>
-                            <td><?=$ejecutivo['email'] ?></td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="deleteEje.php?id=<?php echo $ejecutivo['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                    <a href="editEje.php?id=<?php echo $ejecutivo['nCuenta'];?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                                    <a href="infoEje.php?id=<?php echo $ejecutivo['nCuenta'];?>" class="btn btn-primary"><i class="bi bi-info-circle"></i></a>
-                                </div>
-                            </td>
+                            <td><?=$cliente['nCuenta'] ?></td>
+                            <td><?=$cliente['nombre'] ?></td>
+                            <td><?=$cliente['apellidoP'] ?></td>
+                            <td><?=$cliente['apellidoM'] ?></td>
+                            <td><?=$cliente['telefono'] ?></td>
+                            <td><?=$cliente['email'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

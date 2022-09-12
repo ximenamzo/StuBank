@@ -1,0 +1,25 @@
+.menu{
+    position: absolute;
+    background-color: aqua;
+    width: 100%;
+    height: vh;
+    top: o; left: o;
+    
+}
+.cont-menu{
+    width: 100%;
+    max-width: 250px;
+    background-color: aquamarine;
+    position: relative;
+}
+.cont-menu nav{
+    transform: translate(15%);
+
+}
+.cont-menu nav a{
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: black;
+    border-left: 5px solid;
+}

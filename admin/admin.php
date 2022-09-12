@@ -22,17 +22,7 @@
 </header>
 <body style="height: 100vh; display: flex; flex-flow: column;">
     <div class="row">
-        <div class="col-md-3" style="background-color: #8E1EDC;">
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <center><h3>Administrador</h3></center>
-            </div>
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <a href="admin.php"><center>Movimientos</center></a>
-            </div>
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <a href="admin_eje.php"><center>Ejecutivos</center></a>
-            </div>
-        </div>
+        <?php include('menu.php'); ?>
         <div class="col-md-9">
             Pagina de administración, aqui planeo poner una tabla con los movimientos hechos hasta ese momento
         </div>

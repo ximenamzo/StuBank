@@ -17,7 +17,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="https://c.tenor.com/ZLda9M-H1hYAAAAC/cat-cute.gif">Sobre nosotros</a>
                 </li>
-                <?php if($rol == 1){?>
+                <?php if($rol == 1):?>
                     <!-- Opciones del admin -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,7 +28,7 @@
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
-                <?php }else if($rol == 2){?>
+                <?php elseif($rol == 2):?>
                     <!-- Opciones del ejecutivo -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +39,7 @@
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
-                <?php }else if($rol == 3){?>
+                <?php elseif($rol == 3):?>
                     <!-- Opciones del cliente -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,7 +50,7 @@
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
-                <?php }else{?>
+                <?php else: ?>
                     <!-- Opciones del visitante -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,7 +61,7 @@
                             <li><a class="dropdown-item" href="../importante/decision_re.php">Registrarse</a></li>
                         </ul>
                     </li>
-                <?php } ?>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

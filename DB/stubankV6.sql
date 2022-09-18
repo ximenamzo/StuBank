@@ -29,6 +29,7 @@ CREATE TABLE `clientes` (
   `nombre` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `apellidoP` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `apellidoM` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `telefono` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `fecNac` date NOT NULL,
   `email` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE `clientes` (
   `saldo` double NOT NULL DEFAULT '0',
   `deuda` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'20220001','aaaaa','a','a','a','1111111111','0001-01-01','a@a.com','a','400572ee10cf5e71c62843446802828a',3,'2022-09-04',1,0,0),(2,'1234','aaaaa','a','a','a','1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),(3,'321','aaaaa','isaac','si','si','1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),(4,'1111','aaaaa','a','a','a','1','0002-02-02','a@a.com','a',NULL,3,'2022-09-12',2,0,0);
+INSERT INTO `clientes` VALUES (1,'20220001','aaaaa','a','a','a',NULL,'1111111111','0001-01-01','a@a.com','a','400572ee10cf5e71c62843446802828a',3,'2022-09-04',1,0,0),(2,'1234','aaaaa','a','a','a',NULL,'1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),(3,'321','aaaaa','isaac','si','si',NULL,'1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),(4,'1111','aaaaa','a','a','a',NULL,'1','0002-02-02','a@a.com','a',NULL,3,'2022-09-12',1,0,0),(5,'w','aaaaa','w','w','w','diagrama tachado.png','1','0001-01-01','a@a.com','w',NULL,3,'2022-09-18',1,0,0);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,6 +67,7 @@ CREATE TABLE `trabajadores` (
   `nombre` text NOT NULL,
   `apelldoP` text NOT NULL,
   `apellidoM` text NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `telefono` text NOT NULL,
   `fecNac` date NOT NULL,
   `email` text NOT NULL,
@@ -75,7 +77,7 @@ CREATE TABLE `trabajadores` (
   `fecInscrip` date DEFAULT NULL,
   `estatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +86,7 @@ CREATE TABLE `trabajadores` (
 
 LOCK TABLES `trabajadores` WRITE;
 /*!40000 ALTER TABLE `trabajadores` DISABLE KEYS */;
-INSERT INTO `trabajadores` VALUES (1,'2022AAAA','Carlos','Nolazco','Lagunas','3141737914','2003-04-15','cnolazco@ucol.mx','NOLC030415HCMLGRA2','2ac3510fc601c5b63a510ad408d41199',1,NULL,1),(2,'2022AAAB','c','c','c','1111111111','2022-08-03','a@a.com','si','d252da3cdd35b2373a247a08de68c326',1,NULL,1),(3,'2022AAAC','Si','Si','Si','1111111111','0001-01-01','a@a.com','aaaaaaaaaaa','766ed26431edaca1aeabf0b96712123c',2,NULL,1),(4,'2022AAAD','kkk','kkk','kkk','1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',2,NULL,1),(5,'2022AAAE','Carlos','Nolazco','Lagunas','1111111111','0001-01-01','a@a.com','1','400572ee10cf5e71c62843446802828a',2,NULL,1),(6,'a','a','a','a','1111111111','0001-01-01','a@a.com','a',NULL,2,'2022-09-04',1),(7,'q','q','q','q','1111111111','0001-01-01','a@a.com','q','400572ee10cf5e71c62843446802828a',2,'2022-09-04',1),(8,'1234','ba','a','a','1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',2,'2022-09-05',1),(9,'5555','a','a','a','1','0001-01-01','a@a.com','a','400572ee10cf5e71c62843446802828a',2,'2022-09-05',1),(10,'1','1','1','1','1','2007-10-10','a@a.com','1',NULL,2,'2022-09-11',1),(11,'2','2','2','2','2','0002-02-02','a@a.com','2',NULL,2,'2022-09-11',1),(12,'aaaaa','a','a','a','1','0001-01-01','a@a.com','a','3e5bd8749c6d5227097d504cc205327a',1,'2022-09-12',1);
+INSERT INTO `trabajadores` VALUES (1,'2022AAAA','Carlos','Nolazco','Lagunas',NULL,'3141737914','2003-04-15','cnolazco@ucol.mx','NOLC030415HCMLGRA2','2ac3510fc601c5b63a510ad408d41199',1,NULL,1),(2,'2022AAAB','c','c','c',NULL,'1111111111','2022-08-03','a@a.com','si','d252da3cdd35b2373a247a08de68c326',1,NULL,1),(3,'2022AAAC','Si','Si','Si',NULL,'1111111111','0001-01-01','a@a.com','aaaaaaaaaaa','766ed26431edaca1aeabf0b96712123c',2,NULL,1),(4,'2022AAAD','kkk','kkk','kkk',NULL,'1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',2,NULL,1),(5,'2022AAAE','Carlos','Nolazco','Lagunas',NULL,'1111111111','0001-01-01','a@a.com','1','400572ee10cf5e71c62843446802828a',2,NULL,1),(6,'a','a','a','a',NULL,'1111111111','0001-01-01','a@a.com','a',NULL,2,'2022-09-04',1),(7,'q','q','q','q',NULL,'1111111111','0001-01-01','a@a.com','q','400572ee10cf5e71c62843446802828a',2,'2022-09-04',1),(8,'1234','ba','a','a',NULL,'1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',2,'2022-09-05',1),(9,'5555','a','a','a',NULL,'1','0001-01-01','a@a.com','a','400572ee10cf5e71c62843446802828a',2,'2022-09-05',1),(10,'1','1','1','1',NULL,'1','2007-10-10','a@a.com','1',NULL,2,'2022-09-11',1),(11,'2','2','2','2',NULL,'2','0002-02-02','a@a.com','2',NULL,2,'2022-09-11',1),(12,'aaaaa','a','a','a',NULL,'1','0001-01-01','a@a.com','a','3e5bd8749c6d5227097d504cc205327a',2,'2022-09-12',1),(13,'u','u','u','u',NULL,'1','0001-01-01','a@a.com','u',NULL,2,'2022-09-17',1),(14,'w','u','u','u',NULL,'1','0001-01-01','a@a.com','u',NULL,2,'2022-09-17',1),(15,'s','s','s','s','','1','0001-01-01','a@a.com','s',NULL,2,'2022-09-17',1),(16,'k','k','k','k','','1','0001-01-01','a@a.com','k',NULL,2,'2022-09-17',1),(17,'f','f','f','f','','1','0001-01-01','a@a.com','f',NULL,2,'2022-09-17',1),(18,'m','m','m','m','','1','0001-01-01','a@a.com','m',NULL,2,'2022-09-17',1),(19,'x','x','x','x','','1','0001-01-01','a@a.com','x',NULL,2,'2022-09-18',1),(20,'z','z','z','z','','1','0001-01-01','a@a.com','z',NULL,2,'2022-09-18',1),(21,'g','g','g','g','','1','0001-01-01','a@a.com','g',NULL,2,'2022-09-18',1),(22,'r','r','r','r','','1','0001-01-01','a@a.com','r','328bb19fb04d29e6661238ad40504a06',2,'2022-09-18',1),(23,'v','v','v','v','WhatsApp Image 2022-09-18 at 12.15.41 AM.jpeg','1','0001-01-01','a@a.com','v',NULL,2,'2022-09-18',1),(24,'b','b','b','b','login.jpg','1','0001-01-01','a@a.com','b',NULL,2,'2022-09-18',1);
 /*!40000 ALTER TABLE `trabajadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-12  9:46:41
+-- Dump completed on 2022-09-18 15:34:19

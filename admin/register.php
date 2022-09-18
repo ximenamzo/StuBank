@@ -3,6 +3,10 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +64,7 @@
 <body>
     <div class="container">
         <img src="../src/registro.jpg" class="imagen">
-        <form action="comprobar_register.php" method="post" class="form-registro">
+        <form action="comprobar_register.php" method="post" class="form-registro" enctype="multipart/form-data">
             <h1>Registrar ejecutivo</h1>
             <div class="contenedor-inputs">
                 <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Numero de trabajador" class="input-50" required>
@@ -70,8 +74,9 @@
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
                 <input type="text" name="curp" class="input-100" placeholder="CURP" required>
-                <label>Fecha de nacimiento: </label>
+                <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
+                <label class="yearday">Foto del ejecutivo: </label><input type="file" name="foto" class="input-50" required accept="image/png, .jpeg, .jpg, image/gif">
                 <input type="submit" value="Registrarse" class="btn_enviar">
             </div>
         </form>

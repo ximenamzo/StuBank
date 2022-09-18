@@ -3,6 +3,10 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +26,7 @@
 </header>
 <body style="height: 100vh; display: flex; flex-flow: column;">
     <div class="row">
-        <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-12">
             Pagina de administración, aqui planeo poner una tabla con los movimientos hechos hasta ese momento
         </div>
     </div>

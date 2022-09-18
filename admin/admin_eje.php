@@ -4,6 +4,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
     include('../importante/conexion.php');
 
     $obtencion = "SELECT * FROM trabajadores WHERE rol = '2' AND estatus = '1'";
@@ -29,8 +33,7 @@
 </header>
 <body>
     <div class="row">
-        <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <a href="register.php">Registrar ejecutivo</a><br>
             <table class="table mt-3">
                 <thead>

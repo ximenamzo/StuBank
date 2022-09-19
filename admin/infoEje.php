@@ -6,6 +6,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
     include('../importante/conexion.php');
 
     $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
@@ -18,9 +22,6 @@
 	    $diferencia = $ahora->diff($nacimiento);
 	    return $diferencia->format("%y");
 	}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -40,13 +41,12 @@
 </header>
 <body>
     <div class="row">
-        <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <h1>Ficha del trabajador</h1>
             <?php foreach($ejecutivos as $ejecutivo): ?>
-            	<img style="width: 10pc;" src="https://st.depositphotos.com/2398521/2643/i/600/depositphotos_26433069-stock-photo-smile-emotional-animal.jpg"><br>
+            	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
             	<label>Numero de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
-            	<label>Nombre:</label> <?=$ejecutivo['nombre']?> <?=$ejecutivo['apelldoP']?> <?=$ejecutivo['apellidoM']?><br>
+            	<label>Nombre:</label> <?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?><br>
             	<label>Edad:</label> <?=edad($ejecutivo['fecNac'])?><br>
             	<label>Telefono:</label> <?=$ejecutivo['telefono']?><br>
             	<label>Correo electronico:</label> <?=$ejecutivo['email']?><br>

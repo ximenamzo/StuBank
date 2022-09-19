@@ -24,7 +24,10 @@
                             <i class="bi bi-gear"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/admin.php">Administracion</a></li>
+                            <li><a class="dropdown-item" href="../admin/admin_eje.php">Ejecutivos</a></li>
+                            <li><a class="dropdown-item" href="../admin/admin_cl.php">Clientes</a></li>
+                            <li><a class="dropdown-item" href="../admin/admin.php">Movimientos</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
@@ -36,6 +39,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../ejecutivo/ejecutivo.php">Clientes</a></li>
+                            <li><a class="dropdown-item" href="../ejecutivo/ejecutivo.php">Movimientos</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
@@ -47,6 +52,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Administrar cuenta</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>

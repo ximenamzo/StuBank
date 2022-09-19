@@ -1,5 +1,14 @@
 <?php
 
+    session_start();
+
+    $nombre = $_SESSION['nombre'];
+    $rol = $_SESSION['rol'];
+
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
     $cuenta = $_POST['nCuenta'];
     $userR = $_POST['name_user'];
     $apellidoP = $_POST['apellidoP'];
@@ -9,6 +18,8 @@
     $nacimiento = $_POST['fecNac'];
     $curp = $_POST['curp'];
     $fecha = date('Y-m-d');
+    $foto = $_FILES['foto']['name'];
+    $guardar_img = $_FILES['foto']['tmp_name'];
 
     //llamamos a la conexion de base datos
     include('../importante/conexion.php');
@@ -25,11 +36,29 @@
         $cont++;
         echo $cont;
     }
-
+    
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
+        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `foto`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$foto', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
+            if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe
+                mkdir('../src/fotos',0777,true); //Creamos la carpeta y le damos permisos
+                if(file_exists('../src/fotos')){//guardamos y movemos a nuestra carpeta
+                    if(move_uploaded_file($guardar_img,'../src/fotos/'.$foto)){
+                        echo "Archivo Guardado con Exito";
+                    }else{
+                        echo '<script language="javascript">alert("Falló");';
+                        header("Location: admin_eje.php");
+                    }
+                }
+            }else{
+                if(move_uploaded_file($guardar_img,'../src/fotos/'.$foto)){
+                    echo "Archivo Guardado con Exito";
+                }else{
+                    echo '<script language="javascript">alert("Falló");';
+                    header("Location: admin_eje.php");
+                }
+            }
             echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="admin_eje.php"</script>';
         }
     }else{

@@ -7,7 +7,7 @@
 
     include('../importante/conexion.php');
 
-    $obtencion = "SELECT * FROM clientes WHERE nEjecutivo = '$cuenta'";
+    $obtencion = "SELECT * FROM clientes WHERE nEjecutivo = '$cuenta' AND estatus = 1";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -29,18 +29,7 @@
 </header>
 <body style="height: 100vh; display: flex; flex-flow: column;">
     <div class="row">
-        <div class="col-md-3" style="background-color: #8E1EDC;">
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <center><h3>Ejecutivo</h3></center>
-            </div>
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <a href="ejecutivo.php.php"><center>Clientes</center></a>
-            </div>
-            <div class="mt-3 mb-3 mx-3" style="background-color: #ffffff;">
-                <a href="#"><center>Movimientos</center></a>
-            </div>
-        </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <a href="new_client.php">Registrar cliente</a><br>
             <table class="table mt-3">
                 <thead>
@@ -50,6 +39,7 @@
                     <th scope="col">Apellido materno</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Correo electronico</th>
+                    <th scope="col">Opciones</th>
                 </thead>
                 <tbody>
                     <?php foreach($clientes as $cliente): ?>
@@ -60,6 +50,13 @@
                             <td><?=$cliente['apellidoM'] ?></td>
                             <td><?=$cliente['telefono'] ?></td>
                             <td><?=$cliente['email'] ?></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a href="deleteCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                    <a href="editCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                                    <a href="infoCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-primary"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

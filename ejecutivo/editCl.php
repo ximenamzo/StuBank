@@ -6,15 +6,11 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
-    if($rol != 1){
-        header("Location: ../index.php");
-    }
-
     include('../importante/conexion.php');
 
-    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
+    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,23 +31,23 @@
 <body>
     <div class="row">
         <div class="col-md-12">
-            <h1>Ficha del trabajador</h1>
-            <?php foreach($ejecutivos as $ejecutivo): ?>
-                <form action="setEdit.php?id=<?php echo $ejecutivo['nCuenta'];?>" method="post" enctype="multipart/form-data">
-                	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+            <h1>Ficha del cliente</h1>
+            <?php foreach($clientes as $cliente): ?>
+                <form action="setEdit.php?id=<?php echo $cliente['nCuenta'];?>" method="post" enctype="multipart/form-data">
+                	<img style="width: 10pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
                 	<label>Nombre:</label>
-                    <input type="text" name="nom" id="nom" value="<?=$ejecutivo['nombre']?>"><br>
+                    <input type="text" name="nom" id="nom" value="<?=$cliente['nombre']?>"><br>
                 	<label>Apellido paterno:</label>
-                    <input type="text" name="aP" id="aP" value="<?=$ejecutivo['apelldoP']?>"><br>
-                    <label>Apellido materno:</label><input type="text" name="aM" id="aM" value="<?=$ejecutivo['apellidoM']?>"><br>
+                    <input type="text" name="aP" id="aP" value="<?=$cliente['apellidoP']?>"><br>
+                    <label>Apellido materno:</label><input type="text" name="aM" id="aM" value="<?=$cliente['apellidoM']?>"><br>
                 	<label>Telefono:</label>
-                    <input type="text" name="tel" id="tel" value="<?=$ejecutivo['telefono']?>"><br>
-                	<label>Correo electronico:</label><input type="email" name="email" id="email" value="<?=$ejecutivo['email']?>"><br>
+                    <input type="text" name="tel" id="tel" value="<?=$cliente['telefono']?>"><br>
+                	<label>Correo electronico:</label><input type="email" name="email" id="email" value="<?=$cliente['email']?>"><br>
                 	<label>CURP:</label>
-                    <input type="text" name="curp" id="curp" value="<?=$ejecutivo['curp']?>"><br>
-                	<label>Fecha de nacimiento:</label><input type="date" name="fNa" id="fNa" value="<?=$ejecutivo['fecNac']?>"><br>
+                    <input type="text" name="curp" id="curp" value="<?=$cliente['curp']?>"><br>
+                	<label>Fecha de nacimiento:</label><input type="date" name="fNa" id="fNa" value="<?=$cliente['fecNac']?>"><br>
 
-                    <a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
+                    <a href="ejecutivo.php" class="btn btn-secondary">Regresar</a>
                     <input class="btn btn-primary" type="submit" value="Editar">
                 </form>
             <?php endforeach ?>

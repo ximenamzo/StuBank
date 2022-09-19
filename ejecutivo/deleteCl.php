@@ -6,15 +6,11 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
-    if($rol != 1){
-        header("Location: ../index.php");
-    }
-
     include('../importante/conexion.php');
 
-    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
+    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 
     function edad($fecha_nacimiento){
 	    $nacimiento = new DateTime($fecha_nacimiento);
@@ -24,15 +20,15 @@
 	}
 
     if(!empty($_POST)){
-    	$idEje = $_POST['idEje'];
+    	$idCl = $_POST['idCl'];
 
-    	$borrar = mysqli_query($mysqli, "UPDATE trabajadores SET estatus = '2' WHERE nCuenta = '$idEje'");
+    	$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
 
     	if($borrar){
-    		header("Location: admin_eje.php");
+    		header("Location: ejecutivo.php");
     	}else{
     		echo "Error";
-    		echo $idEje;
+    		echo $idCl;
     	}
 	}
 ?>
@@ -55,22 +51,22 @@
 <body>
     <div class="row">
         <div class="col-md-12">
-            <h1>Ficha del trabajador</h1>
-            <?php foreach($ejecutivos as $ejecutivo): ?>
-            	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
-            	<label>Numero de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
-            	<label>Nombre:</label> <?=$ejecutivo['nombre']?> <?=$ejecutivo['apelldoP']?> <?=$ejecutivo['apellidoM']?><br>
-            	<label>Edad:</label> <?=edad($ejecutivo['fecNac'])?><br>
-            	<label>Telefono:</label> <?=$ejecutivo['telefono']?><br>
-            	<label>Correo electronico:</label> <?=$ejecutivo['email']?><br>
-            	<label>CURP:</label> <?=$ejecutivo['curp']?><br>
-            	<label>Activo desde el:</label> <?=$ejecutivo['fecInscrip']?><br>
+            <h1>Ficha del cliente</h1>
+            <?php foreach($clientes as $cliente): ?>
+            	<img style="width: 10pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
+            	<label>Numero de cuenta:</label> <?=$cliente['nCuenta']?><br>
+            	<label>Nombre:</label> <?=$cliente['nombre']?> <?=$cliente['apelldoP']?> <?=$cliente['apellidoM']?><br>
+            	<label>Edad:</label> <?=edad($cliente['fecNac'])?><br>
+            	<label>Telefono:</label> <?=$cliente['telefono']?><br>
+            	<label>Correo electronico:</label> <?=$cliente['email']?><br>
+            	<label>CURP:</label> <?=$cliente['curp']?><br>
+            	<label>Activo desde el:</label> <?=$cliente['fecInscrip']?><br>
             <?php endforeach ?>
 
             <form method="post" action="" onsubmit="return conf(event)">
-            	<a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
+            	<a href="ejecutivo.php" class="btn btn-secondary">Regresar</a>
 
-            	<input type="hidden" name="idEje" value="<?=$ejecutivo['nCuenta']?>">
+            	<input type="hidden" name="idCl" value="<?=$cliente['nCuenta']?>">
                 <button type="submit" class="btn btn-danger">
                 	Eliminar
                 </button>
@@ -78,7 +74,7 @@
         </div>
     </div>
     <script language="javascript">
-        const conf = _ => confirm("¿Desea eliminar a este ejecutivo?");
+        const conf = _ => confirm("¿Desea eliminar a este cliente?");
     </script>
 </body>
 </html>

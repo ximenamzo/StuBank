@@ -4,6 +4,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
     include('../importante/conexion.php');
 
     $obtencion = "SELECT * FROM clientes WHERE estatus = '1'";
@@ -29,8 +33,7 @@
 </header>
 <body>
     <div class="row">
-        <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <table class="table mt-3">
                 <thead>
                     <th scope="col">N. de cuenta</th>
@@ -39,6 +42,7 @@
                     <th scope="col">Apellido materno</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Correo electronico</th>
+                    <th scope="col">Opciones</th>
                 </thead>
                 <tbody>
                     <?php foreach($clientes as $cliente): ?>
@@ -49,6 +53,12 @@
                             <td><?=$cliente['apellidoM'] ?></td>
                             <td><?=$cliente['telefono'] ?></td>
                             <td><?=$cliente['email'] ?></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a href="editCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                                    <a href="infoCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-primary"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

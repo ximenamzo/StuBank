@@ -55,6 +55,6 @@
             echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="ejecutivo.php"</script>';
         }
     }else{
-        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="ejecutivo.php"</script>';
+        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="new_client.php"</script>';
     }
 ?>

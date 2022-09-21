@@ -31,6 +31,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -43,20 +45,25 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            <h1>Ficha del trabajador</h1>
-            <?php foreach($ejecutivos as $ejecutivo): ?>
-            	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
-            	<label>Numero de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
-            	<label>Nombre:</label> <?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?><br>
-            	<label>Edad:</label> <?=edad($ejecutivo['fecNac'])?><br>
-            	<label>Telefono:</label> <?=$ejecutivo['telefono']?><br>
-            	<label>Correo electronico:</label> <?=$ejecutivo['email']?><br>
-            	<label>CURP:</label> <?=$ejecutivo['curp']?><br>
-            	<label>Activo desde el:</label> <?=$ejecutivo['fecInscrip']?><br>
-            <?php endforeach ?>
+        <div class="col-md-5">
+            <h1>Ficha del ejecutivo</h1>
 
-            <a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
+            <div class="card">
+                <?php foreach($ejecutivos as $ejecutivo): ?>
+                    <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+                    <div class="cont">
+                        <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
+                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?></b><br>
+                        <label>Edad:</label> <b><?=edad($ejecutivo['fecNac'])?> años</b><br>
+                        <label>Teléfono:</label> <b><?=$ejecutivo['telefono']?></b><br>
+                        <label>Correo electrónico:</label> <b><?=$ejecutivo['email']?></b><br>
+                        <label>CURP:</label> <b><?=$ejecutivo['curp']?></b><br>
+                        <label>Activo desde el:</label> <b><?=$ejecutivo['fecInscrip']?></b><br>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <br>
+            <a href="admin_eje.php" class="btn btn-secondary">Regresar</a><br><br>
         </div>
     </div>
 </body>

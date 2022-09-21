@@ -3,6 +3,8 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    error_reporting(0);
 ?>
 
 <!DOCTYPE html>

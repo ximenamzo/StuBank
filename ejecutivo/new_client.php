@@ -52,10 +52,10 @@
     }
     </script>
 
-    <title>StuBank</title>
+    <title>StuBank - Registro de Cliente</title>
 </head>
 <header>
-    <?php include('../importante/navbar.php'); ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
 <body>
     <div class="container">
@@ -69,7 +69,7 @@
                 <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
-                <input type="text" name="curp" class="input-100" placeholder="CURP" required>
+                <input type="text" maxlength="18" name="curp" class="input-100" placeholder="CURP" required>
                 <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
                 <label class="yearday">Foto del cliente: </label><input type="file" name="foto" class="input-50" required accept="image/png, .jpeg, .jpg, image/gif">

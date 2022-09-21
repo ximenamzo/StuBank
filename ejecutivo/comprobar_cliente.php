@@ -15,7 +15,7 @@
     $guardar_img = $_FILES['foto']['tmp_name'];
 
     //llamamos a la conexion de base datos
-    include('../importante/conexion.php');
+    include('../view/conexion.php');
 
     //Hacemos la consulta de nuestro codigo sql 
     $consutaRegistro = "SELECT nCuenta FROM clientes WHERE nCuenta='$cuenta'";
@@ -55,6 +55,6 @@
             echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="ejecutivo.php"</script>';
         }
     }else{
-        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="ejecutivo.php"</script>';
+        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="new_client.php"</script>';
     }
 ?>

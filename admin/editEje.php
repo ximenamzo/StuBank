@@ -10,7 +10,7 @@
         header("Location: ../index.php");
     }
 
-    include('../importante/conexion.php');
+    include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
@@ -31,7 +31,7 @@
 </head>
 
 <header>
-    <?php include('../importante/navbar.php'); ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
 <body>
     <div class="row">

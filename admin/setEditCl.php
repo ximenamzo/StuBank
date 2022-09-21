@@ -2,7 +2,7 @@
 
 session_start();
 
-include('../importante/conexion.php');
+include('../view/conexion.php');
 
 $nombre = $_SESSION['nombre'];
 $rol = $_SESSION['rol'];

@@ -59,7 +59,7 @@
     <title>StuBank</title>
 </head>
 <header>
-    <?php include('../importante/navbar.php'); ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
 <body>
     <div class="container">

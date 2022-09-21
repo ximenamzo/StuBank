@@ -22,7 +22,7 @@
     $guardar_img = $_FILES['foto']['tmp_name'];
 
     //llamamos a la conexion de base datos
-    include('../importante/conexion.php');
+    include('../view/conexion.php');
 
     //Hacemos la consulta de nuestro codigo sql 
     $consutaRegistro = "SELECT nCuenta FROM trabajadores WHERE nCuenta='$cuenta'";

@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../admin/admin.php">Administración</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php elseif($rol == 2):?>
@@ -38,7 +38,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../ejecutivo/ejecutivo.php">Administración</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php elseif($rol == 3):?>
@@ -50,7 +50,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Administrar cuenta</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../importante/logout.php">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 <?php else: ?>
@@ -60,8 +60,8 @@
                             <i class="bi bi-person"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../importante/decision.php">Iniciar sesion</a></li>
-                            <li><a class="dropdown-item" href="../importante/decision_re.php">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="../view/decision.php">Iniciar sesion</a></li>
+                            <li><a class="dropdown-item" href="../view/decision_re.php">Registrarse</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

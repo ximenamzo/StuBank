@@ -1,6 +1,6 @@
 <?php 
     session_start();
-
+    
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 ?>
@@ -25,8 +25,8 @@
 <body>
     <div class="banner">
         <div class="banner--header">
-            <h1>FINANCIAL WEB TOOL FOR ACCOUNT MANAGEMENT AND BANKING MOVEMENTS</h1>
-            <a class="btn btn-secondary disabled" role="button" aria-disabled="true">Learn more</a>
+            <h1>HERRAMIENTA FINANCIERA PARA MOVIMIENTOS BANCARIOS ONLINE</h1>
+            <a class="btn btn-secondary disabled" role="button" aria-disabled="true">Leer más</a><br><br>
         </div>
         <img src="./src/R.jpg" width="562px" height="363px" alt="">
     </div>

@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="../src/css/menu.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>StuBank</title>
 </head>
@@ -65,10 +66,10 @@
             <h1>Ficha del cliente</h1>
             <?php foreach($clientes as $cliente): ?>
                 <img style="width: 10pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
-                <label>Numero de cliente:</label> <?=$cliente['nCuenta']?><br>
+                <label>Número de cliente:</label> <?=$cliente['nCuenta']?><br>
                 <label>Nombre:</label> <?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?><br>
                 <label>Edad:</label> <?=edad($cliente['fecNac'])?><br>
-                <label>Telefono:</label> <?=$cliente['telefono']?><br>
+                <label>Teléfono:</label> <?=$cliente['telefono']?><br>
                 <label>Correo electronico:</label> <?=$cliente['email']?><br>
                 <label>CURP:</label> <?=$cliente['curp']?><br>
                 <label>Activo desde el:</label> <?=$cliente['fecInscrip']?><br><br>

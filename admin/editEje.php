@@ -47,7 +47,7 @@
                 	<label>Apellido paterno:</label>
                     <input type="text" name="aP" id="aP" value="<?=$ejecutivo['apelldoP']?>"><br>
                     <label>Apellido materno:</label><input type="text" name="aM" id="aM" value="<?=$ejecutivo['apellidoM']?>"><br>
-                	<label>Telefono:</label>
+                	<label>Teléfono:</label>
                     <input type="text" name="tel" id="tel" value="<?=$ejecutivo['telefono']?>"><br>
                 	<label>Correo electronico:</label><input type="email" name="email" id="email" value="<?=$ejecutivo['email']?>"><br>
                 	<label>CURP:</label>

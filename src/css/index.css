@@ -7,14 +7,14 @@
     top: 150;
     left: 0;
     color: #fff;
-    width: 600px;
-    height: 420px;
-    padding: 20px;
+    width: 40em;
+    height: auto;
+    padding: 2em 1em 1em 3em;
 }
 .banner h1{
     color: #fff;
-    width: 350px;
-    height: 320px;
+    width: 10em;
+    height: 7em;
 }
 .banner img{
     position: absolute;

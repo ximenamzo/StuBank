@@ -56,7 +56,7 @@
         <form action="comprobar_eje.php" method="post" class="form-login">
             <h1>Registrar</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" placeholder="Numero de cuenta" class="input-100" required>
+                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
                 <input type="email" name="correo_user" placeholder="Correo"class="input-100" required>
                 <input type="text" name="curp" placeholder="CURP"class="input-100" required>
                 <input type="submit" value="Registrarse" class="btn_login">

@@ -66,10 +66,10 @@
                 <?php foreach($clientes as $cliente): ?>
                     <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
                     <div class="cont">
-                        <label>Numero de cliente:</label> <b><?=$cliente['nCuenta']?></b><br>
+                        <label>Número de cliente:</label> <b><?=$cliente['nCuenta']?></b><br>
                         <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
                         <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                        <label>Telefono:</label> <b><?=$cliente['telefono']?></b><br>
+                        <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
                         <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
                         <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
                         <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br><br>

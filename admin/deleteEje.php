@@ -61,10 +61,10 @@
             <h1>Ficha del trabajador</h1>
             <?php foreach($ejecutivos as $ejecutivo): ?>
             	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
-            	<label>Numero de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
+            	<label>Número de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
             	<label>Nombre:</label> <?=$ejecutivo['nombre']?> <?=$ejecutivo['apelldoP']?> <?=$ejecutivo['apellidoM']?><br>
             	<label>Edad:</label> <?=edad($ejecutivo['fecNac'])?><br>
-            	<label>Telefono:</label> <?=$ejecutivo['telefono']?><br>
+            	<label>Teléfono:</label> <?=$ejecutivo['telefono']?><br>
             	<label>Correo electronico:</label> <?=$ejecutivo['email']?><br>
             	<label>CURP:</label> <?=$ejecutivo['curp']?><br>
             	<label>Activo desde el:</label> <?=$ejecutivo['fecInscrip']?><br>

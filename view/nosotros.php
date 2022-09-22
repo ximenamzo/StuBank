@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    
+
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 ?>
@@ -20,22 +20,14 @@
 </head>
 
 <header>
-    <?php include('view/navbar.php'); ?>
+    <?php include('navbar.php'); ?>
 </header>
 <body>
-    <div class="banner">
-        <div class="banner--header">
-            <h1>HERRAMIENTA FINANCIERA PARA MOVIMIENTOS BANCARIOS ONLINE</h1>
-            <a class="btn btn-secondary disabled" role="button" aria-disabled="true">Leer más</a><br><br>
-        </div>
-        <img src="./src/R.jpg" width="562px" height="363px" alt="">
-    </div>
-    <section class="seccion2">
-        <div class="contenedor-beneficios">
-            <h2>Beneficios de ser cliente</h2><br>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo in repellat, error praesentium ullam labore at, ad tempora consequuntur aspernatur, nulla incidunt voluptatum consequatur eveniet assumenda amet laborum. Ea, non?</p>
-            <img src="./src/beneficios.png" alt="">
-        </div>
-    </section>
+    <br>
+    <h2>Sobre Nosotros</h2>
+    <h5>Donec diam diam, sollicitudin quis consequat in, aliquet sed nisl. Pellentesque suscipit vel nulla lacinia elementum. Sed finibus convallis massa, nec condimentum urna egestas ut. 
+        Donec vitae semper velit. Nullam accumsan, diam vitae consequat dictum, ipsum libero aliquet nulla, vel mollis mauris massa vel lectus. 
+        Nullam ut vehicula augue, nec convallis ligula. In sit amet lorem hendrerit, mollis lacus in, porttitor nisi. 
+        Vestibulum ullamcorper vitae est vitae imperdiet. Donec venenatis nisi eget dignissim dignissim.</h5>
 </body>
 </html>

@@ -43,7 +43,7 @@
                 	<label>Apellido paterno:</label>
                     <input type="text" name="aP" id="aP" value="<?=$cliente['apellidoP']?>"><br>
                     <label>Apellido materno:</label><input type="text" name="aM" id="aM" value="<?=$cliente['apellidoM']?>"><br>
-                	<label>Telefono:</label>
+                	<label>Teléfono:</label>
                     <input type="text" name="tel" id="tel" value="<?=$cliente['telefono']?>"><br>
                 	<label>Correo electronico:</label><input type="email" name="email" id="email" value="<?=$cliente['email']?>"><br>
                 	<label>CURP:</label>

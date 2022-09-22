@@ -26,10 +26,38 @@
 
                 header("Location: /index.php");
             }else{
-                echo "La contraseña es incorrecta";
+                echo "
+                    <head>
+                        <link rel='icon' type='image/png' href='../src/icono.png'>
+                    </head>
+                    <br>
+                    <div style='width: 100%; display: flex; justify-content: center;'>
+                        <div style='
+                            color:grey; 
+                            text-align:center; 
+                            border:1.5px solid red;
+                            border-radius: 1em 1em 1em 1em;
+                            width: 35%;'>
+                            La contraseña es incorrecta. Inténtalo de nuevo.
+                        </div>
+                    </div>";
             }
         }else{
-            echo "Datos incorrectos";
+            echo "
+                <head>
+                    <link rel='icon' type='image/png' href='../src/icono.png'>
+                </head>
+                <br>
+                <div style='width: 100%; display: flex; justify-content: center;'>
+                    <div style='
+                        color:grey; 
+                        text-align:center; 
+                        border:1.5px solid red;
+                        border-radius: 1em 1em 1em 1em;
+                        width: 35%;'>
+                        La cuenta no existe o los datos son incorrectos.
+                    </div>
+                </div>";
         }
     }
 
@@ -93,7 +121,7 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-login">
             <h1>Iniciar Session</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" placeholder="Numero de cuenta" class="input-100" required>
+                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
                 <input type="password" name="passw_user" placeholder="Contraseña"class="input-100" required>
                 <input type="submit" value="Iniciar" class="btn_login">
             </div>

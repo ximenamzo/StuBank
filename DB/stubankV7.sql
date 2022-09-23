@@ -94,7 +94,7 @@ CREATE TABLE `trabajadores` (
 LOCK TABLES `trabajadores` WRITE;
 /*!40000 ALTER TABLE `trabajadores` DISABLE KEYS */;
 INSERT INTO `trabajadores` VALUES 
-(1,'2022AAAA','Carlos','Nolazco','Lagunas',NULL,'3141737914','2003-04-15','cnolazco@ucol.mx','NOLC030415HCMLGRA2','2ac3510fc601c5b63a510ad408d41199',1,NULL,1),
+(1,'2022AAAA','Administrador','0','0',NULL,'3141234567','2022-07-'07','administrador@ucol.mx','ADMI070707MCMXXXXX','2ac3510fc601c5b63a510ad408d41199',1,NULL,1),
 (2,'2022AAAB','c','c','c',NULL,'1111111111','2022-08-03','a@a.com','si','d252da3cdd35b2373a247a08de68c326',1,NULL,1),
 (3,'2022AAAC','Si','Si','Si',NULL,'1111111111','0001-01-01','a@a.com','aaaaaaaaaaa','766ed26431edaca1aeabf0b96712123c',2,NULL,1),
 (4,'2022AAAD','kkk','kkk','kkk',NULL,'1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',2,NULL,1),

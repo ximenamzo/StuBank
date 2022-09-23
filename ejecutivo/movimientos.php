@@ -5,7 +5,7 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
-    include('../importante/conexion.php');
+    include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
@@ -26,7 +26,7 @@
 </head>
 
 <header>
-    <?php include('../importante/navbar.php'); ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
 <body style="height: 100vh; display: flex; flex-flow: column;">
     <div class="row">

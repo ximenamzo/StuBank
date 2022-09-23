@@ -62,8 +62,9 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <br>
-            <a href="admin_eje.php" class="btn btn-secondary">Regresar</a><br><br>
+        </div>
+        <div class="col-md-4 mt-2">
+            <a href="admin_eje.php" class="btn btn-secondary mt-5">Regresar</a>
         </div>
     </div>
 </body>

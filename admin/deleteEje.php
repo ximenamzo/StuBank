@@ -44,6 +44,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -57,25 +58,30 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-5">
             <h1>Ficha del trabajador</h1>
-            <?php foreach($ejecutivos as $ejecutivo): ?>
-            	<img style="width: 10pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
-            	<label>Número de trabajador:</label> <?=$ejecutivo['nCuenta']?><br>
-            	<label>Nombre:</label> <?=$ejecutivo['nombre']?> <?=$ejecutivo['apelldoP']?> <?=$ejecutivo['apellidoM']?><br>
-            	<label>Edad:</label> <?=edad($ejecutivo['fecNac'])?><br>
-            	<label>Teléfono:</label> <?=$ejecutivo['telefono']?><br>
-            	<label>Correo electronico:</label> <?=$ejecutivo['email']?><br>
-            	<label>CURP:</label> <?=$ejecutivo['curp']?><br>
-            	<label>Activo desde el:</label> <?=$ejecutivo['fecInscrip']?><br>
-            <?php endforeach ?>
-
+            <div class="card">
+                <?php foreach($ejecutivos as $ejecutivo): ?>
+                    <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+                    <div class="cont">
+                        <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
+                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?></b><br>
+                        <label>Edad:</label> <b><?=edad($ejecutivo['fecNac'])?> años</b><br>
+                        <label>Teléfono:</label> <b><?=$ejecutivo['telefono']?></b><br>
+                        <label>Correo electrónico:</label> <b><?=$ejecutivo['email']?></b><br>
+                        <label>CURP:</label> <b><?=$ejecutivo['curp']?></b><br>
+                        <label>Activo desde el:</label> <b><?=$ejecutivo['fecInscrip']?></b><br>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+        <div class="col-md-4">
             <form method="post" action="" onsubmit="return conf(event)">
-            	<a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
+                <a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
 
-            	<input type="hidden" name="idEje" value="<?=$ejecutivo['nCuenta']?>">
+                <input type="hidden" name="idEje" value="<?=$ejecutivo['nCuenta']?>">
                 <button type="submit" class="btn btn-danger">
-                	Eliminar
+                    Eliminar
                 </button>
             </form>
         </div>

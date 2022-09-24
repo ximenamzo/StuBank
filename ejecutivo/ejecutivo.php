@@ -29,6 +29,7 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
+
 <body>
     <div class="row">
         <?php include('menu.php'); ?>

@@ -66,9 +66,8 @@
         </div>
         <div class="col-md-4 mt-2">
             <a href="deposito.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-primary mt-5 mb-2">Depostio</a><br>
-            <a href="#" class="btn btn-warning mb-2">Retiro</a><br>
-            <a href="prueba.php" class="btn btn-warning mb-2">Captcha</a><br>
-            <a href="#" class="btn btn-secondary mb-2">Regresar</a>
+            <a href="retiro.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-warning mb-2">Retiro</a><br>
+            <a href="mov.php" class="btn btn-secondary mb-2">Regresar</a>
         </div>
     </div>
 </body>

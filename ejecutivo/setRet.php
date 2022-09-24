@@ -22,7 +22,7 @@
     		$apeMEje = $ejecutivo['apellidoM'];
     	endforeach;
     	if($passDB == $passFull){
-			/*$nombreEje = $_SESSION['nombre'];
+			$nombreEje = $_SESSION['nombre'];
 		    $rol = $_SESSION['rol'];
 		    $cuentaCl = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
@@ -39,15 +39,19 @@
 	    		$saldo = $cliente['saldo'];
 	    	endforeach;
 
-	    	$newSaldo = $saldo + $dinero;
+	    	if($saldo < $dinero){
+	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
+	    	}
 
-	    	if(!$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', 'Externo', '$cuentaCl', 'Deposito', '$dinero')")){
+	    	$newSaldo = $saldo - $dinero;
+
+	    	if(!$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', '$cuentaCl', 'Externo', 'Retiro', '$dinero')")){
 	    		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    	}else{
 	    		if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")){
 	    			echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    		}
-	    	}*/
+	    	}
     	}else{
     		echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="movimientos.php"</script>';
     	}
@@ -67,11 +71,11 @@
 <body class="text-center">
 	<img src="../src/StuBank.png" class="mx-auto mb-3">
 	<center><div class="border border-success w-50">
-		<h1>Ficha de deposito</h1>
+		<h1>Ficha de retiro</h1>
 		<p>Tramitado por: <?=$nombreEje." ".$apePEje." ".$apeMEje?></p>
 		<p>Solicitado por: <?=$nombreCl." ".$apePCl." ".$apeMCl?></p>
 		<p>El dia: <?=date('d-m-Y');?></p>
-		<p>Se realizará un deposito de $<?=$dinero?> a la cuenta <?=$cuentaCl?></p>
+		<p>Se realizará un retiro de $<?=$dinero?> a la cuenta <?=$cuentaCl?></p>
 		<img src="../src/barcode.png" style="width: 13pc;"><br><br>
 		<p>Muestre esta ficha en caja para efectuar el tramite</p>
 

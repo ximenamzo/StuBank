@@ -7,6 +7,12 @@
     if($rol != 1){
         header("Location: ../index.php");
     }
+
+    include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM transacciones";
+    $resultado = mysqli_query($mysqli,$obtencion);
+    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +32,32 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
-<body style="height: 100vh; display: flex; flex-flow: column;">
+<body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            Pagina de administración, aqui planeo poner una tabla con los movimientos hechos hasta ese momento
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">Tramitador</th>
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Fecha de realización</th>
+                </thead>
+                <tbody>
+                    <?php foreach($movimientos as $movimiento): ?>
+                        <tr>
+                            <td><?=$movimiento['cTramitador'] ?></td>
+                            <td><?=$movimiento['cOrigen'] ?></td>
+                            <td><?=$movimiento['cDestino'] ?></td>
+                            <td><?=$movimiento['tipo'] ?></td>
+                            <td>$<?=$movimiento['cantidad'] ?></td>
+                            <td><?=$movimiento['fecha'] ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

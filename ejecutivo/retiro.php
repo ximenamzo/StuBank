@@ -35,9 +35,9 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <h1>Información del deposito</h1>
-            <form action="setDep.php" method="POST">
-                <label>Ingrese la cantidad de dinero: $</label>
+            <h1>Información del retiro</h1>
+            <form action="setRet.php" method="POST">
+                <label>Ingrese la cantidad de dinero a retirar: $</label>
                 <input type="number" name="dinero" required><br><br>
                 <label>Ingrese su contraseña: </label>
                 <input type="password" name="pass" required>
@@ -46,7 +46,7 @@
                     <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
                 </div>
                 <input type="hidden" name="idCl" value="<?=$id?>">
-                <input type="submit" value="Generar deposito">
+                <input type="submit" value="Generar retiro">
             </form>
         </div>
     </div>

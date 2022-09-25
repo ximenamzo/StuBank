@@ -23,6 +23,7 @@
     top: 120px;
     bottom: 0;
 }
+
 .contenedor-beneficios{
 position: relative;
 background-color: #8F15EF;
@@ -48,4 +49,11 @@ width: 412px;
 height: 0px;
 left: 500px;
     
+}
+
+.info_index h2{
+position: relative;
+color: #8F15EF;
+top: 300px;
+left: 500px;
 }

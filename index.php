@@ -31,11 +31,19 @@
       </div>
       <section class="seccion2">
           <div class="contenedor-beneficios">
-              <h2>Beneficios de ser cliente</h2>
+              <h2>About us</h2>
               <br>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo in repellat, error praesentium ullam labore at, ad tempora consequuntur aspernatur, nulla incidunt voluptatum consequatur eveniet assumenda amet laborum. Ea, non?</p>
+              <p>Stubank es una aplicacion financiera pensada para los jovenes estudiantes que estan comanzando con su vida financera!
+                Es una aplicacion que va a marcar una nueva etapa de su vida en donde comianzan a ser personas con responsabilidades de adultos y podran manejar sus cuentas a travez de una aplicacion
+                pensada principalmente para los jovenes estudiantes como lo es Stubank.
+              </p>
               <img src="./src/img/beneficios.png" alt="">
           </div>
+      </section>
+      <section class="seccion3">
+        <div class="info_index">
+          <h2>En esta aplicacion podras hacer lo siguiente:</h2>
+        </div>
       </section>
     </main>
   </body>

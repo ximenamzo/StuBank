@@ -51,20 +51,7 @@ body{
     line-height: 48px;
     color: #FFFFFF;
 }
-#header{
-    display: inline-block;
-    text-align: center;
-    position: relative ;
-    width: 1440px;
-    height: 90px;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    z-index: 1;
-    opacity: 0.96;
-    background: #8C52FF;
-}
+
 #dinero{
     position: absolute;
     width: 577px;
@@ -116,7 +103,7 @@ body{
     width: 132px;
     height: 30px;
     left: 171px;
-    top: 275px;
+    top: 305px;
 
     font-family: 'Inter';
     font-style: normal;

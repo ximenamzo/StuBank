@@ -10,7 +10,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/styles-register.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <script type="text/javascript">
         function valideKey(evt){
             
@@ -50,17 +54,18 @@
     <title>StuBank</title>
 </head>
 <body>
-    <form action="set_pass.php" method="post">
-
-		<label>Contraseña:</label>
-        <input type="password" name="passw_user" required>
-
-        <label>Confirmar contraseña:</label>
-        <input type="password" name="passw_user2" required>
-        
-		<center>
-			<input type="submit" value="Registrarse">
-		</center>
-    </form>
+    <div class="container">
+        <div class="imagen">
+            <img src="../src/registro.jpg" class="imgr">
+        </div>    
+        <form action="set_pass.php" method="post" class="form-login">
+            <h1>Registrar</h1>
+            <div class="contenedor-inputs">
+                <input type="password" name="passw_user" placeholder="Contraseña" class="input-100" required>
+                <input type="password" name="passw_user2" placeholder="Confirmar contraseña"class="input-100" required>
+                <input type="submit" value="Registrarse" class="btn_login">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 	$correoR = $_POST['correo_user'];
 	$curp = $_POST['curp'];
 
-	include('../importante/conexion.php');
+	include('../view/conexion.php');
 
 	$consutaRegistro = "SELECT * FROM clientes WHERE nCuenta='$cuenta' AND email='$correoR' AND curp='$curp'";
 

@@ -3,7 +3,7 @@
 
 	$con = $_SESSION['pass'];
 
-	include('../importante/conexion.php');
+	include('../view/conexion.php');
 
 	$cuenta = $_SESSION['cuenta'];
 	$pass1 = $_POST['passw_user'];
@@ -21,7 +21,5 @@
     		session_destroy();
     		echo '<script language="javascript">alert("Contraseña creada correctamente");window.location.href="/index.php"</script>';
     	}
-
-    	
     }
 ?>

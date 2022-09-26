@@ -6,6 +6,7 @@
     background: blueviolet;
     top: 150;
     left: 0;
+    font-family: 'Inter';
     color: #fff;
     width: 600px;
     height: 420px;
@@ -37,6 +38,7 @@ border-radius: 100px;
 .contenedor-beneficios h2{
 position: relative;
 color: #8F15EF;
+font-family: 'Inter';
 font-size: 42px;
 width: 612px;
 height: 72px;
@@ -44,16 +46,55 @@ left: 500px;
 }
 .contenedor-beneficios p{
 position: relative;
-color: #8F15EF;
+color: black;
+font-family: 'Inter';
+font-size: 18px;
 width: 412px;
 height: 0px;
 left: 500px;
     
 }
+.contenedor-sobrenosotros{
 
-.info_index h2{
-position: relative;
-color: #8F15EF;
-top: 300px;
-left: 500px;
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    top: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.texto-sobrenosotros{
+    background-color: white;
+    width: 70%;
+
+
+}
+.texto-sobrenosotros h2{
+    font-family: 'Inter';
+    font-size: 52px;
+    left: 200px;
+    color: #8F15EF;
+
+}
+.fotos-sobrenosotros{
+    background-color: #fff;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+
+}
+
+.img-sn h3
+{
+    margin-top: 50px;
+    font-family: 'Inter';
+    font-size: 24px;
+    text-align: center;
+
 }

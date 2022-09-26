@@ -22,7 +22,7 @@
     		$apeMEje = $ejecutivo['apellidoM'];
     	endforeach;
     	if($passDB == $passFull){
-			/*$nombreEje = $_SESSION['nombre'];
+			$nombreEje = $_SESSION['nombre'];
 		    $rol = $_SESSION['rol'];
 		    $cuentaCl = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
@@ -47,7 +47,7 @@
 	    		if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")){
 	    			echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    		}
-	    	}*/
+	    	}
     	}else{
     		echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="movimientos.php"</script>';
     	}

@@ -48,7 +48,7 @@
                             <i class="bi bi-coin"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Administrar cuenta</a></li>
+                            <li><a class="dropdown-item" href="../cliente/cuenta.php">Administrar cuenta</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>

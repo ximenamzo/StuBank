@@ -7,9 +7,9 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
+    $obtencion = "SELECT * FROM clientes WHERE nEjecutivo = '$cuenta' AND estatus = 1";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -33,23 +33,31 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
+            <h3>Seleccione un cliente o ingrese su numero de cuenta</h3>
+            <form action="selecMov.php" method="POST">
+                <input type="text" name="nCuenta" placeholder="Número de cuenta">
+                <input type="submit" value="Buscar" class="btn btn-primary">
+            </form>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
+                    <th scope="col">N. cuenta</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido paterno</th>
+                    <th scope="col">Apellido materno</th>
+                    <th scope="col">Seleccionar</th>
                 </thead>
                 <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
+                    <?php foreach($clientes as $cliente): ?>
                         <tr>
-                            <td><?=$movimiento['cOrigen'] ?></td>
-                            <td><?=$movimiento['cDestino'] ?></td>
-                            <td><?=$movimiento['tipo'] ?></td>
-                            <td>$<?=$movimiento['cantidad'] ?></td>
-                            <td><?=$movimiento['fecha'] ?></td>
+                            <td><?=$cliente['nCuenta'] ?></td>
+                            <td><?=$cliente['nombre'] ?></td>
+                            <td><?=$cliente['apellidoP'] ?></td>
+                            <td><?=$cliente['apellidoM'] ?></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a href="selecMov.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

@@ -38,13 +38,13 @@
     }
     
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `foto`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$foto', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
+        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `foto`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$cuenta', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
             if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe
                 mkdir('../src/fotos',0777,true); //Creamos la carpeta y le damos permisos
                 if(file_exists('../src/fotos')){//guardamos y movemos a nuestra carpeta
-                    if(move_uploaded_file($guardar_img,'../src/fotos/'.$foto)){
+                    if(move_uploaded_file($guardar_img,'../src/fotos/'.$cuenta)){
                         echo "Archivo Guardado con Exito";
                     }else{
                         echo '<script language="javascript">alert("Falló");';
@@ -52,7 +52,7 @@
                     }
                 }
             }else{
-                if(move_uploaded_file($guardar_img,'../src/fotos/'.$foto)){
+                if(move_uploaded_file($guardar_img,'../src/fotos/'.$cuenta)){
                     echo "Archivo Guardado con Exito";
                 }else{
                     echo '<script language="javascript">alert("Falló");';

@@ -29,7 +29,8 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
-<body style="height: 100vh; display: flex; flex-flow: column;">
+
+<body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">

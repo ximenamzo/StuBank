@@ -7,9 +7,14 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
+    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    foreach($clientes as $cliente):
+        $saldo = $cliente['saldo'];
+        $deuda = $cliente['deuda'];
+    endforeach;
 ?>
 
 <!DOCTYPE html>
@@ -29,31 +34,13 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
+
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
-            <table class="table mt-3">
-                <thead>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
-                </thead>
-                <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
-                        <tr>
-                            <td><?=$movimiento['cOrigen'] ?></td>
-                            <td><?=$movimiento['cDestino'] ?></td>
-                            <td><?=$movimiento['tipo'] ?></td>
-                            <td>$<?=$movimiento['cantidad'] ?></td>
-                            <td><?=$movimiento['fecha'] ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            Usted tiene un saldo actual de: $<?=$saldo?><br>
+            Usted tiene una deuda actual de: $<?=$deuda?><br>
         </div>
     </div>
 </body>

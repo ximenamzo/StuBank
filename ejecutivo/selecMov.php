@@ -1,6 +1,5 @@
 <?php
 	$id = $_REQUEST['id'];
-    $idS = $_POST['nCuenta'];
 
     session_start();
 
@@ -13,7 +12,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id' OR nCuenta = '$idS'";
+    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 
@@ -47,7 +46,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-5">
-            <h1>Ficha del cliente</h1>
+            <h2>Cliente: </h2>
 
             <div class="card">
                 <?php foreach($clientes as $cliente): ?>
@@ -65,8 +64,8 @@
             </div>
         </div>
         <div class="col-md-4 mt-2">
-            <a href="deposito.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-primary mt-5 mb-2">Depostio</a><br>
-            <a href="retiro.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-warning mb-2">Retiro</a><br>
+            <a href="deposito.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-success mt-5 mb-2">Depósito</a><br>
+            <a href="retiro.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger mb-2">Retiro</a><br><br>
             <a href="mov.php" class="btn btn-secondary mb-2">Regresar</a>
         </div>
     </div>

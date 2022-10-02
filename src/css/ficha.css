@@ -11,5 +11,11 @@
     padding: 0 5% 5% 5%;
 }
 
+@media print {
+    body {
+        transform: scale(0.70);
+    }
+}
+
 /*style="width: 10pc;"
 

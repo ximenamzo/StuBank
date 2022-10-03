@@ -49,7 +49,7 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <h1>Ficha del cliente</h1>
 
             <div class="card">
@@ -57,9 +57,9 @@
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
-                    <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                    <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
-                    <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
+                    <!--<label>Edad:</label> <b><//?=edad($cliente['fecNac'])?></b><br>
+                    <label>Teléfono:</label> <b><//?=$cliente['telefono']?></b><br>
+                    <label>Correo electronico:</label> <b><//?=$cliente['email']?></b><br>-->
                 </div>
 
                 <?php endforeach ?>

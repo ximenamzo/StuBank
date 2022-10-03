@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -30,21 +31,43 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            <h1>Información de la transferencia</h1>
-            <form action="setTrans.php" method="POST">
-                <label>Ingrese la cantidad de dinero: $</label>
-                <input type="number" name="dinero" required><br><br>
-                <label>Ingrese su contraseña: </label>
-                <input type="password" name="pass" required>
+        <div class="col-md-6">
+            <h1>Transferencia interbancaria</h1>
+            
+            <div class="card">
+                <div class="cont">
+                    <form action="setTrans.php" method="POST">
+</br>
+                        <div class="row">
+                            <div style="width:50%;"><label class="form-label" for="dinero">Monto:</label></div>
+                            <div style="width:50%;"><label class="form-label" for="pass">Contraseña: </label></div>
+                        </div>
 
-                <div class="mt-3 mx-auto">
-                    <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
-                </div>
-                <input type="hidden" name="destino" value="<?=$destino?>">
-                <input type="submit" value="Generar deposito">
-            </form>
-        </div>
+                        <div class="row">
+                            <!--<div style="width:50%;"><input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required></div>-->
+                            <div class="input-group mb-3" style="width:50%;">
+                                <span class="input-group-text" id="basic-addon1">$</span>
+                                <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required>
+                            </div>
+
+
+                            <div style="width:50%;"><input class="form-control" type="password" name="pass" id="pass" required></div>
+                        </div>
+
+
+                        <div class="mt-3 mx-auto">
+                            <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
+                        </div><h6></h6>
+                        <input type="hidden" name="destino" value="<?=$destino?>">
+                        <input class="btn btn-success" type="submit" value="Realizar transferencia">
+
+                    </form>
+                </div><!--cont-->
+            </div><!--card-->
+
+
+
+        </div><!--col md 6-->
     </div>
 </body>
 </html>

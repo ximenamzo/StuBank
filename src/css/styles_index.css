@@ -6,12 +6,19 @@
     background: blueviolet;
     top: 150;
     left: 0;
+<<<<<<< HEAD
     font-family: 'Inter';
+=======
+>>>>>>> main
     color: #fff;
     width: 600px;
     height: 420px;
     padding: 20px;
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> main
 .banner h1{
     color: #fff;
     width: 350px;
@@ -23,8 +30,12 @@
     left: 550px;
     top: 120px;
     bottom: 0;
+<<<<<<< HEAD
 }
 
+=======
+ }
+>>>>>>> main
 .contenedor-beneficios{
 position: relative;
 background-color: #8F15EF;
@@ -33,26 +44,41 @@ height: 543px;
 left: 75px;
 top: 150px;
 border-radius: 100px;
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> main
 
 .contenedor-beneficios h2{
 position: relative;
 color: #8F15EF;
+<<<<<<< HEAD
 font-family: 'Inter';
+=======
+>>>>>>> main
 font-size: 42px;
 width: 612px;
 height: 72px;
 left: 500px;
+<<<<<<< HEAD
 }
 .contenedor-beneficios p{
 position: relative;
 color: black;
 font-family: 'Inter';
 font-size: 18px;
+=======
+ }
+.contenedor-beneficios p{
+position: relative;
+color: #8F15EF;
+>>>>>>> main
 width: 412px;
 height: 0px;
 left: 500px;
     
+<<<<<<< HEAD
 }
 .contenedor-sobrenosotros{
 
@@ -97,4 +123,6 @@ left: 500px;
     font-size: 24px;
     text-align: center;
 
+=======
+>>>>>>> main
 }

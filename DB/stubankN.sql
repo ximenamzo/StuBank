@@ -41,7 +41,7 @@ CREATE TABLE `clientes` (
   `saldo` double NOT NULL DEFAULT '0',
   `deuda` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,11 +53,11 @@ LOCK TABLES `clientes` WRITE;
 INSERT INTO `clientes` VALUES 
 (1,'20220001','aaaaa','a','a','a',NULL,'1111111111','0001-01-01','a@a.com','a','400572ee10cf5e71c62843446802828a',3,'2022-09-04',1,0,0),
 (2,'1234','aaaaa','a','a','a',NULL,'1111111111','0001-01-01','a@a.com','si','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),
-(3,'321','aaaaa','isaac','si','si',NULL,'1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,0,0),
+(3,'321','aaaaa','isaac','si','si',NULL,'1111111111','0001-01-01','a@a.com','a','d252da3cdd35b2373a247a08de68c326',3,'2022-09-05',1,9931,0),
 (4,'1111','aaaaa','a','a','a',NULL,'1','0002-02-02','a@a.com','a',NULL,3,'2022-09-12',1,0,0),
 (5,'w','aaaaa','w','w','w','diagrama tachado.png','1','0001-01-01','a@a.com','w',NULL,3,'2022-09-18',1,0,0),
-(6, '54321', 'aaaaa', 'Prueba', 'Pérez', 'Gómez', 'DSC_0627.JPG', '3140000000', '2001-01-01', 'ejemplo@email.com', 'PEGP010101MCMNSMA3', 'b439fa89d982921d8dc85daebc658a87', 3, '2022-09-20', 1, 0, 0),
-(7, '31416', '070503', 'Nombre', 'Apepa', 'Apema', '4-49875_isolated-watercolor-bee-on-white-background-watercolor-painting.png', '3141234567', '2003-02-01', 'email@email.com', 'XXXX121212MCMXXXXX', NULL, 3, '2022-09-22', 1, 0, 0);
+(6,'aa','aaaaa','aa','aa','aa','my-image.png','1','0001-01-01','a@a.com','aa',NULL,3,'2022-09-23',2,0,0),
+(7,'99','aaaaa','99','99','99','99','99','0001-01-01','a@a.com','99','328bb19fb04d29e6661238ad40504a06',3,'2022-09-23',1,12,0);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `trabajadores` (
   `fecInscrip` date DEFAULT NULL,
   `estatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,13 +133,14 @@ DROP TABLE IF EXISTS `transacciones`;
 CREATE TABLE `transacciones` (
   `id_mov` int NOT NULL AUTO_INCREMENT,
   `cTramitador` text COLLATE utf8mb3_unicode_ci NOT NULL,
+  `solicitante` varchar(20) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `cOrigen` text COLLATE utf8mb3_unicode_ci NOT NULL,
   `cDestino` text COLLATE utf8mb3_unicode_ci NOT NULL,
   `tipo` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `cantidad` double NOT NULL,
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_mov`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +149,12 @@ CREATE TABLE `transacciones` (
 
 LOCK TABLES `transacciones` WRITE;
 /*!40000 ALTER TABLE `transacciones` DISABLE KEYS */;
+INSERT INTO `transacciones` VALUES 
+(1,'aaaaa','321','Externo','321','Deposito',10000,'2022-09-23 18:12:19'),
+(2,'aaaaa','321','Externo','321','Deposito',50,'2022-09-24 01:00:11'),
+(3,'aaaaa','321','321','Externo','Retiro',30,'2022-09-24 01:02:22'),
+(4,'321','321','321','99','Transferencia',77,'2022-09-24 14:59:48'),
+(5,'321','321','321','99','Transferencia',12,'2022-09-24 15:07:45');
 /*!40000 ALTER TABLE `transacciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-21 20:41:32
+-- Dump completed on 2022-09-27 21:10:02

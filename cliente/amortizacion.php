@@ -70,8 +70,8 @@
                         </tr>
                 </tbody>
             </table>
-            Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado<br><br>
-            <a href="calc.php" class="btn btn-secondary">Calcular otro prestamo</a>
+            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado</p><br><br>
+            <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a><br><br>
         </div>
     </div>
 

@@ -30,11 +30,16 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <h1>Información de la transferencia</h1>
+            <h1>Información de la transferencia</h1><br>
             <form action="dest.php" method="POST">
-                <label>Ingrese la cuenta de destino</label>
-                <input type="text" name="destino">
-                <input type="submit" value="Buscar">
+                <!--<label class="form-label">Ingrese la cuenta de destino:</label>
+                <input class="form-control" type="text" name="destino">
+                <input class="btn btn-success" type="submit" value="Continuar...">-->
+                <div class="input-group mb-3" style="width:50%;">
+                    <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
+                    <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
+                    <input class="btn btn-success" type="submit" value="Continuar...">
+                </div>
             </form>
         </div>
     </div>

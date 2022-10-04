@@ -8,6 +8,10 @@
 
     include('../view/conexion.php');
 
+    if($id == $_SESSION['cuenta']){
+        echo '<script language="javascript">alert("No se puede transferir a usted mismo");window.location.href="formDest.php"</script>';
+    }
+
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -57,9 +61,6 @@
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
-                    <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                    <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
-                    <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
                 </div>
 
                 <?php endforeach ?>

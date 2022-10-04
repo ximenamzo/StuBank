@@ -36,6 +36,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
+            <a href="prestamos.php" class="btn btn-success">Prestamos</a>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Tramitador</th>

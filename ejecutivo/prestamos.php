@@ -6,6 +6,10 @@
     $cuenta = $_SESSION['cuenta'];
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM prestamos WHERE solicitanteEje = '$cuenta'";
+    $resultado = mysqli_query($mysqli,$obtencion);
+    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +34,27 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <h1>Información de la transferencia</h1>
-            <form action="dest.php" method="POST">
-                <label>Ingrese la cuenta de destino</label>
-                <input type="text" name="destino" required>
-                <input type="submit" value="Buscar">
-            </form>
+            <a href="selecPres.php" class="btn btn-success">Solicitar prestamo</a><br>
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">Solicitante</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Meses</th>
+                    <th scope="col">Fecha de solicitud</th>
+                    <th scope="col">Estatus</th>
+                </thead>
+                <tbody>
+                    <?php foreach($prestamos as $prestamo): ?>
+                        <tr>
+                            <td><?=$prestamo['solicitanteCl']?></td>
+                            <td><?=$prestamo['cantidad']?></td>
+                            <td><?=$prestamo['meses']?></td>
+                            <td><?=$prestamo['fecha']?></td>
+                            <td><?php if($prestamo['estatus']==1) echo "Pendiente"?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

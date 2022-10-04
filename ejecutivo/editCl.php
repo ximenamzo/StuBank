@@ -49,7 +49,7 @@
 
                         <div style="width: 70%; margin-top: 8%;">
                             <label class="form-label">Fotografía del cliente:</label>
-                            <input class="form-control" type="file" disabled><br>
+                            <input class="form-control" type="file" name="foto" accept="image/png, .jpeg, .jpg, image/gif"><br>
                         </div>
                     </div>
 

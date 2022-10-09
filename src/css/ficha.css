@@ -17,5 +17,24 @@
     }
 }
 
+.tit{
+    padding: 0.2em 0 0.2em 0;
+    font-size: 1.4em;
+    color: rgb(179, 179, 179);
+    margin-left: 0.1em;
+}
+
+.cont-purp{
+    width: 35%;
+    height: auto;
+    padding: 2% 0 2% 2%;
+    border-radius: 0.8em;
+    border: 0.1em solid #646464;
+    box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
+    margin-left: 0.5em;
+    color: rgb(68, 68, 68);
+    font-size: 1.5em;
+}
+
 /*style="width: 10pc;"
 

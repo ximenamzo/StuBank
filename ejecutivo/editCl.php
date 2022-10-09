@@ -75,7 +75,7 @@
                     <div class="row">
                         <div style="width: 32%;">
                             <label class="form-label">Teléfono:</label>
-                            <input type="text" name="tel" id="tel" class="form-control" value="<?=$cliente['telefono']?>"><br>
+                            <input type="text" name="tel" id="tel" class="form-control" value="<?=$cliente['telefono']?>" maxlength="10"><br>
                         </div>
 
                         <div style="width: 64%;">
@@ -88,7 +88,7 @@
                     <div class="row">
                         <div style="width: 48%;">
                             <label class="form-label">CURP:</label>
-                            <input type="text" name="curp" id="curp" class="form-control" value="<?=$cliente['curp']?>"><br>
+                            <input type="text" name="curp" id="curp" class="form-control" value="<?=$cliente['curp']?>" maxlength="18"><br>
                         </div>
 
                         <div style="width: 48%;">

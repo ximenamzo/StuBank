@@ -24,6 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -39,8 +40,19 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            Usted tiene un saldo actual de: $<?=$saldo?><br>
-            Usted tiene una deuda actual de: $<?=$deuda?><br>
+            <div class="tit">
+                <p>Saldo de la cuenta:</p>
+            </div>
+            <div class="cont-purp">
+                $<?=$saldo?><br>
+            </div><br>
+            <div class="tit">
+                <p>Deuda actual:</p>
+            </div>
+            <div class="cont-purp">
+                $<?=$deuda?><br>
+            </div><br>
+
         </div>
     </div>
 </body>

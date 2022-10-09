@@ -53,7 +53,7 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <h1>Ficha del cliente</h1>
 
             <div class="card">
@@ -62,7 +62,6 @@
             	<div class="cont">
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
                 </div>
-
                 <?php endforeach ?>
             </div>
         </div>

@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="lista">
-            <a href="">
+            <a href="prestamos.php">
               <span class="icon">
                 <?php include("../src/loan.svg")?>
               </span> 

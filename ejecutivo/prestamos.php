@@ -3,16 +3,16 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
-
-    if($rol != 1){
-        header("Location: ../index.php");
-    }
+    $cuenta = $_SESSION['cuenta'];
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM transacciones";
+    $obtencion = "SELECT * FROM prestamos WHERE solicitanteEje = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $estados = ['', 'Pendiente', 'En curso', 'Rechazado','Pagado'];
+    $metodo = ['', 'Efectivo', 'Transferencia'];
 ?>
 
 <!DOCTYPE html>
@@ -32,29 +32,34 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
+
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="prestamos.php" class="btn btn-success">Prestamos</a>
+            <a href="selecPres.php" class="btn btn-success">Solicitar prestamo</a><br>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">Tramitador</th>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Tipo</th>
+                    <th scope="col">Solicitante</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
+                    <th scope="col">Meses</th>
+                    <th scope="col">Metodo</th>
+                    <th scope="col">Fecha de solicitud</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col">Ficha</th>
                 </thead>
                 <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
+                    <?php foreach($prestamos as $prestamo): ?>
                         <tr>
-                            <td><?=$movimiento['cTramitador'] ?></td>
-                            <td><?=$movimiento['cOrigen'] ?></td>
-                            <td><?=$movimiento['cDestino'] ?></td>
-                            <td><?=$movimiento['tipo'] ?></td>
-                            <td>$<?=$movimiento['cantidad'] ?></td>
-                            <td><?=$movimiento['fecha'] ?></td>
+                            <td><?=$prestamo['solicitanteCl']?></td>
+                            <td><?=$prestamo['cantidad']?></td>
+                            <td><?=$prestamo['meses']?></td>
+                            <td><?=$metodo[$prestamo['metodo']]?></td>
+                            <td><?=$prestamo['fecha']?></td>
+                            <td><?=$estados[$prestamo['estatus']]?></td>
+                            <?php if($prestamo['metodo'] == 1):?>
+                                <td><a href="fichaPres.php?id=<?=$prestamo['id_prest']?>" class="btn btn-success"><i class="bi bi-file-text"></i></a></td>
+                            <?php endif?>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

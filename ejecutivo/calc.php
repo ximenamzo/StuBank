@@ -1,4 +1,6 @@
 <?php 
+    $id = $_REQUEST['id'];
+
     session_start();
 
     $nombre = $_SESSION['nombre'];
@@ -19,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <title>StuBank</title>
 </head>
 
@@ -30,13 +33,27 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <h1>Información de la transferencia</h1><br>
-            <form action="dest.php" method="POST">
-                <div class="input-group mb-3" style="width:50%;">
-                    <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
-                    <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
-                    <input class="btn btn-success" type="submit" value="Continuar...">
+            Los prestamos tienen una comision del 5% mensual
+            <form action="amort.php" method="POST">
+                <label>¿Cuanto dinero desea? </label>
+                <input type="number" name="dinero"><br>
+                <label>¿En cuantos meses desea pagar?</label>
+                <input type="number" name="meses"><br>
+                <label>¿Lo desea en efectivo o depositado a su cuenta?</label>
+                <select name="metodo">
+                    <option value="0" selected disabled>Seleccione efectivo o transferencia</option>
+                    <option value="1">Efectivo</option>
+                    <option value="2">Transferencia</option>
+                </select><br>
+                <label>Escriba su contraseña</label>
+                <input type="password" name="pass"><br>
+                <input type="hidden" name="destino" value="<?=$id?>">
+
+                <div class="mt-3">
+                    <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
                 </div>
+
+                <input type="submit" value="Calcular tabla de amortizacion">
             </form>
         </div>
     </div>

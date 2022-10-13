@@ -5,16 +5,46 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
-    include('../view/conexion.php');
-    
-    $meses= $_POST['meses']; //Total de meses/plazos
-    $totalMeses = $meses;
-    $p = 0.05; //Porcentaje de interes
-    $prestamo= $_POST['dinero']; //Prestamo solicitado
-    $totPago = 0;
-    $totInt = 0;
-    $totAmort = 0;
-    $p_mes =round(($prestamo * $p)/(1-(pow((1+$p),-$meses))),2); //Pago por mes
+    require('../view/conexion.php');
+    require('../view/captcha.php');
+
+    $captcha = new Captcha();
+
+    if($captcha->checkCaptcha($_POST['h-captcha-response'])){
+        $pass = $_POST['pass'];
+        $salt = "invalid";
+        $passFull = md5($salt.$pass);
+        $cuentaEje = $_SESSION['cuenta'];
+
+        $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$cuentaEje'";
+        $resultado = mysqli_query($mysqli,$obtencion);
+        $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+        foreach($ejecutivos as $ejecutivo):
+            $passDB = $ejecutivo['password'];
+        endforeach;
+
+        if($passDB == $passFull){
+
+            $destino = $_POST['destino'];
+            $metodo = $_POST['metodo'];
+            $meses = $_POST['meses']; //Total de meses/plazos
+            $totalMeses = $meses;
+            $p = 0.05; //Porcentaje de interes
+            $prestamo = $_POST['dinero']; //Prestamo solicitado
+            $totPago = 0;
+            $totInt = 0;
+            $totAmort = 0;
+            $p_mes =round(($prestamo * $p)/(1-(pow((1+$p),-$meses))),2); //Pago por mes
+
+        }else{
+            echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="movimientos.php"</script>';
+            die();
+        }
+    }else{
+        echo '<script language="javascript">alert("Captcha incorrecto");window.location.href="movimientos.php"</script>';
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,8 +100,15 @@
                     </tr>
                 </tbody>
             </table>
-            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado</p><br><br>
-            <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a><br><br>
+            <form action="setPres.php" method="POST">
+                <a href="calc.php" class="btn btn-secondary">Regresar</a>
+                <input type="hidden" name="destino" value="<?=$destino?>">
+                <input type="hidden" name="dinero" value="<?=$_POST['dinero']?>">
+                <input type="hidden" name="meses" value="<?=$_POST['meses']?>">
+                <input type="hidden" name="metodo" value="<?=$metodo?>">
+                <input type="hidden" name="deuda" value="<?=$totPago?>">
+                <input type="submit" class="btn btn-success" value="Solicitar">
+            </form>
         </div>
     </div>
 

@@ -10,6 +10,9 @@
     $obtencion = "SELECT * FROM prestamos WHERE solicitanteEje = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $estados = ['', 'Pendiente', 'En curso', 'Rechazado','Pagado'];
+    $metodo = ['', 'Efectivo', 'Transferencia'];
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +43,10 @@
                     <th scope="col">Solicitante</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Meses</th>
+                    <th scope="col">Metodo</th>
                     <th scope="col">Fecha de solicitud</th>
                     <th scope="col">Estatus</th>
+                    <th scope="col">Ficha</th>
                 </thead>
                 <tbody>
                     <?php foreach($prestamos as $prestamo): ?>
@@ -49,8 +54,12 @@
                             <td><?=$prestamo['solicitanteCl']?></td>
                             <td><?=$prestamo['cantidad']?></td>
                             <td><?=$prestamo['meses']?></td>
+                            <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
-                            <td><?php if($prestamo['estatus']==1) echo "Pendiente"?></td>
+                            <td><?=$estados[$prestamo['estatus']]?></td>
+                            <?php if($prestamo['metodo'] == 1):?>
+                                <td><a href="fichaPres.php?id=<?=$prestamo['id_prest']?>" class="btn btn-success"><i class="bi bi-file-text"></i></a></td>
+                            <?php endif?>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

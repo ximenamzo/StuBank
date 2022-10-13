@@ -27,6 +27,7 @@
         if($passDB == $passFull){
 
             $destino = $_POST['destino'];
+            $metodo = $_POST['metodo'];
             $meses = $_POST['meses']; //Total de meses/plazos
             $totalMeses = $meses;
             $p = 0.05; //Porcentaje de interes
@@ -103,7 +104,9 @@
                 <a href="calc.php" class="btn btn-secondary">Regresar</a>
                 <input type="hidden" name="destino" value="<?=$destino?>">
                 <input type="hidden" name="dinero" value="<?=$_POST['dinero']?>">
-                <input type="hidden" name="meses" value="<?=$totalMeses?>">
+                <input type="hidden" name="meses" value="<?=$_POST['meses']?>">
+                <input type="hidden" name="metodo" value="<?=$metodo?>">
+                <input type="hidden" name="deuda" value="<?=$totPago?>">
                 <input type="submit" class="btn btn-success" value="Solicitar">
             </form>
         </div>

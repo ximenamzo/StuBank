@@ -72,9 +72,9 @@
                             <td><?=$cliente['email'] ?></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="infoCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
-                                    <a href="editCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="deleteCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                    <a href="infoCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
+                                    <a href="editCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
+                                    <a href="deleteCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

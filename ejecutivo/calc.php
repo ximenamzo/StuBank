@@ -39,6 +39,12 @@
                 <input type="number" name="dinero"><br>
                 <label>¿En cuantos meses desea pagar?</label>
                 <input type="number" name="meses"><br>
+                <label>¿Lo desea en efectivo o depositado a su cuenta?</label>
+                <select name="metodo">
+                    <option value="0" selected disabled>Seleccione efectivo o transferencia</option>
+                    <option value="1">Efectivo</option>
+                    <option value="2">Transferencia</option>
+                </select><br>
                 <label>Escriba su contraseña</label>
                 <input type="password" name="pass"><br>
                 <input type="hidden" name="destino" value="<?=$id?>">

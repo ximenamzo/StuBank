@@ -10,6 +10,9 @@
     $obtencion = "SELECT * FROM prestamos";
     $resultado = mysqli_query($mysqli,$obtencion);
     $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $estados = ['', 'Pendiente', 'En curso', 'Rechazado','Pagado'];
+    $metodo = ['', 'Efectivo', 'Transferencia'];
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +37,13 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="selecPres.php" class="btn btn-success">Solicitar prestamo</a><br>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Tramitador</th>
                     <th scope="col">Solicitante</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Meses</th>
+                    <th scope="col">Metodo</th>
                     <th scope="col">Fecha de solicitud</th>
                     <th scope="col">Estatus</th>
                     <th scope="col">Aceptar</th>
@@ -52,13 +55,16 @@
                             <td><?=$prestamo['solicitanteCl']?></td>
                             <td><?=$prestamo['cantidad']?></td>
                             <td><?=$prestamo['meses']?></td>
+                            <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
-                            <td><?php if($prestamo['estatus']==1) echo "Pendiente"?></td>
+                            <td><?php $estado = $prestamo['estatus']; echo $estados[$estado]?></td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="setPres.php?id=<?=$prestamo['id_prest']?>&aux=1" class="btn btn-success" onclick="return acep(event)"><i class="bi bi-check-lg"></i></a>
-                                    <a href="setPres.php?id=<?=$prestamo['id_prest']?>&aux=2" class="btn btn-danger" onclick="return rech(event)"><i class="bi bi-x-lg"></i></a>
-                                </div>
+                                <?php if($estado == 1){ ?>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <a href="setPres.php?id=<?=$prestamo['id_prest']?>&aux=1" class="btn btn-success" onclick="return acep(event)"><i class="bi bi-check-lg"></i></a>
+                                        <a href="setPres.php?id=<?=$prestamo['id_prest']?>&aux=2" class="btn btn-danger" onclick="return rech(event)"><i class="bi bi-x-lg"></i></a>
+                                    </div>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach ?>

@@ -1,8 +1,10 @@
 <?php 
     session_start();
     
-    $nombre = $_SESSION['nombre'];
-    $rol = $_SESSION['rol'];
+    if(isset($_SESSION['nombre'])){
+        $nombre = $_SESSION['nombre'];
+        $rol = $_SESSION['rol'];
+    }
 ?>
 
 <!DOCTYPE html>

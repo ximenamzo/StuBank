@@ -17,6 +17,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/view/nosotros.php">Sobre nosotros</a>
                 </li>
+                <?php if(isset($_SESSION['nombre'])):?>
                 <?php if($rol == 1):?>
                     <!-- Opciones del admin -->
                     <li class="nav-item dropdown">
@@ -53,6 +54,7 @@
                             <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>
                     </li>
+                <?php endif; ?>
                 <?php else: ?>
                     <!-- Opciones del visitante -->
                     <li class="nav-item dropdown">

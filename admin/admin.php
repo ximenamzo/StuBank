@@ -3,6 +3,16 @@
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
+    include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM transacciones";
+    $resultado = mysqli_query($mysqli,$obtencion);
+    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -11,20 +21,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/menu.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>StuBank</title>
 </head>
 
 <header>
-    <?php include('../importante/navbar.php'); ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
-<body style="height: 100vh; display: flex; flex-flow: column;">
+<body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            Pagina de administración, aqui planeo poner una tabla con los movimientos hechos hasta ese momento
+            <a href="prestamos.php" class="btn btn-success">Prestamos</a>
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">Tramitador</th>
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Fecha de realización</th>
+                </thead>
+                <tbody>
+                    <?php foreach($movimientos as $movimiento): ?>
+                        <tr>
+                            <td><?=$movimiento['cTramitador'] ?></td>
+                            <td><?=$movimiento['cOrigen'] ?></td>
+                            <td><?=$movimiento['cDestino'] ?></td>
+                            <td><?=$movimiento['tipo'] ?></td>
+                            <td>$<?=$movimiento['cantidad'] ?></td>
+                            <td><?=$movimiento['fecha'] ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

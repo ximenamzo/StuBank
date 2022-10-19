@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+.banner{
+    position: relative;
+    background: blueviolet;
+    top: 150;
+    left: 0;
+    color: #fff;
+    width: 40em;
+    height: auto;
+    padding: 2em 1em 1em 3em;
+}
+.banner h1{
+    color: #fff;
+    width: 10em;
+    height: 7em;
+}
+.banner img{
+    position: absolute;
+    right: 0;
+    left: 550px;
+    top: 120px;
+    bottom: 0;
+}
+.contenedor-beneficios{
+position: relative;
+background-color: #8F15EF;
+width: 445px;
+height: 543px;
+left: 75px;
+top: 150px;
+border-radius: 100px;
+}
+
+.contenedor-beneficios h2{
+position: relative;
+color: #8F15EF;
+font-size: 42px;
+width: 612px;
+height: 72px;
+left: 500px;
+}
+.contenedor-beneficios p{
+position: relative;
+color: #8F15EF;
+width: 412px;
+height: 0px;
+left: 500px;
+    
+}

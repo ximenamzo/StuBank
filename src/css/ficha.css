@@ -1,0 +1,40 @@
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cont{
+    padding: 0 5% 5% 5%;
+}
+
+@media print {
+    body {
+        transform: scale(0.70);
+    }
+}
+
+.tit{
+    padding: 0.2em 0 0.2em 0;
+    font-size: 1.4em;
+    color: rgb(179, 179, 179);
+    margin-left: 0.1em;
+}
+
+.cont-purp{
+    width: 35%;
+    height: auto;
+    padding: 2% 0 2% 2%;
+    border-radius: 0.8em;
+    border: 0.1em solid #646464;
+    box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
+    margin-left: 0.5em;
+    color: rgb(68, 68, 68);
+    font-size: 1.5em;
+}
+
+/*style="width: 10pc;"
+

@@ -70,11 +70,13 @@
                     </tr>
                 </tbody>
             </table>
-            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado</p><br><br>
-            <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a><br><br>
+            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado</p><br>
+            <div>
+                <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a>
+                <button class="btn btn-success" onclick="print()">Imprimir</button>
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

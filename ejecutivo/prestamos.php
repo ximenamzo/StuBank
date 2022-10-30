@@ -57,7 +57,7 @@
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
                             <td><?=$estados[$prestamo['estatus']]?></td>
-                            <?php if($prestamo['metodo'] == 1):?>
+                            <?php if(($prestamo['metodo'] == 1) && ($prestamo['estatus'] == 2)):?>
                                 <td><a href="fichaPres.php?id=<?=$prestamo['id_prest']?>" class="btn btn-success"><i class="bi bi-file-text"></i></a></td>
                             <?php endif?>
                         </tr>

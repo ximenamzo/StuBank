@@ -41,6 +41,7 @@
 
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
+	    		die();
 	    	}
 
 	    	$newSaldo = $saldo - $dinero;

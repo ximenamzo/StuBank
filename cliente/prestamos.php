@@ -6,6 +6,17 @@
     $cuenta = $_SESSION['cuenta'];
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuenta' AND estatus = 2";
+    $resultado = mysqli_query($mysqli,$obtencion);
+    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $obtencion2 = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuenta'  AND estatus != 2";
+    $resultado2 = mysqli_query($mysqli,$obtencion2);
+    $prestamos2 = $resultado2->fetch_all(MYSQLI_ASSOC);
+
+    $estados = ['', 'Pendiente', 'En curso', 'Rechazado','Pagado'];
+    $metodo = ['', 'Efectivo', 'Transferencia'];
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +41,59 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="calc.php" class="btn btn-success">Calcular prestamo</a><br>
-            Aquí tablas sobre los prestamos o algo
+            <?php if($prestamos != null):?>
+            <b>Prestamo actual</b>
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Meses</th>
+                    <th scope="col">Metodo</th>
+                    <th scope="col">Fecha de solicitud</th>
+                    <th scope="col">Restante</th>
+                    <th scope="col">Pagar</th>
+                </thead>
+                <tbody>
+                    <?php foreach($prestamos as $prestamo): ?>
+                        <tr>
+                            <td><?=$prestamo['cantidad']?></td>
+                            <td><?=$prestamo['meses']?></td>
+                            <td><?=$metodo[$prestamo['metodo']]?></td>
+                            <td><?=$prestamo['fecha']?></td>
+                            <td><?=$prestamo['deuda']?></td>
+                            <td><a href="formPago.php?id=<?=$prestamo['id_prest']?>&deu=<?=$prestamo['deuda']?>" class="btn btn-success"><i class="bi bi-currency-dollar"></i></a></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+            <?php elseif($prestamos == null):?>
+                Ningun prestamo en curso, calcule un prestamo <a href="calc.php" >aquí</a><br>
+            <?php endif;?>
+            <br><br>
+            <?php if($prestamos2 != null):?>
+            <b>Historial</b>
+            <table class="table mt-3">
+                <thead>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Meses</th>
+                    <th scope="col">Metodo</th>
+                    <th scope="col">Fecha de solicitud</th>
+                    <th scope="col">Estatus</th>
+                </thead>
+                <tbody>
+                    <?php foreach($prestamos2 as $prestamo2): ?>
+                        <tr>
+                            <td><?=$prestamo2['cantidad']?></td>
+                            <td><?=$prestamo2['meses']?></td>
+                            <td><?=$metodo[$prestamo2['metodo']]?></td>
+                            <td><?=$prestamo2['fecha']?></td>
+                            <td><?php $estado = $prestamo2['estatus']; echo $estados[$estado]?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+            <?php elseif($prestamos == null):?>
+                Usted no ha solicitado ningun prestamo.
+            <?php endif;?>
         </div>
     </div>
 </body>

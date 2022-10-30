@@ -7,7 +7,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM transacciones WHERE solicitante = '$cuenta'";
+    $obtencion = "SELECT * FROM transacciones WHERE solicitante = '$cuenta' OR cTramitador = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>

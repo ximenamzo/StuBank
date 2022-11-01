@@ -32,7 +32,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-6">
-            <h1>Transferencia interbancaria</h1>
+            <h1>Transferencia bancaria</h1>
             
             <div class="card">
                 <div class="cont">

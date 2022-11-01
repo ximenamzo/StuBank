@@ -106,7 +106,7 @@ CREATE TABLE `trabajadores` (
   `id_user` int(11) NOT NULL,
   `nCuenta` varchar(9) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `apelldoP` varchar(50) NOT NULL,
+  `apellidoP` varchar(50) NOT NULL,
   `apellidoM` varchar(50) NOT NULL,
   `foto` varchar(9) DEFAULT NULL,
   `telefono` varchar(10) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE `trabajadores` (
 -- Volcado de datos para la tabla `trabajadores`
 --
 
-INSERT INTO `trabajadores` (`id_user`, `nCuenta`, `nombre`, `apelldoP`, `apellidoM`, `foto`, `telefono`, `fecNac`, `email`, `curp`, `password`, `rol`, `fecInscrip`, `estatus`) VALUES
+INSERT INTO `trabajadores` (`id_user`, `nCuenta`, `nombre`, `apellidoP`, `apellidoM`, `foto`, `telefono`, `fecNac`, `email`, `curp`, `password`, `rol`, `fecInscrip`, `estatus`) VALUES
 (1, '2022AAAA', 'Carlos', 'Nolazco', 'Lagunas', NULL, '3141737914', '2003-04-15', 'cnolazco@ucol.mx', 'NOLC030415HCMLGRA2', '2ac3510fc601c5b63a510ad408d41199', 1, NULL, 1),
 (2, '2022AAAB', 'c', 'c', 'c', NULL, '1111111111', '2022-08-03', 'a@a.com', 'si', 'd252da3cdd35b2373a247a08de68c326', 1, NULL, 1),
 (3, '2022AAAC', 'Si', 'Si', 'Si', '2022AAAC', '1111111111', '0001-01-01', 'a@a.com', 'aaaaaaaaaaa', '766ed26431edaca1aeabf0b96712123c', 2, NULL, 2),

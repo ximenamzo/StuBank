@@ -21,7 +21,11 @@
     $fecha = $_POST['fNa'];
     $guardar_img = $_FILES['foto']['tmp_name'];
 
-    if (!$mysqli->query("UPDATE trabajadores SET nombre = '$nom', apelldoP = '$aP', apellidoM = '$aM', foto = '$id', telefono = '$tel', email = '$email', curp = '$curp', fecNac = '$fecha' WHERE nCuenta = '$id'")){
+
+    $stmt_edit = $mysqli->prepare("UPDATE trabajadores SET nombre = ?, apellidoP = ?, apellidoM = ?, foto = ?, telefono = ?, email = ?, curp = ?, fecNac = ? WHERE nCuenta = ?");
+    $stmt_edit->bind_param("ssssssssi",$nom,$aP,$aM,$id,$tel,$email,$curp,$fecha,$id);
+
+    if (!$stmt_edit->execute()){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: admin_eje.php");
     }else{ 
@@ -45,6 +49,6 @@
                     echo '<script language="javascript">alert("Falló 2");</script>';
                 }
             }
-        echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="admin_eje.php"</script>';
+        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
     }
 ?>

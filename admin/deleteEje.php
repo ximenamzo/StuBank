@@ -26,9 +26,13 @@
     if(!empty($_POST)){
     	$idEje = $_POST['idEje'];
 
-    	$borrar = mysqli_query($mysqli, "UPDATE trabajadores SET estatus = '2' WHERE nCuenta = '$idEje'");
+    	//$borrar = mysqli_query($mysqli, "UPDATE trabajadores SET estatus = '2' WHERE nCuenta = '$idEje'");
 
-    	if($borrar){
+        $stmt_borrar = $mysqli->prepare("UPDATE trabajadores SET estatus = ? WHERE nCuenta = ?");
+        $stmt_borrar->bind_param("is",$est,$idEje);
+        $est=2;
+
+    	if($stmt_borrar->execute()){
     		header("Location: admin_eje.php");
     	}else{
     		echo "Error";
@@ -65,7 +69,7 @@
                     <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
                     <div class="cont">
                         <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
-                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?></b><br>
+                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apellidoP']." ".$ejecutivo['apellidoM']?></b><br>
                         <label>Edad:</label> <b><?=edad($ejecutivo['fecNac'])?> años</b><br>
                         <label>Teléfono:</label> <b><?=$ejecutivo['telefono']?></b><br>
                         <label>Correo electrónico:</label> <b><?=$ejecutivo['email']?></b><br>

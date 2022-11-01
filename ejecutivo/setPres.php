@@ -20,8 +20,10 @@
 
     if($pres->execute()){
     	$pres->close();
-    	echo '<script language="javascript">alert("Prestamo solicitado, espere su aprobación");window.location.href="prestamos.php"</script>';
+    	echo '<script language="javascript">alert("Prestamo solicitado, espere la respuesta de su tramite.");window.location.href="prestamos.php"</script>';
     }else{
-    	echo "chin";
+    	echo "Oops!";
     }
 ?>
+
+

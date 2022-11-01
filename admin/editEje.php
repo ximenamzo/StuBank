@@ -66,7 +66,7 @@
 
                         <div style="width: 33%;">
                             <label class="form-label">Apellido paterno:</label>
-                            <input type="text" name="aP" id="aP" class="form-control" value="<?=$ejecutivo['apelldoP']?>"><br>
+                            <input type="text" name="aP" id="aP" class="form-control" value="<?=$ejecutivo['apellidoP']?>"><br>
                         </div>
                         
                         <div style="width: 33%;">

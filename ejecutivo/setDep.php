@@ -18,7 +18,7 @@
 
     	foreach($ejecutivos as $ejecutivo):
     		$passDB = $ejecutivo['password'];
-    		$apePEje = $ejecutivo['apelldoP'];
+    		$apePEje = $ejecutivo['apellidoP'];
     		$apeMEje = $ejecutivo['apellidoM'];
     	endforeach;
 

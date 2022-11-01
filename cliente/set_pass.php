@@ -13,7 +13,7 @@
         echo '<script language="javascript">alert("Las contraseñas deben coincidir");window.location.href="asignar_pass.php"</script>';
     }else{
     	$salt = "invalid";
-    	$contraseñaful = md5($salt.$pass1);
+    	$contraseñaful = md5($salt.$pass1); //hash contra
 
     	if(!$mysqli->query("UPDATE `clientes` SET `password` = '$contraseñaful' WHERE `clientes`.`nCuenta`='$cuenta'")){
     		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;

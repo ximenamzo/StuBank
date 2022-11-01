@@ -76,6 +76,7 @@
 <body class="text-center">
     <img src="../src/StuBank.png" class="mx-auto mb-3">
     <center><div class="border border-success w-50">
+        
         <h1>Ficha de transferencia</h1>
         <p>Se realizó una transferencia de $<?=$dinero?> de la cuenta <?=$cuenta?> a la cuenta <?=$destino?></p>
         <p>El dia: <?=date('d-m-Y');?></p>

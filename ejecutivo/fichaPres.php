@@ -22,7 +22,7 @@
 
     foreach($ejecutivos as $ejecutivo){
     	$nomEje = $ejecutivo['nombre'];
-    	$aPEje = $ejecutivo['apelldoP'];
+    	$aPEje = $ejecutivo['apellidoP'];
     	$aMEje = $ejecutivo['apellidoM'];
     }
 

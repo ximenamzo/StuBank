@@ -74,7 +74,7 @@
                 <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
-                <input type="text" name="curp" class="input-100" placeholder="CURP" required>
+                <input type="text" name="curp" maxlength="18" class="input-100" placeholder="CURP" required>
                 <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
                 <label class="yearday">Foto del ejecutivo: </label><input type="file" name="foto" class="input-50" required accept="image/png, .jpeg, .jpg, image/gif">

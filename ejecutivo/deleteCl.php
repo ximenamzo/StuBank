@@ -31,6 +31,7 @@
     		echo $idCl;
     	}
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +68,7 @@
                     <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
                     <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
                     <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br><br>
-                    <label>Ejecutivo asignado:</label> <b><?=$nomEje." ".$aPeje." ".$aMeje?></b><br>
-                    <label>Cuenta del ejecutivo: </label> <b><?=$cliente['nEjecutivo'];?></b><br>
+                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
                 </div>
 
                 <?php endforeach ?>

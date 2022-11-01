@@ -69,7 +69,7 @@
                         <tr>
                             <td><?=$ejecutivo['nCuenta'] ?></td>
                             <td><?=$ejecutivo['nombre'] ?></td>
-                            <td><?=$ejecutivo['apelldoP'] ?></td>
+                            <td><?=$ejecutivo['apellidoP'] ?></td>
                             <td><?=$ejecutivo['apellidoM'] ?></td>
                             <td><?=$ejecutivo['telefono'] ?></td>
                             <td><?=$ejecutivo['email'] ?></td>

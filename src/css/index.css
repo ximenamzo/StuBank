@@ -1,9 +1,11 @@
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 .banner{
     position: relative;
     background: blueviolet;
+    border-radius: 40px;
     top: 150;
     left: 0;
     color: #fff;
@@ -19,22 +21,24 @@
 .banner img{
     position: absolute;
     right: 0;
+    border-radius: 40px;
     left: 550px;
-    top: 120px;
+    top: 100px;
     bottom: 0;
 }
 .contenedor-beneficios{
 position: relative;
 background-color: #8F15EF;
-width: 445px;
-height: 543px;
-left: 75px;
-top: 150px;
+width: 370px;
+height: 450px;
+left: 85px;
+top: 70px;
 border-radius: 100px;
 }
 
 .contenedor-beneficios h2{
 position: relative;
+margin-top: 150px;
 color: #8F15EF;
 font-size: 42px;
 width: 612px;
@@ -44,8 +48,108 @@ left: 500px;
 .contenedor-beneficios p{
 position: relative;
 color: #8F15EF;
-width: 412px;
-height: 0px;
+width: 500px;
+height: 500px;
 left: 500px;
+
+}
+.img-contenedorbeneficios{
+    height: 99%;
+    position: absolute;
+    top: 3px;
+    left: -37px;
+}
+.container_cards{
+    flex-flow: row wrap;
+    width: 100%;
+    display: flex;
+    margin-top: 6em;
+}
+.card{
+    margin: 50px;
+    box-sizing: content-box;
+    border-color: #8F15EF;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    cursor: default;
+    transition: 0.3s;
+}
+.card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(110%);
+}
+.footer{
+    width: 100%;
+    background-color: white;
+}
+.container-footer{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+
+}
+.container-footer .box-footer figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-footer .box-footer figure img{
+    width: 250px;
+}
+.container-footer2{
+    text-align: center;
+    background-color: #8F15EF;
+    color: #fff;
+}
+.container-footer .box-footer .contacto a{
+    display: inline-block;
+    text-decoration: none;
+    width: 25px;
+    height: 25px;
+    line-height: 45px;
+    color: #8F15EF;
+}
+
+@media (max-width: 1024px)
+{
+    .banner{
+        position: relative;
+        transform: 50%;
+
+    }
+    .banner img{
+        transform: 50%;
+    }
+    .banner h1{
+        font-size: 24px;
+    }
+    .contenedor-beneficios{
+        transform: 50%;
+    }
+    .contenedor-beneficios h2{
+        font-size: 32px;
+        margin-top: 200px;
+    }
+    .contenedor-beneficios p{
+        font-size: 24px;
+    }
+    .card{
+        padding: 1em;
+
+    }
+    .container-footer{
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
     
+    }
 }

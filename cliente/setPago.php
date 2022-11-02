@@ -7,6 +7,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 3){
+        header("Location: ../index.php");
+    }
+
     $destino = $_POST['destino'];
     $dinero = $_POST['dinero'];
 

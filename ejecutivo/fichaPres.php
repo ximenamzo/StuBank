@@ -3,6 +3,12 @@
 
 	include('../view/conexion.php');
 
+    $rol = $_SESSION['rol'];
+
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
 	$idPres = $_REQUEST['id'];
 	
 	$obtencion = "SELECT * FROM prestamos WHERE id_prest = '$idPres'";

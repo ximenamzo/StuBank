@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 3){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
     
     $meses= $_POST['meses']; //Total de meses/plazos

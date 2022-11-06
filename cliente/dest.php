@@ -6,6 +6,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 3){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     if($id == $_SESSION['cuenta']){

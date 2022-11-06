@@ -4,6 +4,12 @@
 
 	session_start();
 
+	$rol = $_SESSION['rol'];
+
+	if($rol != 2){
+        header("Location: ../index.php");
+    }
+
 	$captcha = new Captcha();
 
 	if($captcha->checkCaptcha($_POST['h-captcha-response'])){
@@ -41,6 +47,7 @@
 
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
+	    		die();
 	    	}
 
 	    	$newSaldo = $saldo - $dinero;

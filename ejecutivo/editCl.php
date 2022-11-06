@@ -6,6 +6,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";

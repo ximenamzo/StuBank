@@ -4,6 +4,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $pres = $mysqli->prepare("INSERT INTO prestamos (solicitanteEje, solicitanteCl, cantidad, meses, deuda, metodo, estatus) VALUES (?, ?, ?, ?, ?, ?, ?)");

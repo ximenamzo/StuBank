@@ -44,7 +44,7 @@
             <div class="card">
             <?php foreach($ejecutivos as $ejecutivo): ?>
                 <div class="cont">
-                <form action="setEdit.php?id=<?php echo $ejecutivo['nCuenta'];?>" method="post" enctype="multipart/form-data">
+                <form action="setEdit.php?id=<?=$ejecutivo['nCuenta'];?>" method="post" enctype="multipart/form-data">
                 	<br>
                     <div class="row" style="width: 100%;">
                         <div style="width: 30%;">

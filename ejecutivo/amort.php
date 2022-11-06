@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     require('../view/conexion.php');
     require('../view/captcha.php');
 

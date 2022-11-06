@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM clientes WHERE nEjecutivo = '$cuenta' AND estatus = 1";

@@ -34,6 +34,11 @@
 		    $cuentaCl = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
 
+		    if($dinero > 15000){
+		    	echo '<script language="javascript">alert("No se pueden realizar depositos de mas de $15,000");window.location.href="movimientos.php"</script>';
+		    	die();
+		    }
+
 	    	$obtencion2 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
 	    	$resultado2 = mysqli_query($mysqli,$obtencion2);
 	    	$clientes = $resultado2->fetch_all(MYSQLI_ASSOC);

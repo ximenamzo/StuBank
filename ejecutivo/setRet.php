@@ -45,6 +45,10 @@
 	    		$saldo = $cliente['saldo'];
 	    	endforeach;
 
+	    	if($dinero > 15000){
+	    		echo '<script language="javascript">alert("No se pueden realizar retiros de mas de $15,000");window.location.href="movimientos.php"</script>';
+	    		die();
+	    	}
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
 	    		die();

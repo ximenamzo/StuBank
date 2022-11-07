@@ -70,7 +70,7 @@
                             <td><?=$cliente['apellidoM'] ?></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="selecMov.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                                    <a href="selecMov.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-arrow-right-circle-fill"></i></a>
                                 </div>
                             </td>
                         </tr>

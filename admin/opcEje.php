@@ -64,8 +64,13 @@
             </div>
         </div>
         <div class="col-md-4 mt-2">
-            <a href="admin_eje.php" class="btn btn-secondary mt-5">Regresar</a>
+            <a href="editEje.php?id=<?=$ejecutivo['nCuenta']?>" class="btn btn-primary mt-5">Editar</a><br>
+            <a href="deleteEje.php?id=<?=$ejecutivo['nCuenta']?>" onclick="return conf(event)" class="btn btn-danger mt-2">Borrar</a><br>
+            <a href="admin_eje.php" class="btn btn-secondary mt-2">Regresar</a>
         </div>
     </div>
+    <script language="javascript">
+        const conf = _ => confirm("¿Desea eliminar a este ejecutivo?");
+    </script>
 </body>
 </html>

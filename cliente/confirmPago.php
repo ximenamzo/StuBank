@@ -33,6 +33,7 @@
         if($passDB == $passFull){
             if ($dinero > $saldo){
                 echo '<script language="javascript">alert("Saldo en cuenta insuficiente");window.location.href="prestamos.php"</script>';
+                die();
             }else{
                 $obtencion2 = "SELECT * FROM prestamos WHERE id_prest = '$destino'";
                 $resultado2 = mysqli_query($mysqli, $obtencion2);
@@ -41,6 +42,9 @@
                 foreach ($prestamos as $prestamo) {
                     $deuda = $prestamo['deuda'];
                 }
+            }
+            if($dinero > $deuda){
+                echo '<script language="javascript">alert("No puedes pagar mas del total de la deuda");window.location.href="prestamos.php"</script>';
             }
         }else{
             echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="prestamos.php"</script>';
@@ -74,6 +78,7 @@
         <div class="col-md-9">
             Se abonarán $<?=$dinero?> a un prestamo con deuda de: $<?=$deuda?><br>
             La deuda restante será de: $<?=($deuda - $dinero)?><br>
+            Su nuevo saldo será de: $<?=($saldo-$dinero)?><br>
             ¿Desea continar?<br>
             <form action="setPago.php" method="POST" onsubmit="return acep(event)">
                 <input type="hidden" name="destino" value="<?=$destino?>">

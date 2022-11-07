@@ -55,6 +55,7 @@
                     <th scope="col">Fecha de solicitud</th>
                     <th scope="col">Restante</th>
                     <th scope="col">Pagar</th>
+                    <th scope="col">Pagos</th>
                 </thead>
                 <tbody>
                     <?php foreach($prestamos as $prestamo): ?>
@@ -65,6 +66,7 @@
                             <td><?=$prestamo['fecha']?></td>
                             <td><?=$prestamo['deuda']?></td>
                             <td><a href="formPago.php?id=<?=$prestamo['id_prest']?>&deu=<?=$prestamo['deuda']?>" class="btn btn-success"><i class="bi bi-currency-dollar"></i></a></td>
+                            <td><a href="pagos.php?id=<?=$prestamo['id_prest']?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -82,6 +84,7 @@
                     <th scope="col">Metodo</th>
                     <th scope="col">Fecha de solicitud</th>
                     <th scope="col">Estatus</th>
+                    <th scope="col">Pagos</th>
                 </thead>
                 <tbody>
                     <?php foreach($prestamos2 as $prestamo2): ?>
@@ -90,7 +93,12 @@
                             <td><?=$prestamo2['meses']?></td>
                             <td><?=$metodo[$prestamo2['metodo']]?></td>
                             <td><?=$prestamo2['fecha']?></td>
-                            <td><?php $estado = $prestamo2['estatus']; echo $estados[$estado]?></td>
+                            <td><?=$estados[$prestamo2['estatus']]?></td>
+                            <td>
+                                <?php if($prestamo2['estatus'] == 4): ?>
+                                    <a href="pagos.php?id=<?=$prestamo2['id_prest']?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

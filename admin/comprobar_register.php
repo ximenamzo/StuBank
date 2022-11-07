@@ -36,8 +36,11 @@
         echo $cont;
     }
     
+    $stmt_reg = $mysqli->prepare("INSERT INTO trabajadores (nCuenta, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?)");
+    $stmt_reg->bind_param("ssssssssss", $cuenta, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
+    
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `trabajadores` (`nCuenta`,`nombre`,`apelldoP`, `apellidoM`, `foto`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta','$userR', '$apellidoP', '$apellidoM', '$cuenta', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
+        if (!$stmt_reg->execute()){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
             if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe

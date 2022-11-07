@@ -20,14 +20,11 @@
     $foto = $_FILES['foto']['name'];
     $guardar_img = $_FILES['foto']['tmp_name'];
 
-    //llamamos a la conexion de base datos
-    include('../view/conexion.php');
+    include('../view/conexion.php'); //llamamos a la conexion de base datos
 
-    //Hacemos la consulta de nuestro codigo sql 
-    $consutaRegistro = "SELECT nCuenta FROM clientes WHERE nCuenta='$cuenta'";
+    $consutaRegistro = "SELECT nCuenta FROM clientes WHERE nCuenta='$cuenta'"; //Hacemos la consulta de nuestro codigo sql 
     
-    //usamos el mysqli_query donde enviamos nuestra conexion y enviamos la consuta
-    $resultado = mysqli_query($mysqli,$consutaRegistro);
+    $resultado = mysqli_query($mysqli,$consutaRegistro); //usamos el mysqli_query donde enviamos nuestra conexion y enviamos la consuta
     $cont=0;
     
     while($consulta = mysqli_fetch_array($resultado)){
@@ -36,8 +33,11 @@
         echo $cont;
     }
 
+    $stmt_comp = $mysqli->prepare("INSERT INTO clientes (nCuenta, nEjecutivo, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt_comp->bind_param("sssssssssss", $cuenta, $cuentaEje, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
+
     if($cont == 0){
-        if (!$mysqli->query("INSERT INTO `clientes` (`nCuenta`, `nEjecutivo`,`nombre`,`apellidoP`, `apellidoM`, `foto`, `telefono`,`fecNac`, `email`, `curp`, `fecInscrip`) VALUES ('$cuenta', '$cuentaEje','$userR', '$apellidoP', '$apellidoM', '$cuenta', '$telefonoR','$nacimiento', '$correoR', '$curp', '$fecha')")){
+        if (!$stmt_comp->execute()){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
             if(!file_exists('../src/fotosCl')){//Comprobamos si la carpeta "fotos" existe
@@ -58,9 +58,9 @@
                     header("Location: admin_eje.php");
                 }
             }
-            echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="ejecutivo.php"</script>';
+            echo '<script language="javascript">alert("Registro agregado correctamente.");window.location.href="ejecutivo.php"</script>';
         }
     }else{
-        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="new_client.php"</script>';
+        echo '<script language="javascript">alert("Ingresaste un usuario existente.");window.location.href="new_client.php"</script>';
     }
 ?>

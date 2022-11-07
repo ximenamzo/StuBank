@@ -12,15 +12,13 @@
 
     <script type="text/javascript">
         function valideKey(evt){
+        var code = (evt.which) ? evt.which : evt.keyCode; // code es la representación del decimal ASCII de la tecla presionada
             
-        // code is the decimal ASCII representation of the pressed key.
-        var code = (evt.which) ? evt.which : evt.keyCode;
-            
-        if(code==8){ // backspace.
+        if(code==8){ // retroceso
             return true;
-        }else if(code>=48 && code<=57){ // is a number.
+        }else if(code>=48 && code<=57){ // número
             return true;
-        }else{ // other keys.
+        }else{ // otras teclas
             alert("Ingresar solo numeros");
             return false;
             }
@@ -38,12 +36,11 @@
                     break;
                 }
             }
-
-        if(letras.indexOf(tecla) == -1 && !tecla_especial){
-            alert("Ingresar solo letras y numeros");
-            return false;
+            if(letras.indexOf(tecla) == -1 && !tecla_especial){
+                alert("Ingresar solo letras y numeros");
+                return false;
+            }
         }
-    }
     </script>
 
     <title>StuBank</title>

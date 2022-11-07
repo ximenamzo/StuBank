@@ -24,7 +24,7 @@
 
     	foreach($ejecutivos as $ejecutivo):
     		$passDB = $ejecutivo['password'];
-    		$apePEje = $ejecutivo['apelldoP'];
+    		$apePEje = $ejecutivo['apellidoP'];
     		$apeMEje = $ejecutivo['apellidoM'];
     	endforeach;
 
@@ -53,13 +53,24 @@
 
 	    	$newSaldo = $saldo + $dinero;
 
-	    	if(!$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', 'Externo', '$cuentaCl', 'Deposito', '$dinero')")){
+
+			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?)");
+			$stmt_trans->bind_param("ssssd", $cuentaEje, $ext, $cuentaCl, $dep, $dinero);
+			$ext = 'Externo';
+			$dep = 'Deposito';
+
+			$stmt_saldo = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
+			$stmt_saldo->bind_param("ds", $newSaldo, $cuentaCl);
+
+
+	    	if(!$stmt_trans->execute()){
 	    		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    	}else{
-	    		if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")){
+	    		if(!$stmt_saldo->execute()){
 	    			echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    		}
 	    	}
+
     	}else{
     		echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="movimientos.php"</script>';
     	}
@@ -83,7 +94,7 @@
 
 	<div style="width: 100%; display: flex; justify-content: center; margin: 5px 0 5px 0;">
         <div style="color:grey; text-align:justify; width: 50%;">
-            Imprime y presenta este comprobante en cualquiera de las cajas de StuBank del estado para poder realizar el depósito a tu cuenta. Indica al cajero el valor exacto que figura en el presente comprobante.
+            Conserve este comprobante. En caso de necesitar aclaraciones con el banco, usted podrá hacerlo dentro de los 60 días posteriores al movimiento presentando esta ficha.
         </div>
     </div>
 	
@@ -108,7 +119,7 @@
                 </tbody>
             </table>
 
-			<p>Se realizará un deposito de <b>$<?=$dinero?></b> a la cuenta <?=$cuentaCl?></p>
+			<p>Se realizó un deposito de <b>$<?=$dinero?></b> a la cuenta <?=$cuentaCl?></p>
 
             <div style="display: flex; justify-content: center;">
                 <div class="row" style="width: auto;">

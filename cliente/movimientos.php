@@ -37,7 +37,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="formDest.php" class="btn btn-success">Generar una transferencia</a><br>
+            <a href="formDest.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>

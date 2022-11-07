@@ -41,10 +41,10 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="selecPres.php" class="btn btn-success">Solicitar prestamo</a><br>
+            <a href="selecPres.php" class="btn btn-success">Solicitar préstamo <i class="bi bi-hand-index-thumb"></i></a><br>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">Solicitante</th>
+                    <th scope="col">#C Solicitante</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Meses</th>
                     <th scope="col">Metodo</th>

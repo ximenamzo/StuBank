@@ -33,18 +33,21 @@
         $oldS = $client['saldo'];
     }
 
-    $pres = $mysqli->prepare("UPDATE prestamos SET estatus = ? WHERE id_prest = ?");
-    if (!$pres) {
+    $stmt_pres = $mysqli->prepare("UPDATE prestamos SET estatus = ? WHERE id_prest = ?");
+    if (!$stmt_pres) {
         echo "Error en {$mysqli->error}";
         die;
     }
-    $pres->bind_param('ii', $est, $idEst);
-    $sal = $mysqli->prepare("UPDATE clientes SET saldo = ?, deuda = ? WHERE nCuenta = ?");
-    $sal->bind_param('dds', $c, $d, $cuentaDest);
-    $deu = $mysqli->prepare("UPDATE clientes SET deuda = ? WHERE nCuenta = ?");
-    $deu->bind_param('ds', $d, $cuentaDest);
-    $trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?, ?, ?, ?, ?, ?)");
-    $trans->bind_param('sssssd', $tram, $sol, $or, $dest, $tip, $cant);
+    $stmt_pres->bind_param('ii', $est, $idEst);
+
+    $stmt_sal = $mysqli->prepare("UPDATE clientes SET saldo = ?, deuda = ? WHERE nCuenta = ?");
+    $stmt_sal->bind_param('dds', $c, $d, $cuentaDest);
+
+    $stmt_deu = $mysqli->prepare("UPDATE clientes SET deuda = ? WHERE nCuenta = ?");
+    $stmt_deu->bind_param('ds', $d, $cuentaDest);
+    
+    $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt_trans->bind_param('sssssd', $tram, $sol, $or, $dest, $tip, $cant);
 
     $idEst = $id;
     $cuentaDest = $cliente;
@@ -58,27 +61,27 @@
 
     if($aux == 1){
     	$est = 2;
-    	if($pres->execute()){
+    	if($stmt_pres->execute()){
             if($metodo == 2){
                 $dest = $cliente;
-        		if($sal->execute()){
-                    if($trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado, saldo y deuda actualizados");window.location.href="prestamos.php"</script>';
+        		if($stmt_sal->execute()){
+                    if($stmt_trans->execute()){
+                        echo '<script language="javascript">alert("Prestamo aprobado. Saldo y Deuda actualizados.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }else{
                 $dest = 'Externo';
-                if($deu->execute()){
-                    if($trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo");window.location.href="prestamos.php"</script>';
+                if($stmt_deu->execute()){
+                    if($stmt_trans->execute()){
+                        echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }
     	}
     }else if($aux == 2){
     	$est = 3;
-    	if($pres->execute()){
-    		echo '<script language="javascript">alert("Prestamo rechazado");window.location.href="prestamos.php"</script>';
+    	if($stmt_pres->execute()){
+    		echo '<script language="javascript">alert("Prestamo rechazado.");window.location.href="prestamos.php"</script>';
     	}
     }
 ?>

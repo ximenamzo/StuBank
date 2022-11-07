@@ -41,9 +41,8 @@
                 <h2>Información para el depósito</h2><br>
                 <form action="setDep.php" method="POST">
 
-                    <div class="col-md-12">
+                    <div class="col-md-9" style="margin-top:1rem;">
                         <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
-
                     </div>
                     <div class="col-md-5">
                         <div class="input-group mb-1">
@@ -66,7 +65,7 @@
                         </div>
                     </div>
 
-                    <BR>
+                    <br>
                     <div class="mt-3 mx-auto">
                         <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
                     </div><br>
@@ -81,7 +80,7 @@
 
                 </form>
             </div> <!-- card -->
-            
+
         </div><!-- col-md-5 -->
     </div>
 </body>

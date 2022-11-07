@@ -20,8 +20,12 @@
     $fecha = $_POST['fNa'];
     $guardar_img = $_FILES['foto']['tmp_name'];
 
-    if (!$mysqli->query("UPDATE trabajadores SET nombre = '$nom', apelldoP = '$aP', apellidoM = '$aM', foto = '$id', telefono = '$tel', email = '$email', curp = '$curp', fecNac = '$fecha' WHERE nCuenta = '$id'")){
-            echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
+
+    $stmt_edit = $mysqli->prepare("UPDATE trabajadores SET nombre = ?, apellidoP = ?, apellidoM = ?, foto = ?, telefono = ?, email = ?, curp = ?, fecNac = ? WHERE nCuenta = ?");
+    $stmt_edit->bind_param("ssssssssi",$nom,$aP,$aM,$id,$tel,$email,$curp,$fecha,$id);
+
+    if (!$stmt_edit->execute()){
+            echo "Actualización fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: admin_eje.php");
     }else{
         if($guardar_img != null){
@@ -35,15 +39,17 @@
                         echo '<script language="javascript">alert("Falló 1");</script>';
                     }
                 }
+        }else{
+            if(file_exists('../src/fotos/'.$id)){
+                unlink('../src/fotos/'.$id);
+            }
+            if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
             }else{
-                if(file_exists('../src/fotos/'.$id)){
-                    unlink('../src/fotos/'.$id);
-                }
-                if(!move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
-                    echo '<script language="javascript">alert("Falló 2");</script>';
-                }
+                echo '<script language="javascript">alert("Procesando...");</script>'; 
+                // Esta alerta se genera cuando no se selecciona ninguna foto nueva
+                // No hay problema porque el sistema selecciona por defecto la anterior establecida
             }
         }
-        echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="admin_eje.php"</script>';
+        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
     }
 ?>

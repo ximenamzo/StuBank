@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM clientes WHERE nEjecutivo = '$cuenta' AND estatus = 1";
@@ -71,11 +75,7 @@
                             <td><?=$cliente['telefono'] ?></td>
                             <td><?=$cliente['email'] ?></td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="infoCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
-                                    <a href="editCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="deleteCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                </div>
+                                <a href="opcCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-primary"><i class="bi bi-tools"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?>

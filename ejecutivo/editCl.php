@@ -6,6 +6,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
@@ -40,8 +44,9 @@
             <div class="card">
             <?php foreach($clientes as $cliente): ?>
                 <div class="cont">
-                <form action="setEdit.php?id=<?php echo $cliente['nCuenta'];?>" method="post" enctype="multipart/form-data">
+                <form action="setEdit.php" method="post" enctype="multipart/form-data">
                     <br>
+                    <input type="hidden" name="id" value="<?=$cliente['nCuenta'];?>">
                     <div class="row" style="width: 100%;">
                         <div style="width: 30%;">
                             <img style="display: block; margin: 5% auto 2% auto; width: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>

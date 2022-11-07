@@ -1,16 +1,18 @@
-<?php
-    $destino = $_REQUEST['id'];
-    
+<?php 
     session_start();
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+    $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
         header("Location: ../index.php");
     }
 
     include('../view/conexion.php');
+
+    $idpres = $_REQUEST['id'];
+    $deuda = $_REQUEST['deu'];
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +23,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
-    <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <title>StuBank</title>
@@ -32,41 +34,34 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
+
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-6">
-            <h1>Transferencia bancaria</h1>
-            
+        <div class="col-md-5">
+
             <div class="card">
                 <div class="cont">
-                    <form action="setTrans.php" method="POST">
-</br>
+                    <form action="confirmPago.php" method="POST"></br>
+                        <input type="hidden" name="pres" value="<?=$idpres?>">
                         <div class="row">
-                            <div style="width:50%;"><label class="form-label" for="dinero">Monto:</label></div>
-                            <div style="width:50%;"><label class="form-label" for="pass">Contraseña: </label></div>
+                            <div style="width:50%;"><label class="form-label" for="dinero">Monto a pagar: </label></div>
+                            <div style="width:50%;"><label class="form-label" for="pass">contraseña:</label></div>
                         </div>
 
                         <div class="row">
-                            <div class="input-group mb-3" style="width:50%;">
-                                <span class="input-group-text" id="basic-addon1">$</span>
-                                <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required>
-                            </div>
-
-                            <div style="width:50%;"><input class="form-control" type="password" name="pass" id="pass" required></div>
-                        </div>
-
-
-                        <div class="mt-3 mx-auto">
+                            <div style="width:50%;"><input type="number" name="dinero" class="form-control" id="dinero" placeholder="0.00" min="0" step="0.01" max="<?=$deuda?>" required></div>
+                            <div style="width:50%;"><input type="password" name="pass" class="form-control" id="pass"  required></div>
+                        </div><br>
+                        
+                        <div class="row">
                             <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
-                        </div><h6></h6>
-                        <input type="hidden" name="destino" value="<?=$destino?>">
-                        <input class="btn btn-success" type="submit" value="Realizar transferencia">
-
+                        </div><br>
+                        <input type="submit" value="Pagar" class="btn btn-primary">
                     </form>
-                </div><!--cont-->
-            </div><!--card-->
-        </div><!--col md 6-->
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

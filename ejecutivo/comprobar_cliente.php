@@ -1,6 +1,12 @@
 <?php
     session_start();
 
+    $rol = $_SESSION['rol'];
+    
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     $cuenta = $_POST['nCuenta'];
     $cuentaEje = $_SESSION['cuenta'];
     $userR = $_POST['name_user'];

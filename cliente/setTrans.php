@@ -9,6 +9,10 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
+    if($rol != 3){
+        header("Location: ../index.php");
+    }
+
     $captcha = new Captcha();
 
     if($captcha->checkCaptcha($_POST['h-captcha-response'])){

@@ -6,15 +6,15 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
-    if($rol != 2){
+    if($rol != 1){
         header("Location: ../index.php");
     }
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
+    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
 
     function edad($fecha_nacimiento){
 	    $nacimiento = new DateTime($fecha_nacimiento);
@@ -22,7 +22,6 @@
 	    $diferencia = $ahora->diff($nacimiento);
 	    return $diferencia->format("%y");
 	}
-
 ?>
 
 <!DOCTYPE html>
@@ -47,27 +46,31 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-5">
-            <h1>Ficha del cliente</h1>
+            <h1>Ficha del ejecutivo</h1>
 
             <div class="card">
-                <?php foreach($clientes as $cliente): ?>
-            	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
-            	<div class="cont">
-                    <label>Número de cliente:</label> <b><?=$cliente['nCuenta']?></b><br>
-                    <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
-                    <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                    <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
-                    <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
-                    <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
-                </div>
-
+                <?php foreach($ejecutivos as $ejecutivo): ?>
+                    <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+                    <div class="cont">
+                        <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
+                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apellidoP']." ".$ejecutivo['apellidoM']?></b><br>
+                        <label>Edad:</label> <b><?=edad($ejecutivo['fecNac'])?> años</b><br>
+                        <label>Teléfono:</label> <b><?=$ejecutivo['telefono']?></b><br>
+                        <label>Correo electrónico:</label> <b><?=$ejecutivo['email']?></b><br>
+                        <label>CURP:</label> <b><?=$ejecutivo['curp']?></b><br>
+                        <label>Activo desde el:</label> <b><?=$ejecutivo['fecInscrip']?></b><br>
+                    </div>
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4">
-            <br><a href="ejecutivo.php" class="btn btn-secondary mt-5">Regresar</a><br><br>
+        <div class="col-md-4 mt-2">
+            <a href="editEje.php?id=<?=$ejecutivo['nCuenta']?>" class="btn btn-primary mt-5">Editar</a><br>
+            <a href="deleteEje.php?id=<?=$ejecutivo['nCuenta']?>" onclick="return conf(event)" class="btn btn-danger mt-2">Borrar</a><br>
+            <a href="admin_eje.php" class="btn btn-secondary mt-2">Regresar</a>
         </div>
     </div>
+    <script language="javascript">
+        const conf = _ => confirm("¿Desea eliminar a este ejecutivo?");
+    </script>
 </body>
 </html>

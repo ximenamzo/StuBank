@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM prestamos WHERE solicitanteEje = '$cuenta'";
@@ -57,7 +61,7 @@
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
                             <td><?=$estados[$prestamo['estatus']]?></td>
-                            <?php if($prestamo['metodo'] == 1):?>
+                            <?php if(($prestamo['metodo'] == 1) && ($prestamo['estatus'] == 2)):?>
                                 <td><a href="fichaPres.php?id=<?=$prestamo['id_prest']?>" class="btn btn-success"><i class="bi bi-file-text"></i></a></td>
                             <?php endif?>
                         </tr>

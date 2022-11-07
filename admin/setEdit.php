@@ -10,8 +10,7 @@
         header("Location: ../index.php");
     }
 
-    $id = $_REQUEST['id'];
-
+    $id = $_POST['id'];
     $nom = $_POST['nom'];
     $aP = $_POST['aP'];
     $aM = $_POST['aM'];
@@ -28,15 +27,15 @@
     if (!$stmt_edit->execute()){
             echo "Actualización fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: admin_eje.php");
-    }else{ 
-        if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe
+    }else{
+        if($guardar_img != null){
+            if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe
                 mkdir('../src/fotos',0777,true); //Creamos la carpeta y le damos permisos
                 if(file_exists('../src/fotos')){//guardamos y movemos a nuestra carpeta
                     if(file_exists('../src/fotos/'.$id)){
                         unlink('../src/fotos/'.$id);
                     }
-                    if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
-                    }else{
+                    if(!move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
                         echo '<script language="javascript">alert("Falló 1");</script>';
                     }
                 }

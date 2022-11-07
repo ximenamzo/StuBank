@@ -4,6 +4,12 @@
 
 	session_start();
 
+	$rol = $_SESSION['rol'];
+
+	if($rol != 2){
+        header("Location: ../index.php");
+    }
+
 	$captcha = new Captcha();
 
 	if($captcha->checkCaptcha($_POST['h-captcha-response'])){
@@ -27,6 +33,11 @@
 		    $rol = $_SESSION['rol'];
 		    $cuentaCl = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
+
+		    if($dinero > 15000){
+		    	echo '<script language="javascript">alert("No se pueden realizar depositos de mas de $15,000");window.location.href="movimientos.php"</script>';
+		    	die();
+		    }
 
 	    	$obtencion2 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
 	    	$resultado2 = mysqli_query($mysqli,$obtencion2);

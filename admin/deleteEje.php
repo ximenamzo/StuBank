@@ -1,6 +1,4 @@
 <?php
-	$id = $_REQUEST['id'];
-
     session_start();
 
     $nombre = $_SESSION['nombre'];
@@ -12,27 +10,18 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+	$idEje = $_REQUEST['id'];
 
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
+	$stmt_borrar = $mysqli->prepare("UPDATE trabajadores SET estatus = ? WHERE nCuenta = ?");
+    $stmt_borrar->bind_param("is",$est,$idEje);
+    $est=2;
 
     if(!empty($_POST)){
     	$idEje = $_POST['idEje'];
 
-    	//$borrar = mysqli_query($mysqli, "UPDATE trabajadores SET estatus = '2' WHERE nCuenta = '$idEje'");
+    	$borrar = mysqli_query($mysqli, "UPDATE trabajadores SET estatus = '2' WHERE nCuenta = '$idEje'");
 
-        $stmt_borrar = $mysqli->prepare("UPDATE trabajadores SET estatus = ? WHERE nCuenta = ?");
-        $stmt_borrar->bind_param("is",$est,$idEje);
-        $est=2;
-
-    	if($stmt_borrar->execute()){
+    	if($borrar){
     		header("Location: admin_eje.php");
     	}else{
     		echo "Error";
@@ -69,7 +58,7 @@
                     <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
                     <div class="cont">
                         <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
-                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apellidoP']." ".$ejecutivo['apellidoM']?></b><br>
+                        <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apelldoP']." ".$ejecutivo['apellidoM']?></b><br>
                         <label>Edad:</label> <b><?=edad($ejecutivo['fecNac'])?> años</b><br>
                         <label>Teléfono:</label> <b><?=$ejecutivo['telefono']?></b><br>
                         <label>Correo electrónico:</label> <b><?=$ejecutivo['email']?></b><br>

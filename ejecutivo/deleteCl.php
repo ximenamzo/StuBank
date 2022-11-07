@@ -1,10 +1,12 @@
 <?php
-	$id = $_REQUEST['id'];
-
     session_start();
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
 
     include('../view/conexion.php');
 
@@ -12,15 +14,11 @@
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
+	$idCl = $_REQUEST['id'];
 
-    if(!empty($_POST)){
-    	$idCl = $_POST['idCl'];
+    $stmt_borrar = $mysqli->prepare("UPDATE clientes SET estatus = ? WHERE nCuenta = ?");
+    $stmt_borrar->bind_param("is",$est,$idCl);
+    $est=2;
 
     	//$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
 

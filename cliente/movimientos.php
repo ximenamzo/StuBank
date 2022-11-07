@@ -7,7 +7,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
+    $obtencion = "SELECT * FROM transacciones WHERE solicitante = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -33,7 +33,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
+            <a href="formDest.php" class="btn btn-success">Generar una transferencia</a><br>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>

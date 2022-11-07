@@ -1,20 +1,28 @@
 <?php
-	$id = $_REQUEST['id'];
+	$id = $_POST['destino'];
 
     session_start();
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
-    if($rol != 2){
-        header("Location: ../index.php");
-    }
-
     include('../view/conexion.php');
+
+    if($id == $_SESSION['cuenta']){
+        echo '<script language="javascript">alert("No se puede transferir a usted mismo");window.location.href="formDest.php"</script>';
+    }
 
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    foreach($clientes as $cliente):
+        $est = $cliente['estatus'];
+    endforeach;
+
+    if($est != 1){
+        echo '<script language="javascript">alert("Cuenta inactiva");window.location.href="formDest.php"</script>';
+    }
 
     function edad($fecha_nacimiento){
 	    $nacimiento = new DateTime($fecha_nacimiento);
@@ -22,20 +30,6 @@
 	    $diferencia = $ahora->diff($nacimiento);
 	    return $diferencia->format("%y");
 	}
-
-    foreach($clientes as $cliente):
-        $eje = $cliente['nEjecutivo'];
-    endforeach;
-
-    $obtencion2 = "SELECT * FROM trabajadores WHERE nCuenta = '$eje'";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $ejecutivos = $resultado2->fetch_all(MYSQLI_ASSOC);
-
-    foreach($ejecutivos as $ejecutivo):
-        $nomEje = $ejecutivo['nombre'];
-        $aPeje = $ejecutivo['apelldoP'];
-        $aMeje = $ejecutivo['apellidoM'];
-    endforeach;
 ?>
 
 <!DOCTYPE html>
@@ -59,29 +53,21 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <h1>Ficha del cliente</h1>
 
             <div class="card">
                 <?php foreach($clientes as $cliente): ?>
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">
-                    <label>Número de cliente:</label> <b><?=$cliente['nCuenta']?></b><br>
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
-                    <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                    <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
-                    <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
-                    <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br><br>
-                    <label>Ejecutivo asignado:</label> <b><?=$nomEje." ".$aPeje." ".$aMeje?></b><br>
-                    <label>Cuenta del ejecutivo: </label> <b><?=$cliente['nEjecutivo'];?></b><br>
                 </div>
-
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4">
-            <br><a href="ejecutivo.php" class="btn btn-secondary mt-5">Regresar</a><br><br>
+        <div class="col-md-4 mt-2">
+            <a href="formTrans.php?id=<?=$id?>" class="btn btn-success mt-5">Continuar</a><br>
+            <a href="formDest.php" class="btn btn-secondary mt-2">Regresar</a><br><br>
         </div>
     </div>
 </body>

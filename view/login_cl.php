@@ -24,7 +24,7 @@
                 $_SESSION['cuenta'] = $row['nCuenta'];
                 $_SESSION['rol'] = $row['rol'];
 
-                header("Location: /index-clientes.php");
+                header("Location: /index.php");
             }else{
                 echo "
                     <head>

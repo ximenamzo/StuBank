@@ -30,36 +30,32 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
-
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-
-            <div class="row" style="width: 100%;">
-                <div class="input-group m-1" style="width: 30%;">
-                    <span class="input-group-text" id="basic-addon1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                    </span>
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar tabla (N. cuenta)..." class="form-control" style="width: 30%;">
-                </div>
-
-                <div class="m-1" style="width: 60%; margin-right: 5em;">
-                    <a href="new_client.php" class="btn btn-success">Registrar cliente nuevo</a><br>
-                </div>
+            <h3>Seleccione un cliente</h3><br>
+            <!--<form action="selecMov.php" method="POST">
+                <input type="text" name="nCuenta" placeholder="Número de cuenta">
+                <input type="submit" value="Buscar" class="btn btn-primary">
+            </form>-->
+            
+            <div class="input-group mb-3" style="width: 30%;">
+                <span class="input-group-text" id="basic-addon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                </span>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por cuenta..." class="form-control" style="width: 30%;">
             </div>
-
+            
             <table class="table mt-3" id="myTable">
                 <thead>
                     <th scope="col">N. cuenta</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido paterno</th>
                     <th scope="col">Apellido materno</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Correo electronico</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col">Seleccionar</th>
                 </thead>
                 <tbody>
                     <?php foreach($clientes as $cliente): ?>
@@ -68,13 +64,9 @@
                             <td><?=$cliente['nombre'] ?></td>
                             <td><?=$cliente['apellidoP'] ?></td>
                             <td><?=$cliente['apellidoM'] ?></td>
-                            <td><?=$cliente['telefono'] ?></td>
-                            <td><?=$cliente['email'] ?></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="infoCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
-                                    <a href="editCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="deleteCl.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                    <a href="selecMov.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-arrow-right-circle-fill"></i></a>
                                 </div>
                             </td>
                         </tr>

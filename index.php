@@ -1,9 +1,10 @@
 <?php 
     session_start();
-    $nombre = $_SESSION['nombre'];
-    $rol = $_SESSION['rol'];
-    if($rol == '3')
-        header('location: index-clientes.php');
+    
+    if(isset($_SESSION['nombre'])){
+        $nombre = $_SESSION['nombre'];
+        $rol = $_SESSION['rol'];
+    }
 ?>
 
 <!DOCTYPE html>

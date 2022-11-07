@@ -21,5 +21,7 @@
     		session_destroy();
     		echo '<script language="javascript">alert("Contraseña creada correctamente");window.location.href="/index.php"</script>';
     	}
+
+    	
     }
 ?>

@@ -42,31 +42,12 @@ h1{
     width: 90%;
     border-radius: 7px;
 }
-.input-icon{
-	color: #191919;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-    top: 9.5%;
-	transform: translateY(-50%);
-    left: 20px;
-}
-.input-icon2{
-	color: #191919;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-    top: 25%;
-    left: 20px;
-}
-
 /*---------------*/
 .contenedor-inputs{
     padding: 10px 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    position: relative;
     
 }
 input{
@@ -80,7 +61,6 @@ input{
     width: 48%;
 }
 .input-100{
-    position: relative;
     width: 100%;
 }
 .btn_enviar{

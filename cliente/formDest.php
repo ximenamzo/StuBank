@@ -6,10 +6,6 @@
     $cuenta = $_SESSION['cuenta'];
 
     include('../view/conexion.php');
-
-    $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -29,31 +25,19 @@
 <header>
     <?php include('../view/navbar.php'); ?>
 </header>
+
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
-            <table class="table mt-3">
-                <thead>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
-                </thead>
-                <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
-                        <tr>
-                            <td><?=$movimiento['cOrigen'] ?></td>
-                            <td><?=$movimiento['cDestino'] ?></td>
-                            <td><?=$movimiento['tipo'] ?></td>
-                            <td>$<?=$movimiento['cantidad'] ?></td>
-                            <td><?=$movimiento['fecha'] ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            <h1>Información de la transferencia</h1><br>
+            <form action="dest.php" method="POST">
+                <div class="input-group mb-3" style="width:50%;">
+                    <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
+                    <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
+                    <input class="btn btn-success" type="submit" value="Continuar...">
+                </div>
+            </form>
         </div>
     </div>
 </body>

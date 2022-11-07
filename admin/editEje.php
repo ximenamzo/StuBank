@@ -50,57 +50,45 @@
                         <div style="width: 30%;">
                             <img style="display: block; margin: 5% auto 2% auto; width: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
                         </div>
-
                         <div style="width: 70%; margin-top: 8%;">
                             <label class="form-label">Fotografía del ejecutivo:</label>
-                            <input class="form-control" type="file" name="foto" accept="image/png, .jpeg, .jpg, image/gif"><br>
+                            <input class="form-control" type="file" name="foto" accept="image/png, .jpeg, .jpg, image/gif" value="<?=$ejecutivo['nCuenta']?>"><br>
                         </div>
                     </div>
-
-
                     <div style="width: 100%;" class="row">
                         <div style="width: 33%;">
                             <label class="form-label">Nombre:</label>
-                            <input type="text" name="nom" id="nom" class="form-control" value="<?=$ejecutivo['nombre']?>"><br>
+                            <input type="text" name="nom" id="nom" class="form-control" value="<?=$ejecutivo['nombre']?>" required><br>
                         </div>
-
                         <div style="width: 33%;">
                             <label class="form-label">Apellido paterno:</label>
-                            <input type="text" name="aP" id="aP" class="form-control" value="<?=$ejecutivo['apellidoP']?>"><br>
+                            <input type="text" name="aP" id="aP" class="form-control" value="<?=$ejecutivo['apellidoP']?>" required><br>
                         </div>
-                        
                         <div style="width: 33%;">
                             <label class="form-label">Apellido materno:</label>
-                            <input type="text" name="aM" id="aM" class="form-control" value="<?=$ejecutivo['apellidoM']?>"><br>
+                            <input type="text" name="aM" id="aM" class="form-control" value="<?=$ejecutivo['apellidoM']?>" required><br>
                         </div>
                     </div>
-                	
-                	
                     <div class="row">
                         <div style="width: 32%;">
                             <label class="form-label">Teléfono:</label>
-                            <input type="text" name="tel" id="tel" class="form-control" value="<?=$ejecutivo['telefono']?>" maxlength="10"><br>
+                            <input type="text" name="tel" id="tel" class="form-control" value="<?=$ejecutivo['telefono']?>" maxlength="10" required><br>
                         </div>
-
                         <div style="width: 64%;">
                             <label class="form-label">Correo electronico:</label>                        
-                            <input type="email" name="email" id="email" class="form-control" value="<?=$ejecutivo['email']?>"><br>
+                            <input type="email" name="email" id="email" class="form-control" value="<?=$ejecutivo['email']?>" required><br>
                         </div>
                     </div>
-
-                	
                     <div class="row">
                         <div style="width: 48%;">
                             <label class="form-label">CURP:</label>
-                            <input type="text" name="curp" id="curp" class="form-control" value="<?=$ejecutivo['curp']?>" maxlength="18"><br>
+                            <input type="text" name="curp" id="curp" class="form-control" value="<?=$ejecutivo['curp']?>" maxlength="18" required><br>
                         </div>
-
                         <div style="width: 48%;">
                             <label class="form-label">Fecha de nacimiento:</label>
-                            <input type="date" name="fNa" id="fNa" class="form-control" value="<?=$ejecutivo['fecNac']?>"><br>
+                            <input type="date" name="fNa" id="fNa" class="form-control" value="<?=$ejecutivo['fecNac']?>" required><br>
                         </div>
                     </div>
-                	
 
                     <a href="admin_eje.php" class="btn btn-secondary">Regresar</a>
                     <input class="btn btn-primary" type="submit" value="Editar">

@@ -59,7 +59,7 @@
             <img src="../src/registro.jpg" class="imgr">
         </div>    
         <form action="set_pass.php" method="post" class="form-login">
-            <h1>Registrar</h1>
+            <h1>Crear Contraseña</h1>
             <div class="contenedor-inputs">
                 <input type="password" name="passw_user" placeholder="Contraseña" class="input-100" required>
                 <input type="password" name="passw_user2" placeholder="Confirmar contraseña"class="input-100" required>

@@ -44,12 +44,10 @@
                         </div>
 
                         <div class="row">
-                            <!--<div style="width:50%;"><input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required></div>-->
                             <div class="input-group mb-3" style="width:50%;">
                                 <span class="input-group-text" id="basic-addon1">$</span>
                                 <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required>
                             </div>
-
 
                             <div style="width:50%;"><input class="form-control" type="password" name="pass" id="pass" required></div>
                         </div>
@@ -64,9 +62,6 @@
                     </form>
                 </div><!--cont-->
             </div><!--card-->
-
-
-
         </div><!--col md 6-->
     </div>
 </body>

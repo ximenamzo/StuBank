@@ -53,7 +53,7 @@
 
     <div style="width: 100%; display: flex; justify-content: center; margin: 5px 0 5px 0;">
         <div style="color:grey; text-align:justify; width: 50%;">
-            Imprime y presenta este comprobante en cualquiera de las cajas de StuBank del estado para poder recibir tu prestamo en efectivo. Indica al cajero el valor exacto que figura en el presente comprobante.
+            Imprime y presenta este comprobante en cualquiera de las cajas de StuBank del estado para poder recibir tu préstamo en efectivo. Indica al cajero el valor exacto que figura en el presente comprobante.
         </div>
     </div>
 	

@@ -62,14 +62,14 @@
                 $dest = $cliente;
         		if($stmt_sal->execute()){
                     if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado, saldo y deuda actualizados");window.location.href="prestamos.php"</script>';
+                        echo '<script language="javascript">alert("Prestamo aprobado. Saldo y Deuda actualizados.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }else{
                 $dest = 'Externo';
                 if($stmt_deu->execute()){
                     if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo");window.location.href="prestamos.php"</script>';
+                        echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }
@@ -77,7 +77,7 @@
     }else if($aux == 2){
     	$est = 3;
     	if($stmt_pres->execute()){
-    		echo '<script language="javascript">alert("Prestamo rechazado");window.location.href="prestamos.php"</script>';
+    		echo '<script language="javascript">alert("Prestamo rechazado.");window.location.href="prestamos.php"</script>';
     	}
     }
 ?>

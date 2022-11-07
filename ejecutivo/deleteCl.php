@@ -22,9 +22,13 @@
     if(!empty($_POST)){
     	$idCl = $_POST['idCl'];
 
-    	$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
+    	//$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
 
-    	if($borrar){
+        $stmt_borrar = $mysqli->prepare("UPDATE clientes SET estatus = ? WHERE nCuenta = ?");
+        $stmt_borrar->bind_param("is",$est,$idCl);
+        $est=2;
+
+    	if($stmt_borrar->execute()){
     		header("Location: ejecutivo.php");
     	}else{
     		echo "Error";

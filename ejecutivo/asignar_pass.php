@@ -37,7 +37,7 @@
             tecla = String.fromCharCode(key).toString();
             letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnopqrstuvwxyzáéíóú";
             especiales = [8,13,48,49,50,51,52,53,54,55,56,57];
-            tecla_especial = false
+            tecla_especial = false;
             for(var i in especiales) {
                 if(key == especiales[i]){
                     tecla_especial = true;
@@ -60,7 +60,7 @@
             <img src="../src/registro.jpg" class="imgr">
         </div>    
         <form action="set_pass.php" method="post" class="form-login">
-            <h1>Registrar</h1>
+            <h1>Crear Contraseña</h1>
             <div class="contenedor-inputs">
                 <input type="password" name="passw_user" placeholder="Contraseña" class="input-100" required>
                 <input type="password" name="passw_user2" placeholder="Confirmar contraseña"class="input-100" required>

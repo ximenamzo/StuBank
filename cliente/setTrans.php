@@ -41,13 +41,23 @@
             $newSaldoOri = $saldoOri - $dinero;
             $newSaldoDest = $saldoDest + $dinero;
 
-            if(!$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `solicitante`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuenta', '$cuenta', '$cuenta', '$destino', 'Transferencia', '$dinero')")){
+            $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
+            $stmt_trans->bind_param("sssssd", $cuenta, $cuenta, $cuenta, $destino, $tipo, $dinero);
+            $tipo = 'Transferencia';
+
+            $stmt_ori = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
+            $stmt_ori->bind_param("ds", $newSaldoOri, $cuenta);
+
+            $stmt_dest = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
+            $stmt_dest->bind_param("ds", $newSaldoDest, $destino);
+
+            if(!$stmt_trans->execute()){
                 echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             }else{
-                if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldoOri' WHERE nCuenta = '$cuenta'")){
+                if(!$stmt_ori->execute()){
                     echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
                 }else{
-                    if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldoDest' WHERE nCuenta = '$destino'")){
+                    if(!$stmt_dest->execute()){
                         echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
                     }
                 }
@@ -74,17 +84,53 @@
     <title>StuBank</title>
 </head>
 <body class="text-center">
-    <img src="../src/StuBank.png" class="mx-auto mb-3">
-    <center><div class="border border-success w-50">
-        
-        <h1>Ficha de transferencia</h1>
-        <p>Se realizó una transferencia de $<?=$dinero?> de la cuenta <?=$cuenta?> a la cuenta <?=$destino?></p>
-        <p>El dia: <?=date('d-m-Y');?></p>
-        <img src="../src/barcode.png" style="width: 13pc;"><br><br>
+    <img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
 
-        <a href="movimientos.php" class="btn btn-secondary">Regresar</a>
-        <button class="btn btn-success" onclick="imprimir()">Imprimir</button>
-    </div></center>
+    <div style="width: 100%; display: flex; justify-content: center; margin: 5px 0 5px 0;">
+        <div style="color:grey; text-align:justify; width: 50%;">
+            Conserve este comprobante. En caso de necesitar aclaraciones con el banco, usted podrá hacerlo dentro de los 60 días posteriores al movimiento presentando esta ficha.
+        </div>
+    </div>
+	
+	<div class="row" style="width: 100%; display: flex; justify-content: center;">
+		<div class="card" style="width: 50%; display: flex; justify-content: center; padding: 1.7em 4em 1.7em 4em;">
+			<h1>Comprobante de Transferencia</h1><br>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;">Cuenta de Origen:</td>
+                        <td style="text-align: right;"><?=$cuenta?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Cuenta de destino:</td>
+                        <td style="text-align: right;"><?=$destino?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Fecha:</td>
+                        <td style="text-align: right;"><?=date('d-m-Y');?></td>
+                    </tr>
+                </tbody>
+            </table>
+
+			<p>Se realizó una transferencia de <b>$<?=$dinero?></b></p>
+
+            <div style="display: flex; justify-content: center;">
+                <div class="row" style="width: auto;">
+                    <img src="../src/barcode.png" style="width: 13pc;"><br><br>
+                </div>
+            </div>
+		</div><!--card-->
+        
+
+        <div style="margin-top: 1em;">
+            <button class="btn btn-success" onclick="imprimir()">Imprimir</button>
+            &nbsp;
+            <a href="movimientos.php" class="btn btn-secondary">Regresar</a><br>
+        </div>
+
+
+	</div><br>
 
     <script>
         function imprimir(){

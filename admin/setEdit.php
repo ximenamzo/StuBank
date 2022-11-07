@@ -26,7 +26,7 @@
     $stmt_edit->bind_param("ssssssssi",$nom,$aP,$aM,$id,$tel,$email,$curp,$fecha,$id);
 
     if (!$stmt_edit->execute()){
-            echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
+            echo "Actualización fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: admin_eje.php");
     }else{ 
         if(!file_exists('../src/fotos')){//Comprobamos si la carpeta "fotos" existe
@@ -40,15 +40,17 @@
                         echo '<script language="javascript">alert("Falló 1");</script>';
                     }
                 }
-            }else{
-                if(file_exists('../src/fotos/'.$id)){
-                    unlink('../src/fotos/'.$id);
-                }
-                if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
-                }else{
-                    echo '<script language="javascript">alert("Falló 2");</script>';
-                }
+        }else{
+            if(file_exists('../src/fotos/'.$id)){
+                unlink('../src/fotos/'.$id);
             }
+            if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
+            }else{
+                echo '<script language="javascript">alert("Procesando...");</script>'; 
+                // Esta alerta se genera cuando no se selecciona ninguna foto nueva
+                // No hay problema porque el sistema selecciona por defecto la anterior establecida
+            }
+        }
         echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
     }
 ?>

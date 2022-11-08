@@ -1,7 +1,7 @@
 .card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
-    margin-bottom: 1em;
+    /*margin-bottom: 1em;*/
 }
 
 .card:hover{
@@ -26,15 +26,83 @@
 }
 
 .cont-purp{
-    width: 35%;
+    width: 80%;
+    height: auto;
+    padding: 1.2em;
+    border-radius: 0.6em;
+    border: 0.5em #8C52FF;
+
+    /*width: 35%;
     height: auto;
     padding: 2% 0 2% 2%;
     border-radius: 0.8em;
-    border: 0em solid #646464;
+    border: 0em solid #646464;*/
+
     box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
     margin-left: 0.5em;
     color: rgb(68, 68, 68);
     font-size: 1.5em;
+
+}
+.cont-purp2{
+    width: 100%;
+    height: auto;
+    padding:1.2em;
+    border-radius: 0.6em;
+    border: 0.5em #8C52FF;
+    box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
+    color: rgb(68, 68, 68);
+    font-size: 1.5em;
+}
+.histoContainer{
+    padding: auto;
+    margin: auto;
+}
+.columnasC{
+    margin-top: 10px;
+    border-bottom: .0625em solid #eee;
+    padding: 0;
+    display:flow-root;
+    height: 3.5em;
+
+}
+.histo-img{
+    float: left;
+    height:68px;
+    width: 68px;
+
+}
+.histo-img img {
+    margin-top: 0.1em;
+    background-position: center;
+    top:50%;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.clases{
+    float: left;
+    padding-left: 2em;
+    overflow: auto;
+    line-height: 1em;
+    font-size: 1em;
+
+}
+.clases2{
+    float: right;
+    overflow: auto;
+    line-height: 1em;
+    font-size: 1em;
+}
+.histBtn{
+    overflow: auto;
+    float: right;
+}
+.columnasC2{
+    margin-top: 10px;
+    display:flow-root;
+    height: auto;
 }
 
 /*style="width: 10pc;"*/

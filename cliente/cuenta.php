@@ -4,7 +4,7 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
-
+    
     if($rol != 3){
         header("Location: ../index.php");
     }
@@ -19,6 +19,11 @@
         $saldo = $cliente['saldo'];
         $deuda = $cliente['deuda'];
     endforeach;
+    
+    //sacar los datos para el historial
+    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' ORDER BY fecha DESC LIMIT 6";
+    $resultado = mysqli_query($mysqli,$consulta);
+    $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -42,21 +47,81 @@
 
 <body>
     <div class="row">
-        <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <?php include('menu.php');?>
+        <div class="col-md-4">
             <div class="tit">
                 <p>Saldo de la cuenta:</p>
             </div>
             <div class="cont-purp">
                 $<?=$saldo?><br>
             </div><br>
+            <?php if($deuda>0){ ?>
+                <div class="tit">
+                    <p>Deuda actual:</p>
+                </div>
+                <div class="cont-purp">$<?=$deuda?><br>
+                </div><br>
+            <?php } ?>
+        </div>
+        <div class="col-md-4"> 
             <div class="tit">
-                <p>Deuda actual:</p>
+                <p>Tu actividad:</p>
             </div>
-            <div class="cont-purp">
-                $<?=$deuda?><br>
-            </div><br>
-
+            <div class="cont-purp2">
+                <u class="histoContainer">
+                    <?php foreach($datos as $dato):
+                        $tipo=$dato['tipo'];?> 
+                        <?php if($tipo == 'Transferencia'){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/transferencia.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?> a</p>
+                                    <p><?=$dato['cDestino']?></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>- $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php }?>
+                        <?php if($tipo == "Deposito"){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/deposito.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>+ $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php }?>
+                        <?php if($tipo == "Retiro"){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/retiro.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>- $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    <?php endforeach ?>
+                    <li class="columnasC2">
+                        <a class="histBtn"href="/cliente/movimientos.php">Ver mas</a>
+                    </li>
+                </u>
+            </div>  
         </div>
     </div>
 </body>

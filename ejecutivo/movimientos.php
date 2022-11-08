@@ -13,7 +13,25 @@
 
     $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    //Variables para la paginación
+    $MovimientosXpagina=8;
+    if ($stmt = $mysqli->prepare($obtencion)) {
+        $stmt->execute();
+        $stmt->store_result();
+        $totalDatos=$stmt->num_rows;
+    }
+    $paginas=$totalDatos/$MovimientosXpagina;
+    $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
+    //Condiciones de paginacion
+    if(!($_GET)){
+        header('Location:movimientos.php?pagina=1');  
+    }
+    if ($_GET['pagina']>$paginas){
+        header('Location:movimientos.php?pagina=1');  
+    }
+
+    //$movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +55,18 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
+
+            <a href="formDest.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
+            <?php 
+            $CalculoIncio = ($_GET['pagina']-1)*$MovimientosXpagina;
+            $inicio = (string)$CalculoIncio;
+            $sql = "SELECT * FROM transacciones WHERE Ctramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
+            $obtencionD = mysqli_query($mysqli,$sql);
+            $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
+            ?>
+
+            ////<a href="mov.php" class="btn btn-success">Generar nuevo movimiento</a><br>
+
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -47,7 +76,11 @@
                     <th scope="col">Fecha de realización</th>
                 </thead>
                 <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
+
+                    <?php foreach($resultado_Datos as $movimiento): ?>
+
+                    ////<?php foreach($movimientos as $movimiento): ?>
+
                         <tr>
                             <td><?=$movimiento['cOrigen'] ?></td>
                             <td><?=$movimiento['cDestino'] ?></td>
@@ -58,6 +91,30 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+
+            <nav aria-label="movimientoP">
+                        <ul class="pagination">
+                            <li class="page-item
+                                <?php echo $_GET['pagina']<=1 ? 'disabled': '' ?>">
+                                <a class="page-link" 
+                                href="movimientos.php?pagina=<?php echo $_GET['pagina']-1?>">Anterior</a>
+                            </li>
+                            <?php for($i=0;$i<$paginas;$i++):?>
+                            <li class="page-item
+                            <?php echo $_GET['pagina']==$i+1 ? 'active': '' ?>">
+                                <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
+                            </li>
+                            <?php endfor?>
+                            <li class="page-item
+                            <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>">
+                                <a class="page-link" 
+                                href="movimientos.php?pagina=<?php echo $_GET['pagina']+1?>">Siguiente                                
+                                </a>
+                            </li>
+                        </ul>
+            </nav>
+
+
         </div>
     </div>
 </body>

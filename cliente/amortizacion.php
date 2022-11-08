@@ -20,6 +20,7 @@
     $totAmort = 0;
     $p_mes =round(($prestamo * $p)/(1-(pow((1+$p),-$meses))),2); //Pago por mes
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +32,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="../src/js/funciones.js"></script>
     <title>StuBank</title>
 </head>
 <header>
@@ -40,12 +42,13 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
+            <div id="GFG"> <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Periodo</th>
-                    <th scope="col">Pago realizado</th>
-                    <th scope="col">Interes</th>
-                    <th scope="col">Amortizacion</th>
+                    <th scope="col">Pago</th>
+                    <th scope="col">Interés</th>
+                    <th scope="col">Amortización</th>
                     <th scope="col">Pendiente</th>
                 </thead>
                 <tbody>
@@ -73,14 +76,15 @@
                         <td>-</td>
                     </tr>
                 </tbody>
-            </table>
-            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado.</p><br>
-            <div>
+            </table></div>
+            
+            <div style="color:#808080;"><p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado.</p></div>
+            <div style="margin-bottom:5%;">
                 <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a>
-                <button class="btn btn-success" onclick="print()">Imprimir</button>
+                <button class="btn btn-success" onclick="printDivStyle()">Obtener formato de impresión</button>
             </div>
         </div>
+
     </div>
 </body>
-
 </html>

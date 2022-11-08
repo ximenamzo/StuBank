@@ -34,7 +34,7 @@
         echo $consulta['nCuenta'];
         $cont++;
         echo $cont;
-    }
+    } 
     
     $stmt_reg = $mysqli->prepare("INSERT INTO trabajadores (nCuenta, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?)");
     $stmt_reg->bind_param("ssssssssss", $cuenta, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
@@ -55,15 +55,15 @@
                 }
             }else{
                 if(move_uploaded_file($guardar_img,'../src/fotos/'.$cuenta)){
-                    echo "Archivo Guardado con Exito";
+                    echo "Archivo Guardado con Exito.";
                 }else{
-                    echo '<script language="javascript">alert("Falló");';
+                    echo '<script language="javascript">alert("Falló.");';
                     header("Location: admin_eje.php");
                 }
             }
             echo '<script language="javascript">alert("Registro agregado correctamente");window.location.href="admin_eje.php"</script>';
         }
     }else{
-        echo '<script language="javascript">alert("Ingresaste un usuario existente");window.location.href="admin_eje.php"</script>';
+        echo '<script language="javascript">alert("Ingresaste un usuario existente.");window.location.href="register.php"</script>';
     }
 ?>

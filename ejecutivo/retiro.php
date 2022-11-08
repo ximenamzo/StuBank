@@ -48,7 +48,7 @@
                     <div class="col-md-5">
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
-                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="15000" step="0.01" required>
+                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="5" max="15000" step="0.01" required>
                             <span class="input-group-text" style="width: 25%;">MXN</span>
                         </div><br>
                     </div>

@@ -121,9 +121,9 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-login">
             <h1>Iniciar Sesión</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
+                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" maxlength="8" required>
                 <input type="password" name="passw_user" placeholder="Contraseña"class="input-100" required>
-                <input type="submit" value="Iniciar" class="btn_login">
+                <input type="submit" value="Entrar" class="btn_login">
             </div>
         </form>
     </div>

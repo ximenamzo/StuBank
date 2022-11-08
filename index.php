@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="src/icono.png">
+    <script src="/src/js/scroll.js"></script>
     <title>StuBank</title>
 </head>
 
@@ -26,6 +27,7 @@
     <?php include('view/navbar.php'); ?>
 </header>
 <body>
+
     <div class="banner">
         <div class="banner--header">
             <h1>HERRAMIENTA FINANCIERA PARA MOVIMIENTOS BANCARIOS ONLINE</h1>
@@ -41,6 +43,13 @@
             <img src="./src/beneficios.png" alt="">
         </div>
     </section>
+    <div>
+        <a href="#top" class="scroll">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+            </svg>
+        </a>
+    </div>
 </body>
 <footer>
     <?php include('view/footer.php'); ?>

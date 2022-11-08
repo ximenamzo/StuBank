@@ -13,6 +13,7 @@
     $obtencion = "SELECT * FROM trabajadores WHERE rol = '2' AND estatus = '1'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 
@@ -27,7 +28,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="../src/js/buscador.js"></script>
+    <script src="../src/js/funciones.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>StuBank</title>
 </head>
 
@@ -46,7 +48,7 @@
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                     </span>
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar tabla (N. cuenta)..." class="form-control" style="width: 30%;">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar..." class="form-control" style="width: 30%;">
                 </div>
 
                 <div class="m-1" style="width: 60%; margin-right: 5em;">
@@ -64,7 +66,7 @@
                     <th scope="col">Correo electronico</th>
                     <th scope="col">Opciones</th>
                 </thead>
-                <tbody>
+                <tbody id="myTbody">
                     <?php foreach($ejecutivos as $ejecutivo): ?>
                         <tr>
                             <td><?=$ejecutivo['nCuenta'] ?></td>
@@ -80,7 +82,22 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+
         </div>
     </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTbody tr").filter(function() {
+                    $(this).toggle($(this).text()
+                    .toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </body>
 </html>

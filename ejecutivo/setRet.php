@@ -100,7 +100,7 @@
 	</div>
 </div>
 
-<div class="row" style="width: 100%; display: flex; justify-content: center;">
+<div class="row" style="width: 100%; display: flex; justify-content: center;" id="GFG">
 	<div class="card" style="width: 50%; display: flex; justify-content: center; padding: 1.7em 4em 1.7em 4em;">
 		<h1>Ficha de retiro</h1><br>
 
@@ -138,7 +138,7 @@
 	</div>
 
 
-</div><br>
+</div><br><!--row-->
 
 	<script>
 		function imprimir(){

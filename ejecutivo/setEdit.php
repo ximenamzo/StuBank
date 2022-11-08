@@ -25,7 +25,6 @@
     $stmt_edit->bind_param("sssssssss", $nom, $aP, $aM, $id, $tel, $email, $curp, $fecha, $id);
 
     if(!$stmt_edit->execute()){
-
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: ejecutivo.php");
     }else{
@@ -51,6 +50,7 @@
                     // No hay problema porque el sistema selecciona por defecto la anterior establecida
                 }
             }
+        }
         echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="ejecutivo.php"</script>';
     }
 ?>

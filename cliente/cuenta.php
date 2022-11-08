@@ -4,20 +4,28 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
+    
+    if($rol != 3){
+        header("Location: ../index.php");
+    }
 
     include('../view/conexion.php');
+
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
     foreach($clientes as $cliente):
         $saldo = $cliente['saldo'];
         $deuda = $cliente['deuda'];
     endforeach;
+    
     //sacar los datos para el historial
     $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' ORDER BY fecha DESC LIMIT 6";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

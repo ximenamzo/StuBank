@@ -8,6 +8,7 @@
     if($rol != 3){
         header("Location: ../index.php");
     }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta'";
@@ -28,6 +29,7 @@
     if ($_GET['pagina']>$paginas){
         header('Location:movimientos.php?pagina=1');  
     }
+    //$movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +54,7 @@
         <?php include('menu.php'); ?>
         <div class="col-md-9">
             <a href="formDest.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
+
             <?php 
             $CalculoIncio = ($_GET['pagina']-1)*$MovimientosXpagina;
             $inicio = (string)$CalculoIncio;
@@ -59,6 +62,7 @@
             $obtencionD = mysqli_query($mysqli,$sql);
             $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
             ?>
+            
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -68,7 +72,9 @@
                     <th scope="col">Fecha de realización</th>
                 </thead>
                 <tbody>
+
                     <?php foreach($resultado_Datos as $movimiento): ?>
+
                         <tr>
                             <td><?=$movimiento['cOrigen'] ?></td>
                             <td><?=$movimiento['cDestino'] ?></td>
@@ -79,6 +85,7 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+
             <nav aria-label="movimientoP">
                         <ul class="pagination">
                             <li class="page-item
@@ -100,6 +107,7 @@
                             </li>
                         </ul>
             </nav>
+
         </div>
     </div>
 </body>

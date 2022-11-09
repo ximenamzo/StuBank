@@ -1,10 +1,12 @@
 <?php
-	$id = $_REQUEST['id'];
-
     session_start();
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
+
+    if($rol != 2){
+        header("Location: ../index.php");
+    }
 
     include('../view/conexion.php');
 
@@ -12,25 +14,26 @@
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
+	$idCl = $_REQUEST['id'];
 
-    if(!empty($_POST)){
-    	$idCl = $_POST['idCl'];
+    $stmt_borrar = $mysqli->prepare("UPDATE clientes SET estatus = ? WHERE nCuenta = ?");
+    $stmt_borrar->bind_param("is",$est,$idCl);
+    $est=2;
 
-    	$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
+    	//$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
 
-    	if($borrar){
+        $stmt_borrar = $mysqli->prepare("UPDATE clientes SET estatus = ? WHERE nCuenta = ?");
+        $stmt_borrar->bind_param("is",$est,$idCl);
+        $est=2;
+
+    	if($stmt_borrar->execute()){
     		header("Location: ejecutivo.php");
     	}else{
     		echo "Error";
     		echo $idCl;
     	}
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +70,7 @@
                     <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
                     <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
                     <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br><br>
-                    <label>Ejecutivo asignado:</label> <b><?=$nomEje." ".$aPeje." ".$aMeje?></b><br>
-                    <label>Cuenta del ejecutivo: </label> <b><?=$cliente['nEjecutivo'];?></b><br>
+                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
                 </div>
 
                 <?php endforeach ?>

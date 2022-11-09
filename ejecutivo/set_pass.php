@@ -15,11 +15,15 @@
     	$salt = "invalid";
     	$contraseñaful = md5($salt.$pass1);
 
-    	if(!$mysqli->query("UPDATE `trabajadores` SET `password` = '$contraseñaful' WHERE `trabajadores`.`nCuenta`='$cuenta'")){
+		//$mysqli->query("UPDATE `trabajadores` SET `password` = '$contraseñaful' WHERE `trabajadores`.`nCuenta`='$cuenta'")
+		$stmt_pass = $mysqli->prepare("UPDATE trabajadores SET password = ? WHERE nCuenta = ?");
+		$stmt_pass->bind_param("ss",$contraseñaful,$cuenta);
+
+    	if(!$stmt_pass->execute()){
     		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
     	}else{
     		session_destroy();
-    		echo '<script language="javascript">alert("Contraseña creada correctamente");window.location.href="/index.php"</script>';
+    		echo '<script language="javascript">alert("Contraseña creada correctamente");window.location.href="/view/login_tr.php"</script>';
     	}
 
     	

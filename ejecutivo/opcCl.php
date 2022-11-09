@@ -23,19 +23,6 @@
 	    return $diferencia->format("%y");
 	}
 
-    foreach($clientes as $cliente):
-        $eje = $cliente['nEjecutivo'];
-    endforeach;
-
-    $obtencion2 = "SELECT * FROM trabajadores WHERE nCuenta = '$eje'";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $ejecutivos = $resultado2->fetch_all(MYSQLI_ASSOC);
-
-    foreach($ejecutivos as $ejecutivo):
-        $nomEje = $ejecutivo['nombre'];
-        $aPeje = $ejecutivo['apelldoP'];
-        $aMeje = $ejecutivo['apellidoM'];
-    endforeach;
 ?>
 
 <!DOCTYPE html>
@@ -72,17 +59,20 @@
                     <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
                     <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
                     <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br><br>
-                    <label>Ejecutivo asignado:</label> <b><?=$nomEje." ".$aPeje." ".$aMeje?></b><br>
-                    <label>Cuenta del ejecutivo: </label> <b><?=$cliente['nEjecutivo'];?></b><br>
+                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
                 </div>
 
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4">
-            <br><a href="ejecutivo.php" class="btn btn-secondary mt-5">Regresar</a><br><br>
+        <div class="col-md-4 mt-2">
+            <a href="editCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-primary mt-5">Editar</a><br>
+            <a href="deleteCl.php?id=<?=$cliente['nCuenta']?>" onclick="return conf(event)" class="btn btn-danger mt-2">Borrar</a><br>
+            <a href="ejecutivo.php" class="btn btn-secondary mt-2">Regresar</a>
         </div>
     </div>
+    <script language="javascript">
+        const conf = _ => confirm("¿Desea eliminar a este cliente?");
+    </script>
 </body>
 </html>

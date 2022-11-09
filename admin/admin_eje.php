@@ -69,16 +69,12 @@
                         <tr>
                             <td><?=$ejecutivo['nCuenta'] ?></td>
                             <td><?=$ejecutivo['nombre'] ?></td>
-                            <td><?=$ejecutivo['apelldoP'] ?></td>
+                            <td><?=$ejecutivo['apellidoP'] ?></td>
                             <td><?=$ejecutivo['apellidoM'] ?></td>
                             <td><?=$ejecutivo['telefono'] ?></td>
                             <td><?=$ejecutivo['email'] ?></td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="infoEje.php?id=<?=$ejecutivo['nCuenta'];?>" class="btn btn-info"><i class="bi bi-info-circle"></i></a>
-                                    <a href="editEje.php?id=<?=$ejecutivo['nCuenta'];?>" class="btn btn-secondary"><i class="bi bi-pencil"></i></a>
-                                    <a href="deleteEje.php?id=<?=$ejecutivo['nCuenta'];?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                </div>
+                                <a href="opcEje.php?id=<?=$ejecutivo['nCuenta'];?>" class="btn btn-primary"><i class="bi bi-tools"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?>

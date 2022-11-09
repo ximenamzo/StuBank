@@ -119,7 +119,7 @@
             <img src="../src/login.jpg" class="imgr">
         </div>    
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-login">
-            <h1>Iniciar Session</h1>
+            <h1>Iniciar Sesión</h1>
             <div class="contenedor-inputs">
                 <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
                 <input type="password" name="passw_user" placeholder="Contraseña"class="input-100" required>

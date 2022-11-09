@@ -22,19 +22,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+
         function valideKey(evt){
-            
-        // code is the decimal ASCII representation of the pressed key.
-        var code = (evt.which) ? evt.which : evt.keyCode;
-            
-        if(code==8){ // backspace.
+        var code = (evt.which) ? evt.which : evt.keyCode; // code es el decimal ASCII que representa la tecla presionada
+        if(code==8){ // retroceso
             return true;
-        }else if(code>=48 && code<=57){ // is a number.
+        }else if(code>=48 && code<=57){ // es número
             return true;
-        }else{ // other keys.
+        }else{ // otras teclas
             alert("Ingresar solo numeros");
             return false;
-            }
+        }
         }
 
         function SoloLetras(e){
@@ -43,18 +41,18 @@
             letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnopqrstuvwxyzáéíóú";
             especiales = [8,13,48,49,50,51,52,53,54,55,56,57];
             tecla_especial = false
-            for(var i in especiales) {
+            for(var i in especiales){
                 if(key == especiales[i]){
                     tecla_especial = true;
                     break;
                 }
             }
 
-        if(letras.indexOf(tecla) == -1 && !tecla_especial){
-            alert("Ingresar solo letras y numeros");
-            return false;
+            if(letras.indexOf(tecla) == -1 && !tecla_especial){
+                alert("Ingresar solo letras y numeros");
+                return false;
+            }
         }
-    }
     </script>
 
     <title>StuBank</title>
@@ -74,7 +72,7 @@
                 <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
-                <input type="text" name="curp" class="input-100" placeholder="CURP" required>
+                <input type="text" name="curp" maxlength="18" class="input-100" placeholder="CURP" required>
                 <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
                 <label class="yearday">Foto del ejecutivo: </label><input type="file" name="foto" class="input-50" required accept="image/png, .jpeg, .jpg, image/gif">

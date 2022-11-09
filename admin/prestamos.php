@@ -5,6 +5,10 @@
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
+    if($rol != 1){
+        header("Location: ../index.php");
+    }
+
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM prestamos";
@@ -73,10 +77,10 @@
         </div>
     </div>
     <script language="javascript">
-        const acep = _ => confirm("¿Aceptar este prestamo?");
+        const acep = _ => confirm("¿Aceptar este préstamo?");
     </script>
     <script language="javascript">
-        const rech = _ => confirm("¿Rechazar este prestamo?");
+        const rech = _ => confirm("¿Rechazar este préstamo?");
     </script>
 </body>
 </html>

@@ -6,28 +6,17 @@
     $cuenta = $_SESSION['cuenta'];
 
     include('../view/conexion.php');
-
     $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
-
     foreach($clientes as $cliente):
         $saldo = $cliente['saldo'];
         $deuda = $cliente['deuda'];
     endforeach;
-    //sacar los datos del historial transferencia
-    $consulta = "SELECT * FROM transacciones WHERE cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 2";
+    //sacar los datos para el historial
+    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' ORDER BY fecha DESC LIMIT 6";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
-    //Depositos
-    $consulta2 = "SELECT * FROM transacciones WHERE cDestino='$cuenta' ORDER BY fecha DESC LIMIT 2";
-    $resultado2 = mysqli_query($mysqli,$consulta2);
-    $datos2 = $resultado2->fetch_all(MYSQLI_ASSOC);
-    //Retiros
-    $consulta3 = "SELECT * FROM transacciones WHERE cOrigen='$cuenta' ORDER BY fecha DESC LIMIT 2";
-    $resultado3 = mysqli_query($mysqli,$consulta3);
-    $datos3 = $resultado3->fetch_all(MYSQLI_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,12 +47,13 @@
             <div class="cont-purp">
                 $<?=$saldo?><br>
             </div><br>
-            <div class="tit">
-                <p>Deuda actual:</p>
-            </div>
-            <div class="cont-purp">
-                $<?=$deuda?><br>
-            </div><br>
+            <?php if($deuda>0){ ?>
+                <div class="tit">
+                    <p>Deuda actual:</p>
+                </div>
+                <div class="cont-purp">$<?=$deuda?><br>
+                </div><br>
+            <?php } ?>
         </div>
         <div class="col-md-4"> 
             <div class="tit">
@@ -71,51 +61,54 @@
             </div>
             <div class="cont-purp2">
                 <u class="histoContainer">
-                <?php foreach($datos as $dato): ?>
-                    <li class="columnasC">
-                        <div class="histo-img">
-                            <img src="/src/transferencia.png">
-                        </div>
-                        <div class="clases">
-                            <p><?=$dato['tipo']?> a</p>
-                            <p><?=$dato['cDestino']?></p>
-                        </div>
-                        <div class="clases2">
-                            <p>- $<?=$dato['cantidad']?></p>
-                            <p><?=$dato['fecha']?></p>
-                        </div>
-                    </li>
-                <?php endforeach ?>
-                <?php foreach($datos2 as $dato2): ?>
-                    <li class="columnasC">
-                        <div class="histo-img">
-                            <img src="/src/deposito.png">
-                        </div>
-                        <div class="clases">
-                            <p><?=$dato2['tipo']?></p>
-                            <p></p>
-                        </div>
-                        <div class="clases2">
-                            <p>+ $<?=$dato2['cantidad']?></p>
-                            <p><?=$dato2['fecha']?></p>
-                        </div>
-                    </li>
-                <?php endforeach ?>
-                <?php foreach($datos3 as $dato3): ?>
-                    <li class="columnasC">
-                        <div class="histo-img">
-                            <img src="/src/retiro.png">
-                        </div>
-                        <div class="clases">
-                            <p><?=$dato3['tipo']?></p>
-                            <p></p>
-                        </div>
-                        <div class="clases2">
-                            <p>- $<?=$dato3['cantidad']?></p>
-                            <p><?=$dato3['fecha']?></p>
-                        </div>
-                    </li>
-                <?php endforeach ?>
+                    <?php foreach($datos as $dato):
+                        $tipo=$dato['tipo'];?> 
+                        <?php if($tipo == 'Transferencia'){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/transferencia.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?> a</p>
+                                    <p><?=$dato['cDestino']?></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>- $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php }?>
+                        <?php if($tipo == "Deposito"){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/deposito.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>+ $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php }?>
+                        <?php if($tipo == "Retiro"){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/retiro.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p>- $<?=$dato['cantidad']?></p>
+                                    <p><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    <?php endforeach ?>
                     <li class="columnasC2">
                         <a class="histBtn"href="/cliente/movimientos.php">Ver mas</a>
                     </li>

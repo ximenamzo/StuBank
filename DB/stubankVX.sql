@@ -96,7 +96,7 @@ CREATE TABLE `trabajadores` (
   `id_user` int NOT NULL AUTO_INCREMENT,
   `nCuenta` text COLLATE utf8mb4_general_ci NOT NULL,
   `nombre` text COLLATE utf8mb4_general_ci NOT NULL,
-  `apelldoP` text COLLATE utf8mb4_general_ci NOT NULL,
+  `apellidoP` text COLLATE utf8mb4_general_ci NOT NULL,
   `apellidoM` text COLLATE utf8mb4_general_ci NOT NULL,
   `foto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `telefono` text COLLATE utf8mb4_general_ci NOT NULL,

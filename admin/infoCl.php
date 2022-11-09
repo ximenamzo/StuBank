@@ -33,7 +33,7 @@
 
     foreach($ejecutivos as $ejecutivo):
         $nomEje = $ejecutivo['nombre'];
-        $aPeje = $ejecutivo['apelldoP'];
+        $aPeje = $ejecutivo['apellidoP'];
         $aMeje = $ejecutivo['apellidoM'];
     endforeach;
 ?>

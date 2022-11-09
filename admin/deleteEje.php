@@ -1,6 +1,4 @@
 <?php
-	$id = $_REQUEST['id'];
-
     session_start();
 
     $nombre = $_SESSION['nombre'];
@@ -12,16 +10,11 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$id'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+	$idEje = $_REQUEST['id'];
 
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
+	$stmt_borrar = $mysqli->prepare("UPDATE trabajadores SET estatus = ? WHERE nCuenta = ?");
+    $stmt_borrar->bind_param("is",$est,$idEje);
+    $est=2;
 
     if(!empty($_POST)){
     	$idEje = $_POST['idEje'];

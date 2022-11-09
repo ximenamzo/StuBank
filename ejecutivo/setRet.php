@@ -4,6 +4,12 @@
 
 	session_start();
 
+	$rol = $_SESSION['rol'];
+
+	if($rol != 2){
+        header("Location: ../index.php");
+    }
+
 	$captcha = new Captcha();
 
 	if($captcha->checkCaptcha($_POST['h-captcha-response'])){
@@ -18,7 +24,7 @@
 
     	foreach($ejecutivos as $ejecutivo):
     		$passDB = $ejecutivo['password'];
-    		$apePEje = $ejecutivo['apelldoP'];
+    		$apePEje = $ejecutivo['apellidoP'];
     		$apeMEje = $ejecutivo['apellidoM'];
     	endforeach;
     	if($passDB == $passFull){
@@ -39,24 +45,39 @@
 	    		$saldo = $cliente['saldo'];
 	    	endforeach;
 
+	    	if($dinero > 15000){
+	    		echo '<script language="javascript">alert("No se pueden realizar retiros de mas de $15,000");window.location.href="movimientos.php"</script>';
+	    		die();
+	    	}
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
+	    		die();
 	    	}
 
 	    	$newSaldo = $saldo - $dinero;
 
-	    	if(!$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', '$cuentaCl', 'Externo', 'Retiro', '$dinero')")){
+			//$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', '$cuentaCl', 'Externo', 'Retiro', '$dinero')")
+			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?)");
+			$stmt_trans->bind_param("ssssd", $cuentaEje, $cuentaCl, $ext, $ret, $dinero);
+			$ext = 'Externo';
+			$ret = 'Retiro';
+
+			//$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")
+			$stmt_saldo = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
+			$stmt_saldo->bind_param("ds",$newSaldo,$cuentaCl);
+
+	    	if(!$stmt_trans->execute()){
 	    		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    	}else{
-	    		if(!$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")){
+	    		if(!$stmt_saldo->execute()){
 	    			echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
 	    		}
 	    	}
     	}else{
-    		echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="movimientos.php"</script>';
+    		echo '<script language="javascript">alert("Contraseña incorrecta.");window.location.href="movimientos.php"</script>';
     	}
 	}else{
-		echo '<script language="javascript">alert("Captcha incorrecto");window.location.href="movimientos.php"</script>';
+		echo '<script language="javascript">alert("Captcha incorrecto.");window.location.href="movimientos.php"</script>';
 	}
 ?>
 

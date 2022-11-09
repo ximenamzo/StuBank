@@ -33,7 +33,7 @@
 
     foreach($ejecutivos as $ejecutivo):
         $nomEje = $ejecutivo['nombre'];
-        $aPeje = $ejecutivo['apelldoP'];
+        $aPeje = $ejecutivo['apellidoP'];
         $aMeje = $ejecutivo['apellidoM'];
     endforeach;
 
@@ -86,13 +86,15 @@
                         <label>Ejecutivo asignado:</label> <b><?=$nomEje?> <?=$aPeje?> <?=$aMeje?></b><br>
                         <label>Cuenta del ejecutivo: </label> <b><?=$cliente['nEjecutivo'];?></b><br><br>
 
-                        <form action="setEditCl.php?id=<?php echo $cliente['nCuenta'];?>" method="post" enctype="multipart/form-data">
-                            <select name="nuevoEje" class="form-select" style="width: 90%;">
-                                <option value="0" selected disabled>Seleccione el nuevo ejecutivo</option>
+                        <form action="setEditCl.php?id=<?php echo $cliente['nCuenta'];?>" method="post" enctype="multipart/form-data" name="myform">
+                            
+                            <select name="nuevoEje" class="form-select" style="width: 90%;" id="myselect" required>
+                                <option value="" disabled selected>Seleccione el nuevo ejecutivo</option>
                                 <?php foreach($ejecutivos2 as $ejecutivo2): ?>
-                                    <option value="<?=$ejecutivo2['nCuenta']?>"><?=$ejecutivo2['nombre']." ".$ejecutivo2['apelldoP']." ".$ejecutivo2['apellidoM']?></option>
+                                    <option value="<?=$ejecutivo2['nCuenta']?>"> <?=$ejecutivo2['nombre']." ".$ejecutivo2['apellidoP']." ".$ejecutivo2['apellidoM']?> </option>
                                 <?php endforeach ?>
                             </select><br><br>
+
                             <a href="admin_cl.php" class="btn btn-secondary">Regresar al menú</a>
                             <input class="btn btn-primary" type="submit" value="Cambiar Ejecutivo">
                         </form>
@@ -104,5 +106,17 @@
             <br><br>
         </div>
     </div>
+    <script>
+        document.myform.onsubmit = function(){
+            var e = document.getElementById("myselect");
+            var strUser = e.options[e.selectedIndex].value;
+            if((strUser)==""){
+                return false;
+            } else{ 
+                return true;
+            }
+        }
+    </script>
+
 </body>
 </html>

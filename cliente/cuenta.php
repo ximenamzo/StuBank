@@ -3,21 +3,21 @@
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
+
     if($rol != 3){
         header("Location: ../index.php");
     }
     include('../view/conexion.php');
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
-    foreach($clientes as $cliente):
-        $saldo = $cliente['saldo'];
-        $deuda = $cliente['deuda'];
-    endforeach;
+    $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
+
     //sacar los datos para el historial
     $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' ORDER BY fecha DESC LIMIT 6";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,18 +43,14 @@
         <?php include('menu.php');?>
         <div class="col-md-4">
             <div class="tit">
-                <p>Saldo de la cuenta:</p>
+                <p>Cuentas:</p>
             </div>
-            <div class="cont-purp">
-                $<?=$saldo?><br>
-            </div><br>
-            <?php if($deuda>0){ ?>
-                <div class="tit">
-                    <p>Deuda actual:</p>
+            <?php foreach($cuentas as $cu):?>
+                <div class="cont-purp">
+                    <h3><?=$tiposCuenta[$cu['tipo']]?></h3>
+                    Saldo: $<?=$cu['saldo']?>
                 </div>
-                <div class="cont-purp">$<?=$deuda?><br>
-                </div><br>
-            <?php } ?>
+            <?php endforeach;?>
         </div>
         <div class="col-md-4"> 
             <div class="tit">

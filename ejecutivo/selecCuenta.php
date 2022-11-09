@@ -1,5 +1,5 @@
 <?php
-	$id = $_REQUEST['id'];
+	$id = $_POST['id'];
 
     session_start();
 
@@ -22,6 +22,12 @@
 	    $diferencia = $ahora->diff($nacimiento);
 	    return $diferencia->format("%y");
 	}
+
+    $obtencion2= "SELECT * FROM cuentas WHERE nCliente = '$id'";
+    $resultado2 = mysqli_query($mysqli,$obtencion2);
+    $cuentas = $resultado2->fetch_all(MYSQLI_ASSOC);
+
+    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares'];
 ?>
 
 <!DOCTYPE html>
@@ -63,9 +69,15 @@
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4 mt-2">
-            <a href="deposito.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-success mt-5 mb-2">Depósito</a><br>
-            <a href="retiro.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger mb-2">Retiro</a><br><br>
+        <div class="col-md-3 mt-2">
+            <h2>Cuentas: </h2>
+            <?php foreach($cuentas as $cuenta):?>
+                <div class="border border-dark mt-1 mb-2">
+                    <h4><?=$tiposCuenta[$cuenta['tipo']]?></h4>
+                    <a href="deposito.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-success">Depósito</a>
+                    <a href="retiro.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-danger">Retiro</a><br><br>
+                </div>
+            <?php endforeach;?>
             <a href="mov.php" class="btn btn-secondary mb-2">Regresar</a>
         </div>
     </div>

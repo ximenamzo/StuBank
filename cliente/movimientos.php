@@ -1,6 +1,5 @@
 <?php 
     session_start();
-
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
@@ -8,30 +7,8 @@
     if($rol != 3){
         header("Location: ../index.php");
     }
-
     include('../view/conexion.php');
-
-    $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    //Variables para la paginación
-    $MovimientosXpagina=8; // El total de movimientos por paginacion
-    if ($stmt = $mysqli->prepare($obtencion)) {
-        $stmt->execute();
-        $stmt->store_result();
-        $totalDatos=$stmt->num_rows;
-    }
-    $paginas=$totalDatos/$MovimientosXpagina;
-    $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
-    //Condiciones de paginacion
-    if(!($_GET)){
-        header('Location:movimientos.php?pagina=1');  
-    }
-    if ($_GET['pagina']>$paginas){
-        header('Location:movimientos.php?pagina=1');  
-    }
-    //$movimientos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,18 +28,35 @@
 </header>
 <body>
     <div class="row">
-        <?php include('menu.php'); ?>
+        <?php include('menu.php');
+        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta'";
+        $resultado = mysqli_query($mysqli,$obtencion);
+        //Variables para la paginación
+        $MovimientosXpagina=8; // El total de movimientos por paginacion
+        if ($stmt = $mysqli->prepare($obtencion)) {
+            $stmt->execute();
+            $stmt->store_result();
+            $totalDatos=$stmt->num_rows;
+        }
+        $paginas=$totalDatos/$MovimientosXpagina;
+        $paginas = ceil($paginas);
+        //Condiciones de paginacion
+        if (empty($_GET['pagina'])){
+            $pagina = 1;
+        }
+        else{
+            $pagina = $_GET['pagina'];
+        }
+        ?>
         <div class="col-md-9">
             <a href="formDest.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
-
             <?php 
-            $CalculoIncio = ($_GET['pagina']-1)*$MovimientosXpagina;
+            $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
             $inicio = (string)$CalculoIncio;
             $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' LIMIT $inicio,$MovimientosXpagina";
             $obtencionD = mysqli_query($mysqli,$sql);
             $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
             ?>
-            
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -72,9 +66,7 @@
                     <th scope="col">Fecha de realización</th>
                 </thead>
                 <tbody>
-
                     <?php foreach($resultado_Datos as $movimiento): ?>
-
                         <tr>
                             <td><?=$movimiento['cOrigen'] ?></td>
                             <td><?=$movimiento['cDestino'] ?></td>
@@ -85,29 +77,30 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
-
+            <?php if($paginas == NULL){?>
+                <br><br><h3>No cuenta con movimientos</h3><br><br>
+            <?php } ?>
             <nav aria-label="movimientoP">
                         <ul class="pagination">
                             <li class="page-item
-                                <?php echo $_GET['pagina']<=1 ? 'disabled': '' ?>">
+                                <?php echo $pagina<=1 ? 'disabled': '' ?>">
                                 <a class="page-link" 
-                                href="movimientos.php?pagina=<?php echo $_GET['pagina']-1?>">Anterior</a>
+                                href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
                             </li>
                             <?php for($i=0;$i<$paginas;$i++):?>
                             <li class="page-item
-                            <?php echo $_GET['pagina']==$i+1 ? 'active': '' ?>">
+                            <?php echo $pagina==$i+1 ? 'active': '' ?>">
                                 <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
                             </li>
                             <?php endfor?>
                             <li class="page-item
-                            <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>">
+                            <?php echo $pagina>=$paginas? 'disabled': '' ?>">
                                 <a class="page-link" 
-                                href="movimientos.php?pagina=<?php echo $_GET['pagina']+1?>">Siguiente                                
+                                href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente                                
                                 </a>
                             </li>
                         </ul>
             </nav>
-
         </div>
     </div>
 </body>

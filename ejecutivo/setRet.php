@@ -12,7 +12,7 @@
 
 	$captcha = new Captcha();
 
-	if(true){
+	if($captcha->checkCaptcha($_POST['h-captcha-response'])){
 		$pass = $_POST['pass'];
 		$salt = "invalid";
 		$passFull = md5($salt.$pass);
@@ -36,6 +36,7 @@
 	    	$cuentaRet = $resultado2->fetch_assoc();
 
 	    	$cuentaCl = $cuentaRet['nCliente'];
+	    	$tipoCuenta = $cuentaRet['tipo'];
 	    	$saldo = $cuentaRet['saldo'];
 
 	    	$obtencion3 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
@@ -50,12 +51,23 @@
 	    		echo '<script language="javascript">alert("No se pueden realizar retiros de mas de $15,000");window.location.href="movimientos.php"</script>';
 	    		die();
 	    	}
+	    	
+	    	if($tipoCuenta == 4){
+    			$divisa = $_POST['divisa'];
+	    		if($divisa == 1){
+	    			$dinero = $dinero / 20;
+	    			$newSaldo = $saldo - $dinero;
+	    		}else{
+	    			$newSaldo = $saldo - $dinero;
+	    		}
+    		}else{
+    			$newSaldo = $saldo - $dinero;
+    		}
+
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
 	    		die();
 	    	}
-
-	    	$newSaldo = $saldo - $dinero;
 
 			//$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', '$cuentaCl', 'Externo', 'Retiro', '$dinero')")
 			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
@@ -124,7 +136,11 @@
 			</tbody>
 		</table>
 
-		<p>Se realizará un retiro de <b>$<?=$dinero?></b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php if($tipoCuenta == 4):?>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php else:?>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php endif?>
 
 		<div style="display: flex; justify-content: center;">
 			<div class="row" style="width: auto;">

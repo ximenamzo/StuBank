@@ -11,6 +11,12 @@
     }
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM cuentas WHERE cuenta = '$id'";
+    $resultado = $mysqli->query($obtencion);
+    $cuenta = $resultado->fetch_assoc();
+
+    $tipo = $cuenta['tipo'];
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +48,24 @@
                 <form action="setDep.php" method="POST">
 
                     <div class="col-md-9" style="margin-top:1rem;">
-                        <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
+                        <?php if($tipo == 4):?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar y su divisa:</label>
+                        <?php else:?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
+                        <?php endif;?>
                     </div>
                     <div class="col-md-5">
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
                             <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="15000" step="0.01" required>
-                            <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <?php if($tipo == 4):?>
+                                <select name="divisa" class="input-group-text" style="width: 33%;">
+                                    <option value="1" selected>MXN</option>
+                                    <option value="2">USD</option>
+                                </select>
+                            <?php else:?>
+                                <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <?php endif;?>
                         </div><br>
                     </div>
 

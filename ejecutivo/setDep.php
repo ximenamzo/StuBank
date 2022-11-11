@@ -28,7 +28,6 @@
 
     	if($passDB == $passFull){
 			$nombreEje = $_SESSION['nombre'];
-		    $rol = $_SESSION['rol'];
 		    $cuenta = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
 
@@ -42,8 +41,20 @@
 	    	$cuentaDep = $resultado2->fetch_assoc();
 
 	    	$cuentaCl = $cuentaDep['nCliente'];
+	    	$tipoCuenta = $cuentaDep['tipo'];
 	    	$saldo = $cuentaDep['saldo'];
-	    	$newSaldo = $saldo + $dinero;
+
+	    	if($tipoCuenta == 4){
+	    		$divisa = $_POST['divisa'];
+	    		if($divisa == 1){
+	    			$dinero = $dinero / 20;
+	    			$newSaldo = $saldo + $dinero;
+	    		}else{
+	    			$newSaldo = $saldo + $dinero;	
+	    		}
+	    	}else{
+	    		$newSaldo = $saldo + $dinero;
+	    	}
 
 	    	$obtencion3 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
 	    	$resultado3 = $mysqli->query($obtencion3);
@@ -118,7 +129,11 @@
                 </tbody>
             </table>
 
-			<p>Se realizó un deposito de <b>$<?=$dinero?></b> a la cuenta <?=$cuenta?></p>
+            <?php if($tipoCuenta == 4):?>
+            	<p>Se realizó un deposito de <b>$<?=$dinero?> USD</b> a la cuenta <?=$cuenta?></p>
+            <?php else:?>
+				<p>Se realizó un deposito de <b>$<?=$dinero?> MXN</b> a la cuenta <?=$cuenta?></p>
+			<?php endif;?>
 
             <div style="display: flex; justify-content: center;">
                 <div class="row" style="width: auto;">

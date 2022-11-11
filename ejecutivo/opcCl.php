@@ -67,6 +67,7 @@
         </div>
         <div class="col-md-4 mt-2">
             <a href="editCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-primary mt-5">Editar</a><br>
+            <a href="cuentasCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-success mt-2">Cuentas</a><br>
             <a href="deleteCl.php?id=<?=$cliente['nCuenta']?>" onclick="return conf(event)" class="btn btn-danger mt-2">Borrar</a><br>
             <a href="ejecutivo.php" class="btn btn-secondary mt-2">Regresar</a>
         </div>

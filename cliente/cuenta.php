@@ -17,7 +17,7 @@
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares'];
+    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,7 +46,7 @@
                 <p>Cuentas:</p>
             </div>
             <?php foreach($cuentas as $cu):?>
-                <div class="cont-purp">
+                <div class="cont-purp mb-4">
                     <h3><?=$tiposCuenta[$cu['tipo']]?></h3>
                     Saldo: $<?=$cu['saldo']?>
                 </div>

@@ -51,6 +51,7 @@
                     // No hay problema porque el sistema selecciona por defecto la anterior establecida
                 }
             }
-        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="ejecutivo.php"</script>';
+        }
     }
+    echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="ejecutivo.php"</script>';
 ?>

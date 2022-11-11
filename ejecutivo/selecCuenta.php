@@ -27,7 +27,7 @@
     $resultado2 = mysqli_query($mysqli,$obtencion2);
     $cuentas = $resultado2->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares'];
+    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,9 @@
                 <div class="border border-dark mt-1 mb-2">
                     <h4><?=$tiposCuenta[$cuenta['tipo']]?></h4>
                     <a href="deposito.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-success">Depósito</a>
-                    <a href="retiro.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-danger">Retiro</a><br><br>
+                    <?php if($cuenta['tipo'] != 2):?>
+                        <a href="retiro.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-danger">Retiro</a>
+                    <?php endif;?>
                 </div>
             <?php endforeach;?>
             <a href="mov.php" class="btn btn-secondary mb-2">Regresar</a>

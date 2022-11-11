@@ -11,6 +11,25 @@
     }
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM cuentas WHERE cuenta = '$id'";
+    $resultado = $mysqli->query($obtencion);
+    $cuenta = $resultado->fetch_assoc();
+
+    $tipo = $cuenta['tipo'];
+    $saldo = $cuenta['saldo'];
+
+    if($tipo == 3){
+        $max = $saldo * 0.1;
+        if($max > 15000){
+            $max = 15000;
+        }
+    }else{
+        $max = $saldo;
+        if($max > 15000){
+            $max = 15000;
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -42,14 +61,26 @@
                 <form action="setRet.php" method="POST">
 
                     <div class="col-md-12">
-                        <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a retirar:</label>
-
+                        <?php if($tipo == 4):?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a retirar y su divisa:</label>
+                        <?php elseif($tipo == 3):?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a retirar (las cuentas de ahorro pueden retirar un maximo del 10% de su saldo total):</label>
+                        <?php else:?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a retirar:</label>
+                        <?php endif;?>
                     </div>
                     <div class="col-md-5">
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
-                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="15000" step="0.01" required>
-                            <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="<?=$max?>" step="0.01" required>
+                            <?php if($tipo == 4):?>
+                                <select name="divisa" class="input-group-text" style="width: 33%;">
+                                    <option value="1" selected>MXN</option>
+                                    <option value="2">USD</option>
+                                </select>
+                            <?php else:?>
+                                <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <?php endif;?>
                         </div><br>
                     </div>
 

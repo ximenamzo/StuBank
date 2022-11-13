@@ -13,7 +13,7 @@
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
     //sacar los datos para el historial
-    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' ORDER BY fecha DESC LIMIT 6";
+    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 6";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 

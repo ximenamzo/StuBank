@@ -51,7 +51,7 @@
             Solicitado el: <?=$prestamo['fecha']?><br>
             Estatus: <?=$estados[$prestamo['estatus']]?><br>
             Metodo: <?=$metodo[$prestamo['metodo']]?><br>
-            Deuda restante: $<?=$prestamo['deuda']?>
+            Deuda restante: $<?=round($prestamo['deuda'],2)?>
 
 
             <?php if($pagos != null):?>

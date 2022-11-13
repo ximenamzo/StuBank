@@ -29,7 +29,7 @@
 <body>
     <div class="row">
         <?php include('menu.php');
-        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta'";
+        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta'";
         $resultado = mysqli_query($mysqli,$obtencion);
         //Variables para la paginación
         $MovimientosXpagina=8; // El total de movimientos por paginacion
@@ -49,11 +49,11 @@
         }
         ?>
         <div class="col-md-9">
-            <a href="formDest.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
+            <a href="selectCuenta.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
             <?php 
             $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
             $inicio = (string)$CalculoIncio;
-            $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' LIMIT $inicio,$MovimientosXpagina";
+            $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
             $obtencionD = mysqli_query($mysqli,$sql);
             $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
             ?>

@@ -11,9 +11,7 @@
 
     include('../view/conexion.php');
 
-    $cl = $_REQUEST['cl'];
-
-    $obtencion = "SELECT * FROM cuentas WHERE cuenta != '$cl' AND nCliente = '$cuenta'";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo != 2 AND tipo != 3";
     $resultado = mysqli_query($mysqli, $obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
@@ -41,26 +39,18 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            <h1>Información de la transferencia</h1><br>
-            <form action="dest.php" method="POST">
-                <div class="input-group mb-3" style="width:50%;">
-                    <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
-                    <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
-                    <input type="hidden" name="cl" value="<?=$cl?>">
-                    <input class="btn btn-success" type="submit" value="Continuar...">
-                </div>
-            </form>
-            O transfiere a un de tus cuentas<br>
+        <div class="col-md-8">
+            <h1>Seleccione la cuenta que desea usar</h1><br>
             <?php foreach($cuentas as $cu):?>
                 <div class="mb-2">
                     <div class="row">
                         <div class="col-md-4 border border-dark">
                             <h4><?=$tiposCuenta[$cu['tipo']]?></h4>
+                            <?php $send = $cu['cuenta']?>
                             Saldo disponible: $<?=$cu['saldo']?><br>
                         </div>
                         <div class="col-md-1 border border-dark">
-                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                            <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
                         </div>
                     </div>
                 </div>

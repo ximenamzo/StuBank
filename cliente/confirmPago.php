@@ -22,35 +22,39 @@
         $cuenta = $_SESSION['cuenta'];
 
         $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
-        $resultado = mysqli_query($mysqli,$obtencion);
-        $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+        $resultado = $mysqli->query($obtencion);
+        $cliente = $resultado->fetch_assoc();
 
-        foreach($clientes as $cliente):
-            $passDB = $cliente['password'];
-            $saldo = $cliente['saldo'];
-        endforeach;
+        $passDB = $cliente['password'];
 
         if($passDB == $passFull){
+            $obtencion3 = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 2";
+            $resultado3 = $mysqli->query($obtencion3);
+            $cuentaCred = $resultado3->fetch_assoc();
+
+            $saldo = $cuentaCred['saldo'];
+
             if ($dinero > $saldo){
                 echo '<script language="javascript">alert("Saldo en cuenta insuficiente");window.location.href="prestamos.php"</script>';
                 die();
             }else{
                 $obtencion2 = "SELECT * FROM prestamos WHERE id_prest = '$destino'";
-                $resultado2 = mysqli_query($mysqli, $obtencion2);
-                $prestamos = $resultado2->fetch_all(MYSQLI_ASSOC);
+                $resultado2 = $mysqli->query($obtencion2);
+                $prestamo = $resultado2->fetch_assoc();
 
-                foreach ($prestamos as $prestamo) {
-                    $deuda = $prestamo['deuda'];
-                }
+                $deuda = $prestamo['deuda'];
             }
             if($dinero > $deuda){
                 echo '<script language="javascript">alert("No puedes pagar mas del total de la deuda");window.location.href="prestamos.php"</script>';
+                die();
             }
         }else{
             echo '<script language="javascript">alert("Contraseña incorrecta");window.location.href="prestamos.php"</script>';
+            die();
         }
     }else{
         echo '<script language="javascript">alert("Captcha incorrecto");window.location.href="prestamos.php"</script>';
+        die();
     }
 ?>
 
@@ -78,7 +82,7 @@
         <div class="col-md-9">
             Se abonarán $<?=$dinero?> a un prestamo con deuda de: $<?=$deuda?><br>
             La deuda restante será de: $<?=($deuda - $dinero)?><br>
-            Su nuevo saldo será de: $<?=($saldo-$dinero)?><br>
+            Su nuevo saldo en la cuenta de credito será de: $<?=($saldo-$dinero)?><br>
             ¿Desea continar?<br>
             <form action="setPago.php" method="POST" onsubmit="return acep(event)">
                 <input type="hidden" name="destino" value="<?=$destino?>">

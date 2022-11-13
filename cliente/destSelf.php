@@ -1,6 +1,6 @@
 <?php
-	$id = $_POST['destino'];
-    $cl = $_POST['cl'];
+	$id = $_REQUEST['id'];
+    $cl = $_REQUEST['cl'];
 
     session_start();
 
@@ -17,16 +17,9 @@
         echo '<script language="javascript">alert("No se puede transferir a la misma cuenta");window.location.href="formDest.php"</script>';
     }
 
-    $obtencion = "SELECT cl.nombre, cl.apellidoP, cl.apellidoM, cl.estatus, cl.foto FROM cuentas as cu, clientes as cl WHERE cu.nCliente = cl.nCuenta AND cu.cuenta = '$id'";
+    $obtencion = "SELECT cl.nombre, cl.apellidoP, cl.apellidoM, cl.foto FROM cuentas as cu, clientes as cl WHERE cu.nCliente = cl.nCuenta AND cu.cuenta = '$id'";
     $resultado = $mysqli->query($obtencion);
     $cliente = $resultado->fetch_assoc();
-
-    $est = $cliente['estatus'];
-
-    if($est != 1){
-        echo '<script language="javascript">alert("Cuenta inactiva");window.location.href="selectCuenta.php"</script>';
-        die();
-    }
 ?>
 
 <!DOCTYPE html>

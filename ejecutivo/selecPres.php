@@ -65,7 +65,10 @@
                             <td><?=$cliente['apellidoM'] ?></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="calc.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-info"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                                    <form action="calc.php" method="POST">
+                                        <input type="hidden" name="id" value="<?=$cliente['nCuenta'];?>">
+                                        <button class="btn btn-info" type="submit"><i class="bi bi-arrow-right-circle-fill"></i></button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

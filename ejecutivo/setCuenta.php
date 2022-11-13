@@ -15,7 +15,7 @@
 
     $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo) VALUES (?, ?, ?)");
     $stmt_cuenta->bind_param('ssi', $id, $cuentaN, $tipo);
-    $cuentaN = $id.'-'.$tipo;
+    $cuentaN = $id.'_'.$tipo;
 
     if($stmt_cuenta->execute()){
         echo '<script language="javascript">alert("Cuenta abierta con exito.");window.location.href="ejecutivo.php"</script>';

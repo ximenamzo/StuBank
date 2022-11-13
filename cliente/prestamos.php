@@ -11,11 +11,17 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuenta' AND estatus = 2";
+    $obtencion3 = "SELECT * FROM cuentas where nCliente = '$cuenta' AND tipo = '2'";
+    $resultado3 = $mysqli->query($obtencion3);
+    $cuentaCred = $resultado3->fetch_assoc();
+
+    $cuentaPres = $cuentaCred['cuenta'];
+
+    $obtencion = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres' AND estatus = 2";
     $resultado = mysqli_query($mysqli,$obtencion);
     $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $obtencion2 = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuenta'  AND estatus != 2";
+    $obtencion2 = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres'  AND estatus != 2";
     $resultado2 = mysqli_query($mysqli,$obtencion2);
     $prestamos2 = $resultado2->fetch_all(MYSQLI_ASSOC);
 
@@ -64,7 +70,7 @@
                             <td><?=$prestamo['meses']?></td>
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
-                            <td><?=$prestamo['deuda']?></td>
+                            <td><?=round($prestamo['deuda'],2)?></td>
                             <td><a href="formPago.php?id=<?=$prestamo['id_prest']?>&deu=<?=$prestamo['deuda']?>" class="btn btn-success"><i class="bi bi-currency-dollar"></i></a></td>
                             <td><a href="pagos.php?id=<?=$prestamo['id_prest']?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a></td>
                         </tr>

@@ -1,5 +1,6 @@
 <?php
-    $destino = $_REQUEST['id'];
+    $destino = $_POST['id'];
+    $cl = $_POST['cl'];
     
     session_start();
 
@@ -11,6 +12,19 @@
     }
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM cuentas WHERE cuenta = '$cl'";
+    $resultado = $mysqli->query($obtencion);
+    $cliente = $resultado->fetch_assoc();
+
+    $tipo = $cliente['tipo'];
+    $saldo = $cliente['saldo'];
+
+    if($saldo < 15000){
+        $max = $saldo;
+    }else{
+        $max = 15000;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -43,14 +57,22 @@
                     <form action="setTrans.php" method="POST">
 </br>
                         <div class="row">
-                            <div style="width:50%;"><label class="form-label" for="dinero">Monto:</label></div>
+                            <div style="width:50%;"><label class="form-label" for="dinero">Monto y divisa:</label></div>
                             <div style="width:50%;"><label class="form-label" for="pass">Contraseña: </label></div>
                         </div>
 
                         <div class="row">
                             <div class="input-group mb-3" style="width:50%;">
                                 <span class="input-group-text" id="basic-addon1">$</span>
-                                <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" step="0.01" required>
+                                <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" max="<?=$max?>" step="0.01" required>
+                                <?php if($tipo == 4):?>
+                                <select name="divisa" class="input-group-text" style="width: 33%;">
+                                    <option value="1" selected>MXN</option>
+                                    <option value="2">USD</option>
+                                </select>
+                                <?php else:?>
+                                    <span class="input-group-text" style="width: 25%;">MXN</span>
+                                <?php endif;?>
                             </div>
 
                             <div style="width:50%;"><input class="form-control" type="password" name="pass" id="pass" required></div>
@@ -61,6 +83,7 @@
                             <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
                         </div><h6></h6>
                         <input type="hidden" name="destino" value="<?=$destino?>">
+                        <input type="hidden" name="cl" value="<?=$cl?>">
                         <input class="btn btn-success" type="submit" value="Realizar transferencia">
 
                     </form>

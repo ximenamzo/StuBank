@@ -14,30 +14,24 @@
     $destino = $_POST['destino'];
     $dinero = $_POST['dinero'];
 
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 2";
+    $resultado = $mysqli->query($obtencion);
+    $cuentaCred = $resultado->fetch_assoc();
 
-    foreach ($clientes as $cliente){
-    	$saldo = $cliente['saldo'];
-    	$deudaCl = $cliente['deuda'];
-    }
+    $saldo = $cuentaCred['saldo'];
 
     $obtencion2 = "SELECT * FROM prestamos WHERE id_prest = '$destino'";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $prestamos = $resultado2->fetch_all(MYSQLI_ASSOC);
+    $resultado2 = $mysqli->query($obtencion2);
+    $prestamo = $resultado2->fetch_assoc();
 
-    foreach ($prestamos as $prestamo){
-    	$total = $prestamo['cantidad'];
-    	$deudaPres = $prestamo['deuda'];
-    }
+	$total = $prestamo['cantidad'];
+	$deudaPres = $prestamo['deuda'];
 
-    $deudaClN = $deudaCl - $dinero;
     $deudaPresN = $deudaPres - $dinero;
     $saldoN = $saldo - $dinero;
 
-    $clUpdate = $mysqli->prepare("UPDATE clientes set saldo = ?, deuda = ? WHERE nCuenta = ?");
-    $clUpdate->bind_param('dds', $sN, $dClN, $cuen);
+    $clUpdate = $mysqli->prepare("UPDATE cuentas set saldo = ? WHERE cuenta = ?");
+    $clUpdate->bind_param('ds', $sN, $cuen);
     $presUpdate = $mysqli->prepare("UPDATE prestamos set deuda = ?, estatus = ? WHERE id_prest = ?");
     $presUpdate->bind_param('dii', $dPN, $est, $iPrest);
     $trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?, ?, ?, ?, ?)");
@@ -45,18 +39,17 @@
     $pago = $mysqli->prepare("INSERT INTO pagos (id_prest, cuenta, cantidad) VALUES (?, ?, ?)");
     $pago->bind_param('isd', $idP, $cu, $cant);
 
-    $cuen = $cuenta;
+    $cuen = $cuentaCred['cuenta'];
     $sN = $saldoN;
-    $dClN = $deudaClN;
     $dPN = $deudaPresN;
     $iPrest = $destino;
     $tra = $cuenta;
-    $or = $cuenta;
+    $or = $cuentaCred['cuenta'];
     $dest = 'Banco';
     $ti = 'Pago';
     $cant = $dinero;
     $idP = $destino;
-    $cu = $cuenta;
+    $cu = $cuentaCred['cuenta'];
 
     if($deudaPresN == 0){
     	$est = 4;

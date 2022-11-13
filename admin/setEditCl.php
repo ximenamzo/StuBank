@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $id = $_REQUEST['id'];

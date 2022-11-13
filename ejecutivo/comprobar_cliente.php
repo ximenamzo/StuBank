@@ -4,7 +4,9 @@
     $rol = $_SESSION['rol'];
     
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $cuenta = $_POST['nCuenta'];
@@ -35,11 +37,16 @@
 
     $stmt_comp = $mysqli->prepare("INSERT INTO clientes (nCuenta, nEjecutivo, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     $stmt_comp->bind_param("sssssssssss", $cuenta, $cuentaEje, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
+    $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo) VALUES (?, ?, ?)");
+    $stmt_cuenta->bind_param('ssi', $cuenta, $cuentaDeb, $tipo);
+    $cuentaDeb = $cuenta.'_1';
+    $tipo = 1;
 
     if($cont == 0){
         if (!$stmt_comp->execute()){
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
         }else{
+            $stmt_cuenta->execute();
             if(!file_exists('../src/fotosCl')){//Comprobamos si la carpeta "fotos" existe
                 mkdir('../src/fotosCl',0777,true); //Creamos la carpeta y le damos permisos
                 if(file_exists('../src/fotosCl')){//guardamos y movemos a nuestra carpeta

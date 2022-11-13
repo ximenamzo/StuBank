@@ -1,0 +1,27 @@
+Si (cuenta en dolares)
+	Manda 20 pesos a:
+		Cuenta en dolares:-----------------Listo
+			20 pesos / 20 = 1 dolar
+			-1 dolar a cuenta
+			+1 dolar a otra cuenta
+		Cuenta en pesos:-------------------Listo
+			+20 pesos a otra cuenta
+			20 pesos / 20 = 1 dolar
+			-1 dolar a cuenta
+	Manda 1 dolar a:
+		Cuenta en dolares:-----------------Listo
+			-1 dolar a cuenta
+			+1 dolar a otra cuenta
+		Cuenta en pesos:-------------------Listo
+			-1 dolar a cuenta
+			1 dolar * 20 = 20 pesos
+			+20 pesos a otra cuenta
+Si (cuenta en pesos)
+	manda 20 pesos a:
+		cuenta en dolares:-----------------Listo
+			-20 pesos a cuenta
+			20 pesos / 20 = 1 dolar
+			+1 dolar a otra cuenta
+		cuenta en pesos:-------------------Listo
+			-20 pesos a cuenta
+			+20 pesos a otra cuenta

@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $id = $_POST['id'];
@@ -39,17 +41,18 @@
                         echo '<script language="javascript">alert("Falló 1");</script>';
                     }
                 }
-        }else{
-            if(file_exists('../src/fotos/'.$id)){
-                unlink('../src/fotos/'.$id);
-            }
-            if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
             }else{
-                echo '<script language="javascript">alert("Procesando...");</script>'; 
-                // Esta alerta se genera cuando no se selecciona ninguna foto nueva
-                // No hay problema porque el sistema selecciona por defecto la anterior establecida
+                if(file_exists('../src/fotos/'.$id)){
+                    unlink('../src/fotos/'.$id);
+                }
+                if(move_uploaded_file($guardar_img,'../src/fotos/'.$id)){
+                }else{
+                    echo '<script language="javascript">alert("Procesando...");</script>'; 
+                    // Esta alerta se genera cuando no se selecciona ninguna foto nueva
+                    // No hay problema porque el sistema selecciona por defecto la anterior establecida
+                }
             }
         }
-        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
     }
+     echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
 ?>

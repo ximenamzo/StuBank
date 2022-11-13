@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $id = $_POST['id'];
@@ -51,6 +53,7 @@
                     // No hay problema porque el sistema selecciona por defecto la anterior establecida
                 }
             }
-        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="ejecutivo.php"</script>';
+        }
     }
+    echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="ejecutivo.php"</script>';
 ?>

@@ -6,10 +6,20 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
+
+    $cl = $_REQUEST['cl'];
+
+    $obtencion = "SELECT * FROM cuentas WHERE cuenta != '$cl' AND nCliente = '$cuenta'";
+    $resultado = mysqli_query($mysqli, $obtencion);
+    $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +49,24 @@
                 <div class="input-group mb-3" style="width:50%;">
                     <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
                     <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
+                    <input type="hidden" name="cl" value="<?=$cl?>">
                     <input class="btn btn-success" type="submit" value="Continuar...">
                 </div>
             </form>
+            O transfiere a un de tus cuentas<br>
+            <?php foreach($cuentas as $cu):?>
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-md-4 border border-dark">
+                            <h4><?=$tiposCuenta[$cu['tipo']]?></h4>
+                            Saldo disponible: $<?=$cu['saldo']?><br>
+                        </div>
+                        <div class="col-md-1 border border-dark">
+                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach;?>
         </div>
     </div>
 </body>

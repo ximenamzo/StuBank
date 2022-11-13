@@ -6,41 +6,37 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
 	$idPres = $_REQUEST['id'];
 	
 	$obtencion = "SELECT * FROM prestamos WHERE id_prest = '$idPres'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $resultado = $mysqli->query($obtencion);
+    $prestamo = $resultado->fetch_assoc();
 
-    foreach($prestamos as $prestamo){
-    	$tramitador = $prestamo['solicitanteEje'];
-    	$solicitante = $prestamo['solicitanteCl'];
-    	$cantidad = $prestamo['cantidad'];
-    	$fecha = $prestamo['fecha'];
-    }
+	$tramitador = $prestamo['solicitanteEje'];
+	$solicitante = $prestamo['solicitanteCl'];
+	$cantidad = $prestamo['cantidad'];
+	$fecha = $prestamo['fecha'];
 
     $obtencion2 = "SELECT * FROM trabajadores WHERE nCuenta = '$tramitador'";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $ejecutivos = $resultado2->fetch_all(MYSQLI_ASSOC);
+    $resultado2 = $mysqli->query($obtencion2);
+    $ejecutivo = $resultado2->fetch_assoc();
 
-    foreach($ejecutivos as $ejecutivo){
-    	$nomEje = $ejecutivo['nombre'];
-    	$aPEje = $ejecutivo['apellidoP'];
-    	$aMEje = $ejecutivo['apellidoM'];
-    }
+	$nomEje = $ejecutivo['nombre'];
+	$aPEje = $ejecutivo['apellidoP'];
+	$aMEje = $ejecutivo['apellidoM'];
 
-    $obtencion3 = "SELECT * FROM clientes WHERE nCuenta = '$solicitante'";
-    $resultado3 = mysqli_query($mysqli,$obtencion3);
-    $clientes = $resultado3->fetch_all(MYSQLI_ASSOC);
+    $obtencion3 = "SELECT nombre, apellidoP, apellidoM FROM clientes as cl, cuentas as cu WHERE cu.nCliente = cl.nCuenta AND cu.cuenta = '$solicitante'";
+    $resultado3 = $mysqli->query($obtencion3);
+    $cliente = $resultado3->fetch_assoc();
 
-    foreach($clientes as $cliente){
-    	$nomCl = $cliente['nombre'];
-    	$aPCl = $cliente['apellidoP'];
-    	$aMCl = $cliente['apellidoM'];
-    }
+	$nomCl = $cliente['nombre'];
+	$aPCl = $cliente['apellidoP'];
+	$aMCl = $cliente['apellidoM'];
 ?>
 
 <!DOCTYPE html>

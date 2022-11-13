@@ -1,13 +1,18 @@
 <?php 
     session_start();
+    
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
+
     include('../view/conexion.php');
+
     $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta'";
     $resultado = mysqli_query($mysqli,$obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);

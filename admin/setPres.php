@@ -8,7 +8,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -28,13 +30,8 @@
     $cuentaCred = $resultado2->fetch_assoc();
 
     $cliente = $cuentaCred['nCliente'];
-
-    $obtencion3 = "SELECT * FROM cuentas where nCliente = '$cliente' AND tipo = '1'";
-    $resultado3 = $mysqli->query($obtencion3);
-    $cuentaDeb = $resultado3->fetch_assoc();
-
-    $cuenta = $cuentaDeb['cuenta'];
-    $oldS = $cuentaDeb['saldo'];
+    $cuenta = $cuentaCred['cuenta'];
+    $oldS = $cuentaCred['saldo'];
 
     $stmt_pres = $mysqli->prepare("UPDATE prestamos SET estatus = ? WHERE id_prest = ?");
     if (!$stmt_pres) {
@@ -65,7 +62,7 @@
                 $dest = $cuenta;
         		if($stmt_sal->execute()){
                     if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado. Dinero depositado a la cuenta de debito.");window.location.href="prestamos.php"</script>';
+                        echo '<script language="javascript">alert("Prestamo aprobado. Dinero depositado a la cuenta de credito.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }else{

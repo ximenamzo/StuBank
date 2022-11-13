@@ -4,7 +4,9 @@
     $rol = $_SESSION['rol'];
     
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $cuenta = $_POST['nCuenta'];

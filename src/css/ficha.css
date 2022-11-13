@@ -73,18 +73,17 @@
     border: 1px solid rgb(0, 0, 0);
 }
 .clases{
-    float: left;
+    float:left;
     padding-left: 2em;
-    overflow: auto;
     line-height: 1em;
-    font-size: 1em;
+    font-size: 0.8em;
 
 }
 .clases2{
     float: right;
     overflow: auto;
     line-height: 1em;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 .histBtn{
     overflow: auto;
@@ -95,6 +94,39 @@
     display:flow-root;
     height: auto;
 
+}
+.fechaD{
+    font-weight: bold;
+}
+@media screen and (max-width: 1500px){
+    .clases{
+        padding-left: 0.33em;
+        font-size: 0.7em;
+    }
+    .destinoT{
+        display: none;
+    }
+    .clases2{
+        font-size: 0.7em;
+    }
+    .histo-img{
+        height:48px;
+        width: 48px;
+    
+    }
+}
+@media screen and (max-width: 1170px){
+    .clases2{
+        float: left;
+    }
+}
+@media screen and (max-width: 744px){
+    .clases2{
+        float: right;
+    }
+    .fechaD{
+        display: none;
+    }
 }
 
 /*style="width: 10pc;"

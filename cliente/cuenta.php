@@ -66,14 +66,14 @@
                                     <img src="/src/transferencia.png">
                                 </div>
                                 <div class="clases">
-                                    <p><?=$dato['tipo']?> a</p>
-                                    <p><?=$dato['cDestino']?></p>
+                                    <p><?=$dato['tipo']?></p>
+                                    <p class="destinoT">a <?=$dato['cDestino']?></p>
                                 </div>
                                 <div class="clases2">
                                     <p>- $<?=$dato['cantidad']?></p>
-                                    <p><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
                                 </div>
-                            </li>
+                             </li>
                         <?php }?>
                         <?php if($tipo == "Deposito"){?>
                             <li class="columnasC">
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p>+ $<?=$dato['cantidad']?></p>
-                                    <p><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
                                 </div>
                             </li>
                         <?php }?>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p>- $<?=$dato['cantidad']?></p>
-                                    <p><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
                                 </div>
                             </li>
                         <?php } ?>

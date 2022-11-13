@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');

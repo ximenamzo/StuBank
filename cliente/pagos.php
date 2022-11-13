@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -51,7 +53,7 @@
             Solicitado el: <?=$prestamo['fecha']?><br>
             Estatus: <?=$estados[$prestamo['estatus']]?><br>
             Metodo: <?=$metodo[$prestamo['metodo']]?><br>
-            Deuda restante: $<?=$prestamo['deuda']?>
+            Deuda restante: $<?=round($prestamo['deuda'],2)?>
 
 
             <?php if($pagos != null):?>

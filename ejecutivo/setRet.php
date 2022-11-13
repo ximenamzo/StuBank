@@ -7,7 +7,9 @@
 	$rol = $_SESSION['rol'];
 
 	if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
 	$captcha = new Captcha();
@@ -19,52 +21,65 @@
 		$cuentaEje = $_SESSION['cuenta'];
 
 	    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$cuentaEje'";
-    	$resultado = mysqli_query($mysqli,$obtencion);
-    	$ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+    	$resultado = $mysqli->query($obtencion);
+    	$ejecutivo = $resultado->fetch_assoc();
 
-    	foreach($ejecutivos as $ejecutivo):
-    		$passDB = $ejecutivo['password'];
-    		$apePEje = $ejecutivo['apellidoP'];
-    		$apeMEje = $ejecutivo['apellidoM'];
-    	endforeach;
+		$passDB = $ejecutivo['password'];
+		$apePEje = $ejecutivo['apellidoP'];
+		$apeMEje = $ejecutivo['apellidoM'];
+
     	if($passDB == $passFull){
 			$nombreEje = $_SESSION['nombre'];
-		    $rol = $_SESSION['rol'];
-		    $cuentaCl = $_POST['idCl'];
+		    $cuenta = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
 
-	    	$obtencion2 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
-	    	$resultado2 = mysqli_query($mysqli,$obtencion2);
-	    	$clientes = $resultado2->fetch_all(MYSQLI_ASSOC);
+	    	$obtencion2 = "SELECT * FROM cuentas WHERE cuenta = '$cuenta'";
+	    	$resultado2 = $mysqli->query($obtencion2);
+	    	$cuentaRet = $resultado2->fetch_assoc();
 
+	    	$cuentaCl = $cuentaRet['nCliente'];
+	    	$tipoCuenta = $cuentaRet['tipo'];
+	    	$saldo = $cuentaRet['saldo'];
 
-	    	foreach($clientes as $cliente):
-	    		$nombreCl = $cliente['nombre'];
-	    		$apePCl = $cliente['apellidoP'];
-	    		$apeMCl = $cliente['apellidoM'];
-	    		$saldo = $cliente['saldo'];
-	    	endforeach;
+	    	$obtencion3 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
+	    	$resultado3 = $mysqli->query($obtencion3);
+	    	$cliente = $resultado3->fetch_assoc();
+
+    		$nombreCl = $cliente['nombre'];
+    		$apePCl = $cliente['apellidoP'];
+    		$apeMCl = $cliente['apellidoM'];
 
 	    	if($dinero > 15000){
 	    		echo '<script language="javascript">alert("No se pueden realizar retiros de mas de $15,000");window.location.href="movimientos.php"</script>';
 	    		die();
 	    	}
+	    	
+	    	if($tipoCuenta == 4){
+    			$divisa = $_POST['divisa'];
+	    		if($divisa == 1){
+	    			$dinero = $dinero / 20;
+	    			$newSaldo = $saldo - $dinero;
+	    		}else{
+	    			$newSaldo = $saldo - $dinero;
+	    		}
+    		}else{
+    			$newSaldo = $saldo - $dinero;
+    		}
+
 	    	if($saldo < $dinero){
 	    		echo '<script language="javascript">alert("Fondos insuficientes");window.location.href="movimientos.php"</script>';
 	    		die();
 	    	}
 
-	    	$newSaldo = $saldo - $dinero;
-
 			//$mysqli->query("INSERT INTO `transacciones` (`cTramitador`, `cOrigen`, `cDestino`, `tipo`, `cantidad`) VALUES ('$cuentaEje', '$cuentaCl', 'Externo', 'Retiro', '$dinero')")
-			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?)");
-			$stmt_trans->bind_param("ssssd", $cuentaEje, $cuentaCl, $ext, $ret, $dinero);
+			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
+			$stmt_trans->bind_param("sssssd", $cuentaEje, $cuentaCl, $cuenta, $ext, $ret, $dinero);
 			$ext = 'Externo';
 			$ret = 'Retiro';
 
 			//$mysqli->query("UPDATE clientes SET saldo = '$newSaldo' WHERE nCuenta = '$cuentaCl'")
-			$stmt_saldo = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
-			$stmt_saldo->bind_param("ds",$newSaldo,$cuentaCl);
+			$stmt_saldo = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
+			$stmt_saldo->bind_param("ds",$newSaldo,$cuenta);
 
 	    	if(!$stmt_trans->execute()){
 	    		echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -79,6 +94,8 @@
 	}else{
 		echo '<script language="javascript">alert("Captcha incorrecto.");window.location.href="movimientos.php"</script>';
 	}
+
+	$tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares'];
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +138,11 @@
 			</tbody>
 		</table>
 
-		<p>Se realizará un retiro de <b>$<?=$dinero?></b> de la cuenta <?=$cuentaCl?></p>
+		<?php if($tipoCuenta == 4):?>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php else:?>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php endif?>
 
 		<div style="display: flex; justify-content: center;">
 			<div class="row" style="width: auto;">

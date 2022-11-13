@@ -1,5 +1,6 @@
 <?php
 	$id = $_POST['destino'];
+    $cl = $_POST['cl'];
 
     session_start();
 
@@ -7,33 +8,27 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
 
     if($id == $_SESSION['cuenta']){
-        echo '<script language="javascript">alert("No se puede transferir a usted mismo");window.location.href="formDest.php"</script>';
+        echo '<script language="javascript">alert("No se puede transferir a la misma cuenta");window.location.href="formDest.php"</script>';
     }
 
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+    $obtencion = "SELECT cl.nombre, cl.apellidoP, cl.apellidoM, cl.estatus, cl.foto FROM cuentas as cu, clientes as cl WHERE cu.nCliente = cl.nCuenta AND cu.cuenta = '$id'";
+    $resultado = $mysqli->query($obtencion);
+    $cliente = $resultado->fetch_assoc();
 
-    foreach($clientes as $cliente):
-        $est = $cliente['estatus'];
-    endforeach;
+    $est = $cliente['estatus'];
 
     if($est != 1){
-        echo '<script language="javascript">alert("Cuenta inactiva");window.location.href="formDest.php"</script>';
+        echo '<script language="javascript">alert("Cuenta inactiva");window.location.href="selectCuenta.php"</script>';
+        die();
     }
-
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
 ?>
 
 <!DOCTYPE html>
@@ -61,17 +56,19 @@
             <h1>Ficha del cliente</h1>
 
             <div class="card">
-                <?php foreach($clientes as $cliente): ?>
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
                 </div>
-                <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4 mt-2">
-            <a href="formTrans.php?id=<?=$id?>" class="btn btn-success mt-5">Continuar</a><br>
-            <a href="formDest.php" class="btn btn-secondary mt-2">Regresar</a><br><br>
+        <div class="col-md-4 mt-5">
+            <form action="formTrans.php" method="POST">
+                <input type="hidden" name="id" value="<?=$id?>">
+                <input type="hidden" name="cl" value="<?=$cl?>">
+                <button class="btn btn-success my-2" type="submit">Continuar</button><br>
+                <a href="selectCuenta.php" class="btn btn-secondary mt-2">Regresar</a><br><br>
+            </form>
         </div>
     </div>
 </body>

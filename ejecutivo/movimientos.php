@@ -5,8 +5,11 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
+    
     include('../view/conexion.php');
 ?>
 

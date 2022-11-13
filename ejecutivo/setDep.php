@@ -7,7 +7,9 @@
 	$rol = $_SESSION['rol'];
 
 	if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
 	$captcha = new Captcha();
@@ -19,19 +21,16 @@
 		$cuentaEje = $_SESSION['cuenta'];
 
 	    $obtencion = "SELECT * FROM trabajadores WHERE nCuenta = '$cuentaEje'";
-    	$resultado = mysqli_query($mysqli,$obtencion);
-    	$ejecutivos = $resultado->fetch_all(MYSQLI_ASSOC);
+    	$resultado = $mysqli->query($obtencion);
+    	$ejecutivo = $resultado->fetch_assoc();
 
-    	foreach($ejecutivos as $ejecutivo):
-    		$passDB = $ejecutivo['password'];
-    		$apePEje = $ejecutivo['apellidoP'];
-    		$apeMEje = $ejecutivo['apellidoM'];
-    	endforeach;
+		$passDB = $ejecutivo['password'];
+		$apePEje = $ejecutivo['apellidoP'];
+		$apeMEje = $ejecutivo['apellidoM'];
 
     	if($passDB == $passFull){
 			$nombreEje = $_SESSION['nombre'];
-		    $rol = $_SESSION['rol'];
-		    $cuentaCl = $_POST['idCl'];
+		    $cuenta = $_POST['idCl'];
 		    $dinero = $_POST['dinero'];
 
 		    if($dinero > 15000){
@@ -39,28 +38,41 @@
 		    	die();
 		    }
 
-	    	$obtencion2 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
-	    	$resultado2 = mysqli_query($mysqli,$obtencion2);
-	    	$clientes = $resultado2->fetch_all(MYSQLI_ASSOC);
+    		$obtencion2 = "SELECT * FROM cuentas WHERE cuenta = '$cuenta'";
+	    	$resultado2 = $mysqli->query($obtencion2);
+	    	$cuentaDep = $resultado2->fetch_assoc();
 
+	    	$cuentaCl = $cuentaDep['nCliente'];
+	    	$tipoCuenta = $cuentaDep['tipo'];
+	    	$saldo = $cuentaDep['saldo'];
 
-	    	foreach($clientes as $cliente):
-	    		$nombreCl = $cliente['nombre'];
-	    		$apePCl = $cliente['apellidoP'];
-	    		$apeMCl = $cliente['apellidoM'];
-	    		$saldo = $cliente['saldo'];
-	    	endforeach;
+	    	if($tipoCuenta == 4){
+	    		$divisa = $_POST['divisa'];
+	    		if($divisa == 1){
+	    			$dinero = $dinero / 20;
+	    			$newSaldo = $saldo + $dinero;
+	    		}else{
+	    			$newSaldo = $saldo + $dinero;	
+	    		}
+	    	}else{
+	    		$newSaldo = $saldo + $dinero;
+	    	}
 
-	    	$newSaldo = $saldo + $dinero;
+	    	$obtencion3 = "SELECT * FROM clientes WHERE nCuenta = '$cuentaCl'";
+	    	$resultado3 = $mysqli->query($obtencion3);
+	    	$cliente = $resultado3->fetch_assoc();
 
+    		$nombreCl = $cliente['nombre'];
+    		$apePCl = $cliente['apellidoP'];
+    		$apeMCl = $cliente['apellidoM'];
 
-			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?)");
-			$stmt_trans->bind_param("ssssd", $cuentaEje, $ext, $cuentaCl, $dep, $dinero);
+			$stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
+			$stmt_trans->bind_param("sssssd", $cuentaEje, $cuentaCl, $ext, $cuenta, $dep, $dinero);
 			$ext = 'Externo';
 			$dep = 'Deposito';
 
-			$stmt_saldo = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
-			$stmt_saldo->bind_param("ds", $newSaldo, $cuentaCl);
+			$stmt_saldo = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
+			$stmt_saldo->bind_param("ds", $newSaldo, $cuenta);
 
 
 	    	if(!$stmt_trans->execute()){
@@ -119,7 +131,11 @@
                 </tbody>
             </table>
 
-			<p>Se realizó un deposito de <b>$<?=$dinero?></b> a la cuenta <?=$cuentaCl?></p>
+            <?php if($tipoCuenta == 4):?>
+            	<p>Se realizó un deposito de <b>$<?=$dinero?> USD</b> a la cuenta <?=$cuenta?></p>
+            <?php else:?>
+				<p>Se realizó un deposito de <b>$<?=$dinero?> MXN</b> a la cuenta <?=$cuenta?></p>
+			<?php endif;?>
 
             <div style="display: flex; justify-content: center;">
                 <div class="row" style="width: auto;">

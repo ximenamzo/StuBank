@@ -8,30 +8,30 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
 
     $obtencion = "SELECT * FROM prestamos where id_prest = $id";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+    $resultado = $mysqli->query($obtencion);
+    $prestamo = $resultado->fetch_assoc();
 
-    foreach ($prestamos as $prestamo){
-        $ejecutivo = $prestamo['solicitanteEje'];
-    	$cliente = $prestamo['solicitanteCl'];
-        $cantidad = $prestamo['cantidad'];
-    	$deuda = $prestamo['deuda'];
-        $metodo = $prestamo['metodo'];
-    }
+    $ejecutivo = $prestamo['solicitanteEje'];
+	$clienteCred = $prestamo['solicitanteCl'];
+    $cantidad = $prestamo['cantidad'];
+	$deuda = $prestamo['deuda'];
+    $metodo = $prestamo['metodo'];
 
-    $obtencion2 = "SELECT * FROM clientes where nCuenta = $cliente";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $clientes = $resultado2->fetch_all(MYSQLI_ASSOC);
+    $obtencion2 = "SELECT * FROM cuentas where cuenta = '$clienteCred'";
+    $resultado2 = $mysqli->query($obtencion2);
+    $cuentaCred = $resultado2->fetch_assoc();
 
-    foreach($clientes as $client){
-        $oldS = $client['saldo'];
-    }
+    $cliente = $cuentaCred['nCliente'];
+    $cuenta = $cuentaCred['cuenta'];
+    $oldS = $cuentaCred['saldo'];
 
     $stmt_pres = $mysqli->prepare("UPDATE prestamos SET estatus = ? WHERE id_prest = ?");
     if (!$stmt_pres) {
@@ -40,19 +40,15 @@
     }
     $stmt_pres->bind_param('ii', $est, $idEst);
 
-    $stmt_sal = $mysqli->prepare("UPDATE clientes SET saldo = ?, deuda = ? WHERE nCuenta = ?");
-    $stmt_sal->bind_param('dds', $c, $d, $cuentaDest);
-
-    $stmt_deu = $mysqli->prepare("UPDATE clientes SET deuda = ? WHERE nCuenta = ?");
-    $stmt_deu->bind_param('ds', $d, $cuentaDest);
+    $stmt_sal = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
+    $stmt_sal->bind_param('ds', $c, $cuentaDest);
     
     $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt_trans->bind_param('sssssd', $tram, $sol, $or, $dest, $tip, $cant);
 
     $idEst = $id;
-    $cuentaDest = $cliente;
+    $cuentaDest = $cuenta;
     $c = $oldS + $cantidad;
-    $d = $deuda;
     $tram = $ejecutivo;
     $sol = $cliente;
     $or = 'Banco';
@@ -63,19 +59,17 @@
     	$est = 2;
     	if($stmt_pres->execute()){
             if($metodo == 2){
-                $dest = $cliente;
+                $dest = $cuenta;
         		if($stmt_sal->execute()){
                     if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado. Saldo y Deuda actualizados.");window.location.href="prestamos.php"</script>';
+                        echo '<script language="javascript">alert("Prestamo aprobado. Dinero depositado a la cuenta de credito.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }else{
                 $dest = 'Externo';
-                if($stmt_deu->execute()){
-                    if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo.");window.location.href="prestamos.php"</script>';
-                    }
-                }
+                if($stmt_trans->execute()){
+                    echo '<script language="javascript">alert("Prestamo aprobado, imprima la ficha de pago desde el menú de ejecutivo.");window.location.href="prestamos.php"</script>';
+                }   
             }
     	}
     }else if($aux == 2){

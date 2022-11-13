@@ -1,27 +1,27 @@
 <?php
 	$id = $_REQUEST['id'];
+    $cl = $_REQUEST['cl'];
 
     session_start();
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
 
-    if($rol != 2){
-        header("Location: ../index.php");
+    if($rol != 3){
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$id'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+    if($id == $_SESSION['cuenta']){
+        echo '<script language="javascript">alert("No se puede transferir a la misma cuenta");window.location.href="formDest.php"</script>';
+    }
 
-    function edad($fecha_nacimiento){
-	    $nacimiento = new DateTime($fecha_nacimiento);
-	    $ahora = new DateTime(date("Y-m-d"));
-	    $diferencia = $ahora->diff($nacimiento);
-	    return $diferencia->format("%y");
-	}
+    $obtencion = "SELECT cl.nombre, cl.apellidoP, cl.apellidoM, cl.foto FROM cuentas as cu, clientes as cl WHERE cu.nCliente = cl.nCuenta AND cu.cuenta = '$id'";
+    $resultado = $mysqli->query($obtencion);
+    $cliente = $resultado->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -45,28 +45,23 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-5">
-            <h2>Cliente: </h2>
+        <div class="col-md-4">
+            <h1>Ficha del cliente</h1>
 
             <div class="card">
-                <?php foreach($clientes as $cliente): ?>
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">
-                    <label>Número de cliente:</label> <b><?=$cliente['nCuenta']?></b><br>
                     <label>Nombre:</label> <b><?=$cliente['nombre']." ".$cliente['apellidoP']." ".$cliente['apellidoM']?></b><br>
-                    <label>Edad:</label> <b><?=edad($cliente['fecNac'])?></b><br>
-                    <label>Teléfono:</label> <b><?=$cliente['telefono']?></b><br>
-                    <label>Correo electronico:</label> <b><?=$cliente['email']?></b><br>
-                    <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
-                    <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
                 </div>
-                <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4 mt-2">
-            <a href="deposito.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-success mt-5 mb-2">Depósito</a><br>
-            <a href="retiro.php?id=<?=$cliente['nCuenta'];?>" class="btn btn-danger mb-2">Retiro</a><br><br>
-            <a href="mov.php" class="btn btn-secondary mb-2">Regresar</a>
+        <div class="col-md-4 mt-5">
+            <form action="formTrans.php" method="POST">
+                <input type="hidden" name="id" value="<?=$id?>">
+                <input type="hidden" name="cl" value="<?=$cl?>">
+                <button class="btn btn-success my-2" type="submit">Continuar</button><br>
+                <a href="selectCuenta.php" class="btn btn-secondary mt-2">Regresar</a><br><br>
+            </form>
         </div>
     </div>
 </body>

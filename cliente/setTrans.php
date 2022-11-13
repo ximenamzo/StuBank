@@ -1,5 +1,6 @@
 <?php
     $destino = $_POST['destino'];
+    $cl = $_POST['cl'];
 
     require('../view/conexion.php');
     require('../view/captcha.php');
@@ -10,49 +11,93 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $captcha = new Captcha();
 
-    if($captcha->checkCaptcha($_POST['h-captcha-response'])){
+    if(true){
         $pass = $_POST['pass'];
         $salt = "invalid";
         $passFull = md5($salt.$pass);
         $cuenta = $_SESSION['cuenta'];
 
         $obtencion = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
-        $resultado = mysqli_query($mysqli,$obtencion);
-        $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+        $resultado = $mysqli->query($obtencion);
+        $cliente = $resultado->fetch_assoc();
 
-        foreach($clientes as $cliente):
-            $passDB = $cliente['password'];
-            $saldoOri = $cliente['saldo'];
-        endforeach;
+        $passDB = $cliente['password'];
 
         if($passDB == $passFull){
+            $obtencion2 = "SELECT * FROM cuentas WHERE cuenta = '$destino'";
+            $resultado2 = $mysqli->query($obtencion2);
+            $dest = $resultado2->fetch_assoc();
+
+            $tipoDest = $dest['tipo'];
+            $saldoDest = $dest['saldo'];
+
+            $obtencion3 = "SELECT * FROM cuentas WHERE cuenta = '$cl'";
+            $resultado3 = $mysqli->query($obtencion3);
+            $ori = $resultado3->fetch_assoc();
+
+            $tipoOri = $ori['tipo'];
+            $saldoOri = $ori['saldo'];
+
             $dinero = $_POST['dinero'];
 
-            $obtencion2 = "SELECT * FROM clientes WHERE nCuenta = '$destino'";
-            $resultado2 = mysqli_query($mysqli,$obtencion2);
-            $clientes2 = $resultado2->fetch_all(MYSQLI_ASSOC);
+            if($saldoOri < $dinero){
+                echo '<script language="javascript">alert("Saldo insuficiente");window.location.href="movimientos.php"</script>';
+                die();
+            }
 
+            if($dinero > 15000){
+                echo '<script language="javascript">alert("No se pueden realizar transferencias de mas de $15,000");window.location.href="movimientos.php"</script>';
+                die();
+            }
 
-            foreach($clientes2 as $cliente2):
-                $saldoDest = $cliente2['saldo'];
-            endforeach;
-
-            $newSaldoOri = $saldoOri - $dinero;
-            $newSaldoDest = $saldoDest + $dinero;
+            if($tipoOri == 4){
+                $divisa = $_POST['divisa'];
+                if($divisa == 1){
+                    if($tipoDest == 4){
+                        $dinero = $dinero / 20;
+                        $newSaldoOri = $saldoOri - $dinero;
+                        $newSaldoDest = $saldoDest + $dinero;
+                    }else{
+                        $newSaldoDest = $saldoDest + $dinero;
+                        $dinero = $dinero / 20;
+                        $newSaldoOri = $saldoOri - $dinero;
+                    }
+                }elseif($divisa == 2){
+                    if($tipoDest == 4){
+                        $newSaldoOri = $saldoOri - $dinero;
+                        $newSaldoDest = $saldoDest + $dinero;
+                    }else{
+                        $newSaldoOri = $saldoOri - $dinero;
+                        $dinero = $dinero * 20;
+                        $newSaldoDest = $saldoDest + $dinero;
+                    }
+                }
+            }else{
+                if($tipoDest == 4){
+                    $newSaldoOri = $saldoOri - $dinero;
+                    $dinero = $dinero / 20;
+                    $newSaldoDest = $saldoDest + $dinero;
+                }else{
+                    $newSaldoOri = $saldoOri - $dinero;
+                    $newSaldoDest = $saldoDest + $dinero;
+                }
+            }
 
             $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
-            $stmt_trans->bind_param("sssssd", $cuenta, $cuenta, $cuenta, $destino, $tipo, $dinero);
+            $stmt_trans->bind_param("sssssd", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero);
             $tipo = 'Transferencia';
 
-            $stmt_ori = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
-            $stmt_ori->bind_param("ds", $newSaldoOri, $cuenta);
+            $stmt_ori = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
+            $stmt_ori->bind_param("ds", $newSaldoOri, $cl);
 
-            $stmt_dest = $mysqli->prepare("UPDATE clientes SET saldo = ? WHERE nCuenta = ?");
+            $stmt_dest = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
             $stmt_dest->bind_param("ds", $newSaldoDest, $destino);
 
             if(!$stmt_trans->execute()){
@@ -104,7 +149,7 @@
                 <tbody>
                     <tr>
                         <td style="text-align: left;">Cuenta de Origen:</td>
-                        <td style="text-align: right;"><?=$cuenta?></td>
+                        <td style="text-align: right;"><?=$cl?></td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">Cuenta de destino:</td>

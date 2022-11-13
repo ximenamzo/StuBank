@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     $id = $_POST['id'];
@@ -51,6 +53,6 @@
                 }
             }
         }
-        echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
     }
+     echo '<script language="javascript">alert("Registro modificado correctamente.");window.location.href="admin_eje.php"</script>';
 ?>

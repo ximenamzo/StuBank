@@ -109,57 +109,57 @@
 	<title>StuBank</title>
 </head>
 <body class="text-center">
-<img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
+	<img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
 
-<div style="width: 100%; display: flex; justify-content: center; margin-top: 5px; margin-bottom: 5px;">
-	<div style="color:grey; text-align:justify; width: 50%;">
-		Imprime y presenta este comprobante en cualquiera de las cajas de StuBank del estado para poder realizar el retiro desde tu cuenta. Indica al cajero el valor exacto que figura en el presente comprobante.
-	</div>
-</div>
-
-<div class="row" style="width: 100%; display: flex; justify-content: center;" id="GFG">
-	<div class="card" style="width: 50%; display: flex; justify-content: center; padding: 1.7em 4em 1.7em 4em;">
-		<h1>Ficha de retiro</h1><br>
-
-		<table class="table">
-			<tbody>
-				<tr>
-					<td style="text-align: left;">Tramitado por:</td>
-					<td style="text-align: right;"><?=$nombreEje." ".$apePEje." ".$apeMEje?></td>
-				</tr>
-				<tr>
-					<td style="text-align: left;">Solicitante:</td>
-					<td style="text-align: right;"><?=$nombreCl." ".$apePCl." ".$apeMCl?></td>
-				</tr>
-				<tr>
-					<td style="text-align: left;">Fecha:</td>
-					<td style="text-align: right;"><?=date('d-m-Y');?></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<?php if($tipoCuenta == 4):?>
-			<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
-		<?php else:?>
-			<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
-		<?php endif?>
-
-		<div style="display: flex; justify-content: center;">
-			<div class="row" style="width: auto;">
-				<img src="../src/barcode.png" style="width: 13pc;"><br><br>
-			</div>
+	<div style="width: 100%; display: flex; justify-content: center; margin-top: 5px; margin-bottom: 5px;">
+		<div style="color:grey; text-align:justify; width: 50%;">
+			Imprime y presenta este comprobante en cualquiera de las cajas de StuBank del estado para poder realizar el retiro desde tu cuenta. Indica al cajero el valor exacto que figura en el presente comprobante.
 		</div>
-	</div><!--card-->
-	
-
-	<div style="margin-top: 1em;">
-		<button class="btn btn-success" onclick="imprimir()">Imprimir</button>
-		&nbsp;
-		<a href="movimientos.php" class="btn btn-secondary">Regresar</a><br>
 	</div>
 
+	<div class="row" style="width: 100%; display: flex; justify-content: center;" id="GFG">
+		<div class="card" style="width: 50%; display: flex; justify-content: center; padding: 1.7em 4em 1.7em 4em;">
+			<h1>Ficha de retiro</h1><br>
 
-</div><br><!--row-->
+			<table class="table">
+				<tbody>
+					<tr>
+						<td style="text-align: left;">Tramitado por:</td>
+						<td style="text-align: right;"><?=$nombreEje." ".$apePEje." ".$apeMEje?></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;">Solicitante:</td>
+						<td style="text-align: right;"><?=$nombreCl." ".$apePCl." ".$apeMCl?></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;">Fecha:</td>
+						<td style="text-align: right;"><?=date('d-m-Y');?></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<?php if($tipoCuenta == 4):?>
+				<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+			<?php else:?>
+				<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+			<?php endif?>
+
+			<div style="display: flex; justify-content: center;">
+				<div class="row" style="width: auto;">
+					<img src="../src/barcode.png" style="width: 13pc;"><br><br>
+				</div>
+			</div>
+		</div><!--card-->
+		
+
+		<div style="margin-top: 1em;">
+			<button class="btn btn-success" onclick="imprimir()">Imprimir</button>
+			&nbsp;
+			<a href="movimientos.php" class="btn btn-secondary">Regresar</a><br>
+		</div>
+
+
+	</div><br><!--row-->
 
 	<script>
 		function imprimir(){

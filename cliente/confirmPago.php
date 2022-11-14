@@ -67,6 +67,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -81,17 +82,21 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            Se abonarán $<?=$dinero?> a un prestamo con deuda de: $<?=$deuda?><br>
-            La deuda restante será de: $<?=($deuda - $dinero)?><br>
-            Su nuevo saldo en la cuenta de credito será de: $<?=($saldo-$dinero)?><br>
-            ¿Desea continar?<br>
-            <form action="setPago.php" method="POST" onsubmit="return acep(event)">
-                <input type="hidden" name="destino" value="<?=$destino?>">
-                <input type="hidden" name="dinero" value="<?=$dinero?>">
-                <button class="btn btn-primary" type="submit">Continuar</button>
-                <a href="prestamos.php" class="btn btn-danger">Cancelar</a>
-            </form>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="contenido">
+                    Se abonarán <b>$<?=$dinero?></b> a un préstamo con una deuda actual de $<?=$deuda?><br>
+                    La deuda restante será de: <b>$<?=($deuda - $dinero)?></b><br>
+                    Ahora, su saldo en la cuenta de credito será de: <b>$<?=($saldo-$dinero)?></b><br><br>
+                    <h5>¿Desea continar?</h5><br>
+                    <form action="setPago.php" method="POST" onsubmit="return acep(event)">
+                        <input type="hidden" name="destino" value="<?=$destino?>">
+                        <input type="hidden" name="dinero" value="<?=$dinero?>">
+                        <button class="btn btn-primary" type="submit">Continuar</button>
+                        <a href="prestamos.php" class="btn btn-danger">Cancelar</a>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <script language="javascript">

@@ -46,8 +46,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-4">
-            <h1>Ficha del cliente</h1>
-
+            <h2>Cuenta de cliente...</h2>
             <div class="card">
             	<img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotosCl/<?=$cliente['foto']?>"><br>
             	<div class="cont">

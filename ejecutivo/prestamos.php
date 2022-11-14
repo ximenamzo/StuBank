@@ -46,7 +46,7 @@
             <a href="selecPres.php" class="btn btn-success">Solicitar préstamo <i class="bi bi-hand-index-thumb"></i></a><br>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">#C Solicitante</th>
+                    <th scope="col">Cuenta Solicitante</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Meses</th>
                     <th scope="col">Metodo</th>
@@ -58,7 +58,7 @@
                     <?php foreach($prestamos as $prestamo): ?>
                         <tr>
                             <td><?=$prestamo['solicitanteCl']?></td>
-                            <td><?=$prestamo['cantidad']?></td>
+                            <td>$<?=$prestamo['cantidad']?></td>
                             <td><?=$prestamo['meses']?></td>
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>

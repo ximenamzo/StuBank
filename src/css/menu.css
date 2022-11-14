@@ -1,11 +1,13 @@
 .menu{
-    padding-top: 0.8em;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.3rem;
     position: sticky;
     top: 1rem;
     left: 0.5rem;
     bottom: 1rem;
     width: 100%;
-    height: 15rem;
+    height: auto;
     border-radius: 10px;
     border-left: 5px solid #8C52FF;
     background: #8C52FF;
@@ -13,7 +15,7 @@
     margin-left: 0.1em;
 }
 .menu h4{
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
     display: flex;
@@ -21,10 +23,10 @@
     color: white;
     text-transform: uppercase;
     transition: .5s;
-    border: 1px solid #8C52FF;
+    padding-left: 8%;
 }
 .menu ul{
-   position: absolute;
+   position: relative;
    top: 0;
    left: 0;
    width: 100%;

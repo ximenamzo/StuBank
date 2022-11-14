@@ -39,7 +39,7 @@
     $stmt_comp->bind_param("sssssssssss", $cuenta, $cuentaEje, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
     $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo) VALUES (?, ?, ?)");
     $stmt_cuenta->bind_param('ssi', $cuenta, $cuentaDeb, $tipo);
-    $cuentaDeb = $cuenta.'_1';
+    $cuentaDeb = $cuenta.'A';
     $tipo = 1;
 
     if($cont == 0){

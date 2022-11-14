@@ -38,7 +38,7 @@
                             border:1.5px solid red;
                             border-radius: 1em 1em 1em 1em;
                             width: 35%;'>
-                            La contraseña es incorrecta. Inténtalo de nuevo.
+                            Usuario o contraseña incorrectos. Inténtelo de nuevo.
                         </div>
                     </div>";
             }

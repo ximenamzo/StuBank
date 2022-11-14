@@ -54,7 +54,7 @@
         <?php include('menu.php'); ?>
         <div class="col-md-9">
             <?php if($prestamos != null):?>
-            <b>Prestamo actual</b>
+            <h3><b>Préstamo actual</b></h3>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Cantidad</th>
@@ -82,9 +82,9 @@
             <?php elseif($prestamos == null):?>
                 Ningun prestamo en curso, calcule un prestamo <a href="calc.php" >aquí</a><br>
             <?php endif;?>
-            <br><br>
+            <br>
             <?php if($prestamos2 != null):?>
-            <b>Historial</b>
+            <h3><b>Historial</b></h3><hr>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Cantidad</th>

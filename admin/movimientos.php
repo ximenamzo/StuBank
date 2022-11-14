@@ -1,15 +1,15 @@
 <?php 
     session_start();
+
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
-    $cuenta = $_SESSION['cuenta'];
 
-    if($rol != 2){
+    if($rol != 1){
         session_destroy();
         header("Location: ../");
         die();
     }
-    
+
     include('../view/conexion.php');
 ?>
 
@@ -33,43 +33,45 @@
 <body>
     <div class="row">
         <?php include('menu.php');
-        $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
-        $resultado = mysqli_query($mysqli,$obtencion);
-        //Variables para la paginación
-        $MovimientosXpagina = 8;
-        if ($stmt = $mysqli->prepare($obtencion)) {
-            $stmt->execute();
-            $stmt->store_result();
-            $totalDatos = $stmt->num_rows;
-        }
-        $paginas = $totalDatos/$MovimientosXpagina;
-        $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
-        //Condiciones de paginacion
-        if (empty($_GET['pagina'])){
-            $pagina = 1;
-        }
-        else{
-            $pagina = $_GET['pagina'];
-        }
-        $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
-        $inicio = (string)$CalculoIncio;
-        $sql = "SELECT * FROM transacciones WHERE Ctramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
-        $obtencionD = mysqli_query($mysqli,$sql);
-        $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
+            $obtencion = "SELECT * FROM transacciones";
+            $resultado = mysqli_query($mysqli,$obtencion);
+            //Variables para la paginación
+            $MovimientosXpagina = 8;
+            if ($stmt = $mysqli->prepare($obtencion)) {
+                $stmt->execute();
+                $stmt->store_result();
+                $totalDatos = $stmt->num_rows;
+            }
+            $paginas = $totalDatos/$MovimientosXpagina;
+            $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
+            //Condiciones de paginacion
+            if (empty($_GET['pagina'])){
+                $pagina = 1;
+            }
+            else{
+                $pagina = $_GET['pagina'];
+            }
+            $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
+            $inicio = (string)$CalculoIncio;
+            $sql = "SELECT * FROM transacciones LIMIT $inicio,$MovimientosXpagina";
+            $obtencionD = mysqli_query($mysqli,$sql);
+            $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
         ?>
         <div class="col-md-9">
-            <a href="mov.php" class="btn btn-success">Generar nuevo movimiento <i class="bi bi-plus-circle-fill"></i></a><br>
+            <h2>Movimientos del banco</h2><hr>
             <table class="table mt-3">
                 <thead>
+                    <th scope="col">Tramitador</th>
                     <th scope="col">Origen</th>
                     <th scope="col">Destino</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha y hora de realización</th>
+                    <th scope="col">Fecha de realización</th>
                 </thead>
                 <tbody>
                     <?php foreach($resultado_Datos as $movimiento): ?>
                         <tr>
+                            <td><?=$movimiento['cTramitador'] ?></td>
                             <td><?=$movimiento['cOrigen'] ?></td>
                             <td><?=$movimiento['cDestino'] ?></td>
                             <td><?=$movimiento['tipo'] ?></td>

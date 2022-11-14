@@ -48,12 +48,12 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            Prestamo de: $<?=$prestamo['cantidad']?><br>
-            Solicitado el: <?=$prestamo['fecha']?><br>
-            Estatus: <?=$estados[$prestamo['estatus']]?><br>
-            Metodo: <?=$metodo[$prestamo['metodo']]?><br>
-            Deuda restante: $<?=round($prestamo['deuda'],2)?>
+        <div class="col-md-5">
+            <b>Prestamo de:</b> $<?=$prestamo['cantidad']?><br>
+            <b>Solicitado el:</b> <?=$prestamo['fecha']?><br>
+            <b>Estatus:</b> <?=$estados[$prestamo['estatus']]?><br>
+            <b>Metodo:</b> <?=$metodo[$prestamo['metodo']]?><br>
+            <b>Deuda restante:</b> $<?=round($prestamo['deuda'],2)?>
 
 
             <?php if($pagos != null):?>

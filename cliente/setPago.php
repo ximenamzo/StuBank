@@ -34,10 +34,13 @@
 
     $clUpdate = $mysqli->prepare("UPDATE cuentas set saldo = ? WHERE cuenta = ?");
     $clUpdate->bind_param('ds', $sN, $cuen);
+
     $presUpdate = $mysqli->prepare("UPDATE prestamos set deuda = ?, estatus = ? WHERE id_prest = ?");
     $presUpdate->bind_param('dii', $dPN, $est, $iPrest);
+
     $trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, cOrigen, cDestino, tipo, cantidad) VALUES (?, ?, ?, ?, ?)");
     $trans->bind_param('ssssd', $tra, $or, $dest, $ti, $cant);
+
     $pago = $mysqli->prepare("INSERT INTO pagos (id_prest, cuenta, cantidad) VALUES (?, ?, ?)");
     $pago->bind_param('isd', $idP, $cu, $cant);
 
@@ -63,10 +66,10 @@
     	if($presUpdate->execute()){
     		if($trans->execute()){
     			if($pago->execute()){
-    				echo '<script language="javascript">alert("Pago realizado correctamente");</script>';
+    				echo '<script language="javascript">alert("Pago realizado correctamente.");</script>';
 
     				if($deudaPresN == 0){
-    					echo '<script language="javascript">alert("Felicidades, ha pagado su prestamo");</script>';
+    					echo '<script language="javascript">alert("Le informamos que ha TERMINADO de pagar su deuda.");</script>';
     				}
     			}
     		}
@@ -88,19 +91,52 @@
     <title>StuBank</title>
 </head>
 <body class="text-center">
-    <img src="../src/StuBank.png" class="mx-auto mb-3">
-    <center><div class="border border-success w-50">
-        <h1>Recibo de pago</h1>
-        <p>Se realizó un pago de $<?=$dinero?> de la cuenta <?=$cuenta?> a un prestamo de <?=$total?></p>
-        <p>El dia: <?=date('d-m-Y');?></p>
+    <img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
 
-        <p>Deuda anterior: <?=$deudaPres?></p>
-        <p>Deuda actual: <?=$deudaPresN?></p>
-        <img src="../src/barcode.png" style="width: 13pc;"><br><br>
+    <div style="width: 100%; display: flex; justify-content: center; margin-top: 5px; margin-bottom: 5px;">
+        <div style="color:grey; text-align:justify; width: 50%;">
+        Conserve este comprobante. En caso de necesitar aclaraciones con el banco, usted podrá hacerlo dentro de los 60 días posteriores al pago presentando este formato.
+        </div>
+    </div>
 
-        <a href="cuenta.php" class="btn btn-secondary">Regresar</a>
-        <button class="btn btn-success" onclick="imprimir()">Imprimir</button>
-    </div></center>
+    <div class="row" style="width: 100%; display: flex; justify-content: center;" id="GFG">
+        <div class="card" style="width: 50%; display: flex; justify-content: center; padding: 1.7em 4em 1.7em 4em;">
+            <h1>Comprobante de pago</h1><br>
+            <p>Se realizó un pago de $<?=$dinero?> de la cuenta <?=$cuenta?> a un prestamo de <?=$total?></p>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;">Fecha:</td>
+                        <td style="text-align: right;"><?=date('d-m-Y');?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Deuda anterior:</td>
+                        <td style="text-align: right;"><?=$deudaPres?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Deuda actual:</td>
+                        <td style="text-align: right;"><?=$deudaPresN?></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: center;">
+                <div class="row" style="width: auto;">
+                    <img src="../src/barcode.png" style="width: 13pc;"><br><br>
+                </div>
+            </div>
+        </div><!--card-->
+        
+
+        <div style="margin-top: 1em;">
+            <button class="btn btn-success" onclick="imprimir()">Imprimir</button>
+            &nbsp;
+            <a href="movimientos.php" class="btn btn-secondary">Regresar</a><br>
+        </div>
+
+
+    </div><br><!--row-->
 
     <script>
         function imprimir(){

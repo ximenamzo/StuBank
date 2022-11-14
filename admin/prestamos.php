@@ -43,6 +43,7 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
+            <h2>Departamento de préstamos</h2><hr>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Tramitador</th>

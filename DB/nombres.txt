@@ -1,0 +1,63 @@
+3141234567
+123456789123456789
+
+B Alfredo Manuel Encina Bautista 
+C Alejandro Mejía Bautista
+D Juan Miguel de Jesús Vázquez Verde
+E Gregorio Ferrusquía Benítez
+F José Antonio Manrique Bermúdez 
+G Salvador Antonio Rosales Aguilar
+H Gabriel Barrios Domínguez
+I Gigliola Taide Manrique Bernal
+J Miguel Ángel Betancourt Vázquez
+K Noel Torres Betanzos
+
+02 Humberto Alejandro Blanco Velasco
+12 César Sánchez Bolaños
+22 Moisés Bremermann Borraz
+32 Abel Arias Briseño
+
+03 Iván Díaz Buenfil
+13 Miguel Ángel García Burguete
+23 J. Guadalupe Guerrero Bustamante
+33 Francisco Caballero Bautista
+
+04 Marcela Loranca Smith
+14 Fredy Francisco Pérez Bermúdez
+24 Salomón Licona Alarcón
+34 Gerardo Genaro Alarcón López
+
+05 Hipólito Alatriste Pérez
+15 José Israel Camacho Alcántar
+25 Roberto Antonio Martínez Alcoverde
+35 Jacinta Guillermina Porras Alderete
+
+06 Adolfo Vargas Aldrete
+16 Miguel Ángel Velasco Domínguez
+26 Víctor Hugo Guerrero Alejo
+36 Ma. del Rosario Mundo De León
+
+07 Marcial Alemán Pascual
+17 Julián Durán De Jesús
+27 Rocío Santos Almogabar
+37 Gerardo Alonso Mundo Ibarra
+
+08 Gerardo Romo Díaz
+18 Maria Navarro Jadilson
+28 Jesús Alfredo Duarte Briz
+38 Melissa Alejandra Altamirano López
+
+09 Rodolfo García Sánchez
+19 Adán Ávalos De Lira
+29 Armando Ruiz Del Razo
+39 David Del Toro Arreola
+
+10 Norma Delgado Bugarín
+20 Héctor Federico Guajardo Delgado
+30 Clemente Salgado Delgado
+40 Carlos Cruz Díaz
+
+11 Julio César Morfín Díaz
+21 Juan Manuel Núñez Domínguez
+31 Julio Eduardo Sánchez Díaz
+41 José Vicente Díaz Vivaldo

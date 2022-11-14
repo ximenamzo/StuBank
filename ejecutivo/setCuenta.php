@@ -20,6 +20,6 @@
     $cuentaN = $id.'_'.$tipo;
 
     if($stmt_cuenta->execute()){
-        echo '<script language="javascript">alert("Cuenta abierta con exito.");window.location.href="ejecutivo.php"</script>';
+        echo '<script language="javascript">alert("Cuenta abierta con exito.");window.location.href="clientes.php"</script>';
     }
 ?>

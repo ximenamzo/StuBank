@@ -37,10 +37,11 @@
 
     $stmt_comp = $mysqli->prepare("INSERT INTO clientes (nCuenta, nEjecutivo, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     $stmt_comp->bind_param("sssssssssss", $cuenta, $cuentaEje, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
-    $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo) VALUES (?, ?, ?)");
-    $stmt_cuenta->bind_param('ssi', $cuenta, $cuentaDeb, $tipo);
-    $cuentaDeb = $cuenta.'_1';
-    $tipo = 1;
+    $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo, titulo) VALUES (?, ?, ?, ?)");
+    $stmt_cuenta->bind_param('ssss', $cuenta, $cuentaDeb, $tipo, $titulo);
+    $cuentaDeb = $cuenta.'A';
+    $tipo = 'A';
+    $titulo = 'Débito';
 
     if($cont == 0){
         if (!$stmt_comp->execute()){

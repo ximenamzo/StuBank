@@ -15,7 +15,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$id' AND tipo = '2'";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$id' AND tipo = 'B'";
     $resultado = $mysqli->query($obtencion);
     $cuentaCred = $resultado->fetch_assoc();
 

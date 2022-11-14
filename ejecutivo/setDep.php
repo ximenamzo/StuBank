@@ -46,7 +46,7 @@
 	    	$tipoCuenta = $cuentaDep['tipo'];
 	    	$saldo = $cuentaDep['saldo'];
 
-	    	if($tipoCuenta == 4){
+	    	if($tipoCuenta == 'D'){
 	    		$divisa = $_POST['divisa'];
 	    		if($divisa == 1){
 	    			$dinero = $dinero / 20;
@@ -131,7 +131,7 @@
                 </tbody>
             </table>
 
-            <?php if($tipoCuenta == 4):?>
+            <?php if($tipoCuenta == 'D'):?>
             	<p>Se realizó un deposito de <b>$<?=$dinero?> USD</b> a la cuenta <?=$cuenta?></p>
             <?php else:?>
 				<p>Se realizó un deposito de <b>$<?=$dinero?> MXN</b> a la cuenta <?=$cuenta?></p>

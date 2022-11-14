@@ -75,9 +75,9 @@
             <h2>Cuentas: </h2>
             <?php foreach($cuentas as $cuenta):?>
                 <div class="border border-dark mt-1 mb-2">
-                    <h4><?=$tiposCuenta[$cuenta['tipo']]?></h4>
+                    <h4><?=$cuenta['titulo']?></h4>
                     <a href="deposito.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-success">Depósito</a>
-                    <?php if($cuenta['tipo'] != 2):?>
+                    <?php if($cuenta['tipo'] != 'B'):?>
                         <a href="retiro.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-danger">Retiro</a>
                     <?php endif;?>
                 </div>

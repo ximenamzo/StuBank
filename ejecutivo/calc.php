@@ -15,11 +15,21 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$id' AND tipo = '2'";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$id' AND tipo = 'B'";
     $resultado = $mysqli->query($obtencion);
     $cuentaCred = $resultado->fetch_assoc();
 
-    $destino = $cuentaCred['cuenta'];
+    $cont = 0;
+    while($consulta = mysqli_fetch_array($resultado)){
+        $cont++;
+    }
+
+    if($cont != 0){
+        $destino = $cuentaCred['cuenta'];
+        $flagCred = 1;        
+    }else{
+        $flagCred = 0;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +59,7 @@
             *NOTA: Los prestamos tienen una tasa de interés del 5%.
 
             <div class="card" style="padding: 2rem; margin-top: 1rem;">
-                <?php if($cuentaCred != null):?>  
+                <?php if($flagCred == 1):?>  
                     <form action="amort.php" method="POST">                  
                         <div class="row">
                             <div class="col-md-5" style="margin-bottom:1rem;">

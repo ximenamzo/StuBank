@@ -54,7 +54,7 @@
 	    		die();
 	    	}
 	    	
-	    	if($tipoCuenta == 4){
+	    	if($tipoCuenta == 'D'){
     			$divisa = $_POST['divisa'];
 	    		if($divisa == 1){
 	    			$dinero = $dinero / 20;
@@ -138,10 +138,10 @@
 			</tbody>
 		</table>
 
-		<?php if($tipoCuenta == 4):?>
-			<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+		<?php if($tipoCuenta == 'D'):?>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> USD</b> de la cuenta de <?=$cuentaRet['titulo'].' '.$cuentaCl?></p>
 		<?php else:?>
-			<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$tiposCuenta[$cuentaRet['tipo']].' '.$cuentaCl?></p>
+			<p>Se realizará un retiro de <b>$<?=$dinero?> MXN</b> de la cuenta de <?=$cuentaRet['titulo'].' '.$cuentaCl?></p>
 		<?php endif?>
 
 		<div style="display: flex; justify-content: center;">

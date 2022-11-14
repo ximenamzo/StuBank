@@ -58,7 +58,7 @@
                 <div class="mb-2">
                     <div class="row">
                         <div class="col-md-4 border border-dark">
-                            <h4><?=$tiposCuenta[$cu['tipo']]?></h4>
+                            <h4><?=$cu['titulo']?></h4>
                             Saldo disponible: $<?=$cu['saldo']?><br>
                         </div>
                         <div class="col-md-1 border border-dark">

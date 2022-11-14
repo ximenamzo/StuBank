@@ -30,7 +30,7 @@
         $passDB = $cliente['password'];
 
         if($passDB == $passFull){
-            $obtencion3 = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 2";
+            $obtencion3 = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 'B'";
             $resultado3 = $mysqli->query($obtencion3);
             $cuentaCred = $resultado3->fetch_assoc();
 

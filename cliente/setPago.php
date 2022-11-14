@@ -16,7 +16,7 @@
     $destino = $_POST['destino'];
     $dinero = $_POST['dinero'];
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 2";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo = 'B'";
     $resultado = $mysqli->query($obtencion);
     $cuentaCred = $resultado->fetch_assoc();
 

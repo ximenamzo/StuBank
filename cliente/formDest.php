@@ -61,8 +61,8 @@
                 <div class="trans" style="width:25%;">
                     <div class="row" style="width: 100%;">
                         <div style="width: 80%;">
-                            <h5><?=$tiposCuenta[$cu['tipo']]?></h5>
-                            <!--Saldo disponible: $</?=$cu['saldo']?>-->
+                            <h5><?=$cu['titulo']?></h5>
+                            <!--Saldo disponible: $<?=$cu['saldo']?><br>-->
                         </div>
                         <div style="width: 20%;">
                             <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary" type="submit"><i class="bi bi-chevron-double-right"></i></a>

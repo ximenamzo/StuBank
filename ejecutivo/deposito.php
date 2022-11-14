@@ -50,7 +50,7 @@
                 <form action="setDep.php" method="POST">
 
                     <div class="col-md-9" style="margin-top:1rem;">
-                        <?php if($tipo == 4):?>
+                        <?php if($tipo == 'D'):?>
                             <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar y su divisa:</label>
                         <?php else:?>
                             <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
@@ -60,7 +60,7 @@
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
                             <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="19000" step="0.01" required>
-                            <?php if($tipo == 4):?>
+                            <?php if($tipo == 'D'):?>
                                 <select name="divisa" class="input-group-text" style="width: 33%;">
                                     <option value="1" selected>MXN</option>
                                     <option value="2">USD</option>

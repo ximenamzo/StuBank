@@ -13,7 +13,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo != 2 AND tipo != 3";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo != 'B' AND tipo != 'C'";
     $resultado = mysqli_query($mysqli, $obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
@@ -48,7 +48,7 @@
                 <div class="cuenta-btn" style="width:50%;">
                     <div class="row" style="width: 100%;">
                         <div style="width: 80%;">
-                            <h4><?=$tiposCuenta[$cu['tipo']]?></h4>
+                            <h4><?=$cu['titulo']?></h4>
                             <?php $send = $cu['cuenta']?>
                             Saldo disponible: $<?=$cu['saldo']?>
                         </div>

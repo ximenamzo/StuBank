@@ -57,10 +57,10 @@
                 die();
             }
 
-            if($tipoOri == 4){
+            if($tipoOri == 'D'){
                 $divisa = $_POST['divisa'];
                 if($divisa == 1){
-                    if($tipoDest == 4){
+                    if($tipoDest == 'D'){
                         $dinero = $dinero / 20;
                         $newSaldoOri = $saldoOri - $dinero;
                         $newSaldoDest = $saldoDest + $dinero;
@@ -70,7 +70,7 @@
                         $newSaldoOri = $saldoOri - $dinero;
                     }
                 }elseif($divisa == 2){
-                    if($tipoDest == 4){
+                    if($tipoDest == 'D'){
                         $newSaldoOri = $saldoOri - $dinero;
                         $newSaldoDest = $saldoDest + $dinero;
                     }else{
@@ -80,7 +80,7 @@
                     }
                 }
             }else{
-                if($tipoDest == 4){
+                if($tipoDest == 'D'){
                     $newSaldoOri = $saldoOri - $dinero;
                     $dinero = $dinero / 20;
                     $newSaldoDest = $saldoDest + $dinero;

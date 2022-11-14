@@ -67,7 +67,7 @@
                             <div class="input-group mb-3" style="width:50%;">
                                 <span class="input-group-text" id="basic-addon1">$</span>
                                 <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" max="<?=$max?>" step="0.01" required>
-                                <?php if($tipo == 4):?>
+                                <?php if($tipo == 'D'):?>
                                 <select name="divisa" class="input-group-text" style="width: 33%;">
                                     <option value="1" selected>MXN</option>
                                     <option value="2">USD</option>

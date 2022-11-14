@@ -52,7 +52,7 @@
             </div>
             <?php foreach($cuentas as $cu):?>
                 <div class="cont-purp mb-4">
-                    <h4><?=$tiposCuenta[$cu['tipo']]?></h4>
+                    <h4><?=$cu['titulo']?></h4>
                     <h6>Saldo: $<?=$cu['saldo']?></h6>
                 </div>
             <?php endforeach;?>

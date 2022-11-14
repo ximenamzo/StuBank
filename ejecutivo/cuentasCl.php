@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -73,7 +75,7 @@
             <?php if($flagCredito == 0):?>
                 <div class="border border-dark mb-2" style="max-width: 90%;">
                     <h3><?=$tiposCuenta[2];?></h3>
-                    Solicita prestamos en efectivo o directo a una cuenta de debito
+                    Solicita prestamos en efectivo o directo a tu cuenta de credito
                     <br><a href="setCuenta.php?id=<?=$id?>&tipo=2" class="btn btn-success">Abrir cuenta</a>
                 </div>
             <?php endif;?>

@@ -5,7 +5,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -20,20 +22,14 @@
     $stmt_borrar->bind_param("is",$est,$idCl);
     $est=2;
 
-    	//$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
-
-        $stmt_borrar = $mysqli->prepare("UPDATE clientes SET estatus = ? WHERE nCuenta = ?");
-        $stmt_borrar->bind_param("is",$est,$idCl);
-        $est=2;
-
-    	if($stmt_borrar->execute()){
-    		header("Location: ejecutivo.php");
-    	}else{
-    		echo "Error";
-    		echo $idCl;
-    	}
+	//$borrar = mysqli_query($mysqli, "UPDATE clientes SET estatus = '2' WHERE nCuenta = '$idCl'");
+    
+	if($stmt_borrar->execute()){
+		header("Location: ejecutivo.php");
+	}else{
+		echo "Error";
+		echo $idCl;
 	}
-
 ?>
 
 <!DOCTYPE html>

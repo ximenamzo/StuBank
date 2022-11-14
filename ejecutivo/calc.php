@@ -19,14 +19,9 @@
     $resultado = $mysqli->query($obtencion);
     $cuentaCred = $resultado->fetch_assoc();
 
-    $cont = 0;
-    while($consulta = mysqli_fetch_array($resultado)){
-        $cont++;
-    }
-
-    if($cont != 0){
+    if($resultado->num_rows > 0){
         $destino = $cuentaCred['cuenta'];
-        $flagCred = 1;        
+        $flagCred = 1;
     }else{
         $flagCred = 0;
     }

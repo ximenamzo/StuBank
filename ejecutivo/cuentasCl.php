@@ -50,7 +50,7 @@
             <h5>Cuentas abiertas:</h5>
             <?php foreach($cuentas as $cuenta):?>
                 <div class="cuenta">
-                    <h4><?=$cuenta['titulo'];?></h4>
+                    <h4 style="display:inline;"><?=$cuenta['titulo'];?> - </h4><h5 style="display:inline;"><?=$cuenta['cuenta'];?></h5>
                     <?php
                         if($cuenta['tipo'] == 'B')
                             $flagCredito = 1;

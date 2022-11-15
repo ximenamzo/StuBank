@@ -17,15 +17,20 @@
     $resultado3 = $mysqli->query($obtencion3);
     $cuentaCred = $resultado3->fetch_assoc();
 
-    $cuentaPres = $cuentaCred['cuenta'];
-
-    $obtencion = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres' AND estatus = 2";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
-
-    $obtencion2 = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres'  AND estatus != 2";
-    $resultado2 = mysqli_query($mysqli,$obtencion2);
-    $prestamos2 = $resultado2->fetch_all(MYSQLI_ASSOC);
+    if(!empty($cuentaCred)){
+        $cuentaPres = $cuentaCred['cuenta'];
+        $obtencion = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres' AND estatus = 2";
+        $resultado = mysqli_query($mysqli,$obtencion);
+        $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
+    
+        $obtencion2 = "SELECT * FROM prestamos WHERE solicitanteCl = '$cuentaPres'  AND estatus != 2";
+        $resultado2 = mysqli_query($mysqli,$obtencion2);
+        $prestamos2 = $resultado2->fetch_all(MYSQLI_ASSOC);
+    }else{
+        $cuentaCred = '';
+        $prestamos = null;
+        $prestamos2 = null;
+    }
 
     $estados = ['', 'Pendiente', 'En curso', 'Rechazado','Pagado'];
     $metodo = ['', 'Efectivo', 'Transferencia'];
@@ -73,14 +78,14 @@
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
                             <td><?=round($prestamo['deuda'],2)?></td>
-                            <td><a href="formPago.php?id=<?=$prestamo['id_prest']?>&deu=<?=$prestamo['deuda']?>" class="btn btn-success"><i class="bi bi-currency-dollar"></i></a></td>
+                            <td><a href="formPagoPres.php?id=<?=$prestamo['id_prest']?>&deu=<?=$prestamo['deuda']?>" class="btn btn-success"><i class="bi bi-currency-dollar"></i></a></td>
                             <td><a href="pagos.php?id=<?=$prestamo['id_prest']?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
             <?php elseif($prestamos == null):?>
-                Ningun prestamo en curso, calcule un prestamo <a href="calc.php" >aquí</a><br>
+                Ningun préstamo en curso, calcule un prestamo <a href="calc.php" >aquí</a><br>
             <?php endif;?>
             <br>
             <?php if($prestamos2 != null):?>
@@ -112,7 +117,7 @@
                 </tbody>
             </table>
             <?php elseif($prestamos == null):?>
-                Usted no ha solicitado ningun prestamo.
+                <!--Usted no ha solicitado ningun préstamo.-->
             <?php endif;?>
         </div>
     </div>

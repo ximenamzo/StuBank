@@ -46,13 +46,13 @@
 <body>
     <div class="row">
         <?php include('menu.php');?>
-        <div class="col-md-3" style="margin-left:1.5rem;">
+        <div class="col-md-4" style="margin-left:1.5rem;">
             <div class="tit">
                 <p>Cuentas:</p>
             </div>
             <?php foreach($cuentas as $cu):?>
                 <div class="cont-purp mb-4">
-                    <h4><?=$cu['titulo']?></h4>
+                    <h4 style="display:inline;"><?=$cu['titulo']?> - </h4><h5 style="display:inline;"><?=$cu['cuenta']?></h5>
                     <h6>Saldo: $<?=$cu['saldo']?></h6>
                 </div>
             <?php endforeach;?>
@@ -86,7 +86,8 @@
                                     <img src="/src/deposito.png">
                                 </div>
                                 <div class="clases">
-                                    <p><?=$dato['tipo']?></p>
+                                    <!--<p></?=$dato['tipo']?></p>-->
+                                    <p>Depósito</p>
                                     <p></p>
                                 </div>
                                 <div class="clases2">

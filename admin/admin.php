@@ -39,7 +39,7 @@
         <?php include('menu.php'); ?>
         <div class="col-md-9">
             <h1>Administración del Banco StuBank</h1><hr>
-            <div class="col-md-5" style="border:solid 1px white;">
+            <div class="col-md-6" style="border:solid 1px white;">
                 <h4 style="color:#8c52ff;">¡Bienvenido de nuevo, Administrador!</h4>
                 <h5>Selecciona una de las opciones del menú para comenzar a gestionar tu aplicación.</h5>
                 <img src="../src/arrow.gif" alt="Selección" width="50%" height="50%">

@@ -58,7 +58,7 @@
         $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
         ?>
         <div class="col-md-9">
-            <a href="selectCuenta.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
+            <h2>Historial de movimientos</h2><hr>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -84,24 +84,35 @@
                 <br><br><h3>No cuenta con movimientos.</h3><br><br>
             <?php } ?>
 
-            <nav aria-label="movimientoP">
-                <ul class="pagination">
-                    <li class="page-item
-                        <?php echo $pagina<=1 ? 'disabled': '' ?>">
-                        <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
-                    </li>
-                    <?php for($i=0;$i<$paginas;$i++):?>
-                        <li class="page-item
-                            <?php echo $pagina==$i+1 ? 'active': '' ?>">
-                            <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
-                        </li>
-                    <?php endfor?>
-                    <li class="page-item
-                        <?php echo $pagina>=$paginas? 'disabled': '' ?>">
-                        <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente</a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="row">
+                <div class="col-md-5">
+                    <nav aria-label="movimientoP">
+                        <ul class="pagination">
+                            <li class="page-item
+                                <?php echo $pagina<=1 ? 'disabled': '' ?>">
+                                <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
+                            </li>
+                            <?php for($i=0;$i<$paginas;$i++):?>
+                                <li class="page-item
+                                    <?php echo $pagina==$i+1 ? 'active': '' ?>">
+                                    <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
+                                </li>
+                            <?php endfor?>
+                            <li class="page-item
+                                <?php echo $pagina>=$paginas? 'disabled': '' ?>">
+                                <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="selectCuenta.php" class="btn btn-success">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-plus-circle-fill"></i></a><br>
+                </div>
+                <div class="col-md-3">
+                    <a href="seCuPa.php" class="btn btn-dark">Pagar servicio &nbsp;&nbsp;<i class="bi bi-cash-coin"></i></a><br>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -13,7 +13,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo != 'B' AND tipo != 'C'";
+    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta' AND tipo != 'B' AND tipo != 'C' AND tipo != 'D'";
     $resultado = mysqli_query($mysqli, $obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
@@ -44,23 +44,29 @@
         <?php include('menu.php'); ?>
         <div class="col-md-8">
             <h2>Seleccione la cuenta que desea usar</h2><hr>
-            <?php foreach($cuentas as $cu):?>
-                <div class="cuenta-btn" style="width:50%;">
-                    <div class="row" style="width: 100%;">
-                        <div style="width: 80%;">
-                            <h4><?=$cu['titulo']?></h4>
-                            <?php $send = $cu['cuenta']?>
-                            Saldo disponible: $<?=$cu['saldo']?>
-                        </div>
-                        <div style="width: 20%;">
-                            <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+
+                <?php foreach($cuentas as $cu):?>
+                    <div class="cuenta-btn" style="width:50%;">
+                        <div class="row" style="width: 100%;">
+
+                                <div style="width: 80%;">
+                                    <h4><?=$cu['titulo']?></h4>
+                                    <?php $send = $cu['cuenta']?>
+                                    <h5><?=$cu['cuenta']?></h5>
+                                    Saldo disponible: $<?=$cu['saldo']?>
+                                </div>
+                                <div style="width: 20%;">
+                                    <input type="hidden" name="cu" value="<?=$cu['cuenta']?>">
+                                    <a href="formPagos.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                                </div>
+
                         </div>
                     </div>
-                </div>
-                <!--<div class="col cuenta-btn">
-                    <a href="formDest.php?cl=</?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
-                </div>-->
-            <?php endforeach;?>
+                    <!--<div class="col cuenta-btn">
+                        <a href="formDest.php?cl=</?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                    </div>-->
+                <?php endforeach;?>
+
         </div>
     </div>
 </body>

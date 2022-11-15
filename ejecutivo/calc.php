@@ -19,14 +19,9 @@
     $resultado = $mysqli->query($obtencion);
     $cuentaCred = $resultado->fetch_assoc();
 
-    $cont = 0;
-    while($consulta = mysqli_fetch_array($resultado)){
-        $cont++;
-    }
-
-    if($cont != 0){
+    if($resultado->num_rows > 0){
         $destino = $cuentaCred['cuenta'];
-        $flagCred = 1;        
+        $flagCred = 1;
     }else{
         $flagCred = 0;
     }
@@ -59,7 +54,7 @@
             *NOTA: Los prestamos tienen una tasa de interés del 5%.
 
             <div class="card" style="padding: 2rem; margin-top: 1rem;">
-                <?php if($flagCred == 1):?>  
+                <?php if($flagCred == 1):?>  <!--////////////////////////////////////////-->
                     <form action="amort.php" method="POST">                  
                         <div class="row">
                             <div class="col-md-5" style="margin-bottom:1rem;">
@@ -117,7 +112,8 @@
 
                         <input type="submit" value="Calcular tabla de amortización" class="btn btn-success">
                     </form>
-                <?php else:?>
+                    
+                <?php else:?> <!--///////////////////////////////////////////////////////////////////////////////////////////////////////-->
                     <div class="row">
                         <div class="col-md-5" style="margin-bottom:1rem;">
                             <label for="basic-url" class="form-label">Valor del préstamo: </label>
@@ -163,8 +159,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <label for="basic-url" class="form-label">Este cliente aún no tiene cuenta de crédito, tramitalá <a href="cuentasCl.php?id=<?=$id?>">aquí</a></label>
+                    
+                    <label for="basic-url" class="form-label mt-3">Este cliente aún no tiene cuenta de crédito, tramitalá <a href="cuentasCl.php?id=<?=$id?>">aquí</a></label>
                 <?php endif; ?>
             </div>
         </div>

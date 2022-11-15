@@ -1,6 +1,7 @@
 <div class="col-md-3">
   <div class="menu">
     <a href="admin.php"><h4>STUBANK</h4></a>
+    <hr style="width=:auto; margin: 3rem 1rem 0 0; padding: 0 1rem 0 0;">
     <ul>
         <li class="lista">
             <a href="admin_eje.php">
@@ -36,7 +37,7 @@
               <span class="tittle">Movimientos</span> 
             </a>
         </li>
-
+        <hr style="width=:auto; margin: 1rem 1rem 1rem 0; padding: 0 1rem 0 0;">
         <li class="lista">
             <a href="prestamos.php">
               <span class="icon">

@@ -89,7 +89,7 @@
                     La deuda restante será de: <b>$<?=($deuda - $dinero)?></b><br>
                     Ahora, su saldo en la cuenta de credito será de: <b>$<?=($saldo-$dinero)?></b><br><br>
                     <h5>¿Desea continar?</h5><br>
-                    <form action="setPago.php" method="POST" onsubmit="return acep(event)">
+                    <form action="setPagoPres.php" method="POST" onsubmit="return acep(event)">
                         <input type="hidden" name="destino" value="<?=$destino?>">
                         <input type="hidden" name="dinero" value="<?=$dinero?>">
                         <button class="btn btn-primary" type="submit">Continuar</button>

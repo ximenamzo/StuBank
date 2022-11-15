@@ -53,7 +53,7 @@
         <form action="comprobar_cl.php" method="post" class="form-login">
             <h1>Registrar</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
+                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" maxlength="8" required>
                 <input type="email" name="correo_user" placeholder="Correo"class="input-100" required>
                 <input type="text" name="curp" maxlength="18" placeholder="CURP"class="input-100" required>
                 <input type="submit" value="Registrarse" class="btn_login">

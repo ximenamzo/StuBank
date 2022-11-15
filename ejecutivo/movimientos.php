@@ -28,23 +28,22 @@
 </head>
 
 <header>
-    <?php include('../view/navbar.php'); 
-        $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
-        $resultado = mysqli_query($mysqli,$obtencion);
-        //Variables para la paginación
-        $MovimientosXpagina=8;
-        if ($stmt = $mysqli->prepare($obtencion)) {
-            $stmt->execute();
-            $stmt->store_result();
-            $totalDatos=$stmt->num_rows;
-        }
-        $paginas=$totalDatos/$MovimientosXpagina;
-        $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
-    ?>
+    <?php include('../view/navbar.php'); ?>
 </header>
 <body>
     <div class="row">
         <?php include('menu.php');
+        $obtencion = "SELECT * FROM transacciones WHERE cTramitador = '$cuenta'";
+        $resultado = mysqli_query($mysqli,$obtencion);
+        //Variables para la paginación
+        $MovimientosXpagina = 8;
+        if ($stmt = $mysqli->prepare($obtencion)) {
+            $stmt->execute();
+            $stmt->store_result();
+            $totalDatos = $stmt->num_rows;
+        }
+        $paginas = $totalDatos/$MovimientosXpagina;
+        $paginas = ceil($paginas); //redondear paginas para que no haya perdida de datos
         //Condiciones de paginacion
         if (empty($_GET['pagina'])){
             $pagina = 1;
@@ -66,7 +65,7 @@
                     <th scope="col">Destino</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
+                    <th scope="col">Fecha y hora de realización</th>
                 </thead>
                 <tbody>
                     <?php foreach($resultado_Datos as $movimiento): ?>
@@ -80,30 +79,30 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+
             <?php if($paginas == null){ ?>
-                <br><br><h3>No cuenta con movimientos</h3><br><br>
+                <br><br><h4>No hay movimientos recientes.</h4><br><br>
             <?php } ?>
+
             <nav aria-label="movimientoP">
                 <ul class="pagination">
                     <li class="page-item
                         <?php echo $pagina<=1 ? 'disabled': '' ?>">
-                        <a class="page-link" 
-                        href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
+                        <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
                     </li>
                     <?php for($i=0;$i<$paginas;$i++):?>
                         <li class="page-item
                             <?php echo $pagina==$i+1 ? 'active': '' ?>">
                             <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
                         </li>
-                            <?php endfor?>
-                        <li class="page-item
-                            <?php echo $pagina>=$paginas? 'disabled': '' ?>">
-                            <a class="page-link" 
-                            href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente                                
-                            </a>
-                        </li>
+                    <?php endfor?>
+                    <li class="page-item
+                        <?php echo $pagina>=$paginas? 'disabled': '' ?>">
+                        <a class="page-link" href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente</a>
+                    </li>
                 </ul>
             </nav>
+
         </div>
     </div>
 </body>

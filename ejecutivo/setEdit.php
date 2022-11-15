@@ -27,7 +27,6 @@
     $stmt_edit->bind_param("sssssssss", $nom, $aP, $aM, $id, $tel, $email, $curp, $fecha, $id);
 
     if(!$stmt_edit->execute()){
-
             echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
             header("Location: ejecutivo.php");
     }else{

@@ -19,7 +19,7 @@
     $resultado = mysqli_query($mysqli, $obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
+    $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro','Dólares', 'Débito (Secundaria)'];
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +29,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -44,25 +45,27 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <h1>Información de la transferencia</h1><br>
-            <form action="dest.php" method="POST">
+            <h1>Destino de transferencia</h1><hr>
+            <h5 style="margin-bottom:1rem;">Ingresa la cuenta a transferir:</h5>
+            <form action="dest.php" method="POST" style="margin-bottom:2rem;">
                 <div class="input-group mb-3" style="width:50%;">
                     <span class="input-group-text" id="basic-addon1">Cuenta de destino:</span>
-                    <input type="text" class="form-control" placeholder="Ejemplo: 12345" name="destino" id="destino">
+                    <input type="text" class="form-control" placeholder="Ejemplo: 12345678A" name="destino" id="destino">
                     <input type="hidden" name="cl" value="<?=$cl?>">
                     <input class="btn btn-success" type="submit" value="Continuar...">
                 </div>
             </form>
-            O transfiere a un de tus cuentas<br>
+
+            <h5>O transfiere a una de tus cuentas:</h5>
             <?php foreach($cuentas as $cu):?>
-                <div class="mb-2">
-                    <div class="row">
-                        <div class="col-md-4 border border-dark">
-                            <h4><?=$cu['titulo']?></h4>
-                            Saldo disponible: $<?=$cu['saldo']?><br>
+                <div class="trans" style="width:25%;">
+                    <div class="row" style="width: 100%;">
+                        <div style="width: 80%;">
+                            <h5><?=$cu['titulo']?></h5>
+                            <!--Saldo disponible: $<?=$cu['saldo']?><br>-->
                         </div>
-                        <div class="col-md-1 border border-dark">
-                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                        <div style="width: 20%;">
+                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary" type="submit"><i class="bi bi-chevron-double-right"></i></a>
                         </div>
                     </div>
                 </div>

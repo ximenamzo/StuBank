@@ -52,7 +52,7 @@
 
             <div class="card">
                 <?php foreach($ejecutivos as $ejecutivo): ?>
-                    <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+                    <img style="display: block; margin: 5% auto 2% auto;" width="50%" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
                     <div class="cont">
                         <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
                         <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apellidoP']." ".$ejecutivo['apellidoM']?></b><br>

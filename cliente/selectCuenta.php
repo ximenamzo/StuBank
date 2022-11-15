@@ -17,7 +17,7 @@
     $resultado = mysqli_query($mysqli, $obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
+    $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro','Dólares', 'Débito (Secundaria)'];
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -42,20 +43,23 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-8">
-            <h1>Seleccione la cuenta que desea usar</h1><br>
+            <h2>Seleccione la cuenta que desea usar</h2><hr>
             <?php foreach($cuentas as $cu):?>
-                <div class="mb-2">
-                    <div class="row">
-                        <div class="col-md-4 border border-dark">
+                <div class="cuenta-btn" style="width:50%;">
+                    <div class="row" style="width: 100%;">
+                        <div style="width: 80%;">
                             <h4><?=$cu['titulo']?></h4>
                             <?php $send = $cu['cuenta']?>
-                            Saldo disponible: $<?=$cu['saldo']?><br>
+                            Saldo disponible: $<?=$cu['saldo']?>
                         </div>
-                        <div class="col-md-1 border border-dark">
+                        <div style="width: 20%;">
                             <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
                         </div>
                     </div>
                 </div>
+                <!--<div class="col cuenta-btn">
+                    <a href="formDest.php?cl=</?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                </div>-->
             <?php endforeach;?>
         </div>
     </div>

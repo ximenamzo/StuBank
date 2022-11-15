@@ -29,7 +29,7 @@
     $resultado2 = mysqli_query($mysqli,$obtencion2);
     $cuentas = $resultado2->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
+    $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro','Dólares', 'Débito (Secundaria)'];
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +74,7 @@
         <div class="col-md-3 mt-2">
             <h2>Cuentas: </h2>
             <?php foreach($cuentas as $cuenta):?>
-                <div class="border border-dark mt-1 mb-2">
+                <div class="cuenta-btn">
                     <h4><?=$cuenta['titulo']?></h4>
                     <a href="deposito.php?id=<?=$cuenta['cuenta'];?>" class="btn btn-success">Depósito</a>
                     <?php if($cuenta['tipo'] != 'B'):?>

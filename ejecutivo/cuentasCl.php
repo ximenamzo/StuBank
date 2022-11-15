@@ -18,7 +18,7 @@
     $resultado = mysqli_query($mysqli,$obtencion);
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
+    $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro', 'Dólares', 'Débito (Secundaria)'];
     $flagCredito = 0;
     $flagAhorro = 0;
     $flagDolares = 0;
@@ -47,10 +47,10 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-8">
-            Cuentas abiertas:
+            <h5>Cuentas abiertas:</h5>
             <?php foreach($cuentas as $cuenta):?>
-                <div class="border border-dark mb-2" style="max-width: 70%;">
-                    <h3><?=$cuenta['titulo'];?></h3>
+                <div class="cuenta">
+                    <h4 style="display:inline;"><?=$cuenta['titulo'];?> - </h4><h5 style="display:inline;"><?=$cuenta['cuenta'];?></h5>
                     <?php
                         if($cuenta['tipo'] == 'B')
                             $flagCredito = 1;
@@ -63,34 +63,34 @@
                     ?>
                 </div>
             <?php endforeach;?>
-
-            <br>Cuentas disponibles para apertura:
+                <br>
+            <h5>Cuentas disponibles para apertura:</h5>
             <?php if($flagDebito2 == 0):?>
-                <div class="border border-dark mb-2" style="max-width: 90%;">
+                <div class="cuenta">
                     <h3><?=$tiposCuenta[5];?></h3>
-                    Guarda y maneja tu dinero en una cuenta secundaria, con los mismos privilegios de tu cuenta de debito principal
-                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=E" class="btn btn-success">Abrir cuenta</a>
+                    Guarda y maneja tu dinero en una cuenta secundaria, con los mismos privilegios de tu cuenta de débito principal.
+                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=E" class="btn btn-success mt-3">Abrir cuenta</a>
                 </div>
             <?php endif;?>
             <?php if($flagCredito == 0):?>
-                <div class="border border-dark mb-2" style="max-width: 90%;">
+                <div class="cuenta">
                     <h3><?=$tiposCuenta[2];?></h3>
-                    Solicita prestamos en efectivo o directo a tu cuenta de credito
-                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=B" class="btn btn-success">Abrir cuenta</a>
+                    Solicita préstamos en efectivo o directo a tu cuenta de crédito.
+                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=B" class="btn btn-success mt-3">Abrir cuenta</a>
                 </div>
             <?php endif;?>
             <?php if($flagAhorro == 0):?>
-                <div class="border border-dark mb-2" style="max-width: 90%;">
+                <div class="cuenta">
                     <h3><?=$tiposCuenta[3];?></h3>
-                    Guarda tu dinero y retira solo el 10%
-                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=C" class="btn btn-success">Abrir cuenta</a>
+                    Guarda tu dinero y retira hasta el 10%.
+                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=C" class="btn btn-success mt-3">Abrir cuenta</a>
                 </div>
             <?php endif;?>
             <?php if($flagDolares == 0):?>
-                <div class="border border-dark mb-2" style="max-width: 90%;">
+                <div class="cuenta">
                     <h3><?=$tiposCuenta[4];?></h3>
-                    Guarda y retira tus pesos en dolares
-                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=D" class="btn btn-success">Abrir cuenta</a>
+                    Guarda y retira tus pesos en dólares.
+                    <br><a href="setCuenta.php?id=<?=$id?>&tipo=D" class="btn btn-success mt-3">Abrir cuenta</a>
                 </div>
             <?php endif;?>
         </div>

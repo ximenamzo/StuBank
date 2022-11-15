@@ -22,10 +22,10 @@
     $tipo = $cliente['tipo'];
     $saldo = $cliente['saldo'];
 
-    if($saldo < 15000){
+    if($saldo < 8000){
         $max = $saldo;
     }else{
-        $max = 15000;
+        $max = 8000;
     }
 ?>
 
@@ -57,7 +57,7 @@
             <div class="card">
                 <div class="cont">
                     <form action="setTrans.php" method="POST">
-</br>
+                        </br>
                         <div class="row">
                             <div style="width:50%;"><label class="form-label" for="dinero">Monto y divisa:</label></div>
                             <div style="width:50%;"><label class="form-label" for="pass">Contraseña: </label></div>

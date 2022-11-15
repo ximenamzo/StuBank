@@ -24,7 +24,7 @@
 
 
     $stmt_edit = $mysqli->prepare("UPDATE trabajadores SET nombre = ?, apellidoP = ?, apellidoM = ?, foto = ?, telefono = ?, email = ?, curp = ?, fecNac = ? WHERE nCuenta = ?");
-    $stmt_edit->bind_param("ssssssssi",$nom,$aP,$aM,$id,$tel,$email,$curp,$fecha,$id);
+    $stmt_edit->bind_param("sssssssss",$nom,$aP,$aM,$id,$tel,$email,$curp,$fecha,$id);
 
     if (!$stmt_edit->execute()){
             echo "Actualización fallida: (" . $mysqli->errno . ") " . $mysqli->error;

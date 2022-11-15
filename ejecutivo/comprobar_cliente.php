@@ -37,6 +37,7 @@
 
     $stmt_comp = $mysqli->prepare("INSERT INTO clientes (nCuenta, nEjecutivo, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     $stmt_comp->bind_param("sssssssssss", $cuenta, $cuentaEje, $userR, $apellidoP, $apellidoM, $cuenta, $telefonoR, $nacimiento, $correoR, $curp, $fecha);
+    
     $stmt_cuenta = $mysqli->prepare("INSERT INTO cuentas (nCliente, cuenta, tipo, titulo) VALUES (?, ?, ?, ?)");
     $stmt_cuenta->bind_param('ssss', $cuenta, $cuentaDeb, $tipo, $titulo);
     $cuentaDeb = $cuenta.'A';
@@ -66,7 +67,7 @@
                     header("Location: admin_eje.php");
                 }
             }
-            echo '<script language="javascript">alert("Registro agregado correctamente.");window.location.href="ejecutivo.php"</script>';
+            echo '<script language="javascript">alert("Registro agregado correctamente.");window.location.href="clientes.php"</script>';
         }
     }else{
         echo '<script language="javascript">alert("Ingresaste un usuario existente.");window.location.href="new_client.php"</script>';

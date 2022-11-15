@@ -82,7 +82,8 @@
             </div>
             
             <br>
-            <a href="admin_cl.php" class="btn btn-secondary">Regresar</a><br><br>
+            <a href="admin_cl.php" class="btn btn-secondary mb-5 mr-2">Regresar</a>
+            <a href="editCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-success mb-5">Reasignar Ejecutivo</a>
         </div>
     </div>
 </body>

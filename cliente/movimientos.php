@@ -1,6 +1,5 @@
 <?php 
-    session_start();
-    
+    session_start();    
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];
     $cuenta = $_SESSION['cuenta'];
@@ -13,6 +12,7 @@
 
     include('../view/conexion.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,13 +36,13 @@
         $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta'";
         $resultado = mysqli_query($mysqli,$obtencion);
         //Variables para la paginación
-        $MovimientosXpagina=8; // El total de movimientos por paginacion
+        $MovimientosXpagina = 8; // El total de movimientos por paginacion
         if ($stmt = $mysqli->prepare($obtencion)) {
             $stmt->execute();
             $stmt->store_result();
-            $totalDatos=$stmt->num_rows;
+            $totalDatos = $stmt->num_rows;
         }
-        $paginas=$totalDatos/$MovimientosXpagina;
+        $paginas = $totalDatos/$MovimientosXpagina;
         $paginas = ceil($paginas);
         //Condiciones de paginacion
         if (empty($_GET['pagina'])){
@@ -51,16 +51,14 @@
         else{
             $pagina = $_GET['pagina'];
         }
+        $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
+        $inicio = (string)$CalculoIncio;
+        $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
+        $obtencionD = mysqli_query($mysqli,$sql);
+        $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
         ?>
         <div class="col-md-9">
-            <a href="selectCuenta.php" class="btn btn-success">Realizar transferencia nueva <i class="bi bi-plus-circle-fill"></i></a><br>
-            <?php 
-            $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
-            $inicio = (string)$CalculoIncio;
-            $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
-            $obtencionD = mysqli_query($mysqli,$sql);
-            $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
-            ?>
+            <h2>Historial de movimientos</h2><hr>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -81,30 +79,41 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+
             <?php if($paginas == NULL){?>
-                <br><br><h3>No cuenta con movimientos</h3><br><br>
+                <br><br><h3>No cuenta con movimientos.</h3><br><br>
             <?php } ?>
-            <nav aria-label="movimientoP">
+
+            <div class="row">
+                <div class="col-md-5">
+                    <nav aria-label="movimientoP">
                         <ul class="pagination">
                             <li class="page-item
                                 <?php echo $pagina<=1 ? 'disabled': '' ?>">
-                                <a class="page-link" 
-                                href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
+                                <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina-1?>">Anterior</a>
                             </li>
                             <?php for($i=0;$i<$paginas;$i++):?>
-                            <li class="page-item
-                            <?php echo $pagina==$i+1 ? 'active': '' ?>">
-                                <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
-                            </li>
+                                <li class="page-item
+                                    <?php echo $pagina==$i+1 ? 'active': '' ?>">
+                                    <a class="page-link" href="movimientos.php?pagina=<?php echo ($i+1)?>"><?php echo ($i+1)?></a>
+                                </li>
                             <?php endfor?>
                             <li class="page-item
-                            <?php echo $pagina>=$paginas? 'disabled': '' ?>">
-                                <a class="page-link" 
-                                href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente                                
-                                </a>
+                                <?php echo $pagina>=$paginas? 'disabled': '' ?>">
+                                <a class="page-link"href="movimientos.php?pagina=<?php echo $pagina+1?>">Siguiente</a>
                             </li>
                         </ul>
-            </nav>
+                    </nav>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="selectCuenta.php" class="btn btn-success">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-plus-circle-fill"></i></a><br>
+                </div>
+                <div class="col-md-3">
+                    <a href="seCuPa.php" class="btn btn-dark">Pagar servicio &nbsp;&nbsp;<i class="bi bi-cash-coin"></i></a><br>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>

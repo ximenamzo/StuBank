@@ -1,6 +1,7 @@
 <div class="col-md-3">
   <div class="menu">
-    <h4>&nbsp;&nbsp;&nbsp;CLIENTE</h4>
+    <h4>CLIENTE</h4>
+    <hr style="width=:auto; margin: 3rem 1rem 0 0; padding: 0 1rem 0 0;">
     <ul>
         <li class="lista">
             <a href="cuenta.php">

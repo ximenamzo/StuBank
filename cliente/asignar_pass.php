@@ -62,7 +62,7 @@
             <h1>Crear Contraseña</h1>
             <div class="contenedor-inputs">
                 <input type="password" name="passw_user" placeholder="Contraseña" class="input-100" required>
-                <input type="password" name="passw_user2" placeholder="Confirmar contraseña"class="input-100" required>
+                <input type="password" name="passw_user2" placeholder="Confirmar contraseña" class="input-100" required>
                 <input type="submit" value="Registrarse" class="btn_login">
             </div>
         </form>

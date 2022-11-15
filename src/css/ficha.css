@@ -1,14 +1,58 @@
 .card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
+    
 }
 
 .card:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
 
+.cuenta{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 2% 4% 2% 4%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.cuenta:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cuenta-btn{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 4% 8% 4% 8%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.cuenta-btn:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.trans{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 2% 4% 2% 2%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.trans:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
 .cont{
     padding: 0 5% 5% 5%;
+}
+
+.contenido{
+    padding: 5%;
 }
 
 @media print {
@@ -26,7 +70,7 @@
 .cont-purp{
     width: 80%;
     height: auto;
-    padding: 1.2em;
+    padding: 0.8rem 1rem 0.8rem 1.4rem;
     border-radius: 0.6em;
     border: 0.5em #8C52FF;
     box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
@@ -129,5 +173,4 @@
     }
 }
 
-/*style="width: 10pc;"
-
+/*style="width: 10pc;"*/

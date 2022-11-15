@@ -18,11 +18,11 @@
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
     //sacar los datos para el historial
-    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 6";
+    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 5";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $tiposCuenta = ['', 'Debito', 'Credito', 'Ahorro','Dolares', 'Debito (Secundaria)'];
+    $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro', 'Dólares', 'Débito (Secundaria)'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,14 +46,14 @@
 <body>
     <div class="row">
         <?php include('menu.php');?>
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-left:1.5rem;">
             <div class="tit">
                 <p>Cuentas:</p>
             </div>
             <?php foreach($cuentas as $cu):?>
                 <div class="cont-purp mb-4">
-                    <h3><?=$cu['titulo']?></h3>
-                    Saldo: $<?=$cu['saldo']?>
+                    <h4 style="display:inline;"><?=$cu['titulo']?> - </h4><h5 style="display:inline;"><?=$cu['cuenta']?></h5>
+                    <h6>Saldo: $<?=$cu['saldo']?></h6>
                 </div>
             <?php endforeach;?>
         </div>
@@ -61,7 +61,7 @@
             <div class="tit">
                 <p>Tu actividad:</p>
             </div>
-            <div class="cont-purp2">
+            <div class="cont-purp2" style="margin-bottom: 3rem;">
                 <u class="histoContainer">
                     <?php foreach($datos as $dato):
                         $tipo=$dato['tipo'];?> 
@@ -86,7 +86,8 @@
                                     <img src="/src/deposito.png">
                                 </div>
                                 <div class="clases">
-                                    <p><?=$dato['tipo']?></p>
+                                    <!--<p></?=$dato['tipo']?></p>-->
+                                    <p>Depósito</p>
                                     <p></p>
                                 </div>
                                 <div class="clases2">
@@ -113,7 +114,7 @@
                     <?php endforeach ?>
                     <?php if ($datos != NULL){ ?>
                         <li class="columnasC2">
-                            <a class="histBtn"href="/cliente/movimientos.php">Ver mas</a>
+                            <h5><a class="histBtn"href="/cliente/movimientos.php">Ver más</a></h5>                            
                         </li>
                     <?php }else{?>
                         <a class="histBtn1"href="/cliente/movimientos.php">Realiza tu primer movimiento aquí</a>

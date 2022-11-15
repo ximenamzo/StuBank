@@ -97,7 +97,7 @@
                                 <?php endforeach ?>
                             </select><br><br>
 
-                            <a href="admin_cl.php" class="btn btn-secondary">Regresar al menú</a>
+                            <a href="infoCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-secondary">Volver</a>
                             <input class="btn btn-primary" type="submit" value="Cambiar Ejecutivo">
                         </form>
                     </div><!--cont-->

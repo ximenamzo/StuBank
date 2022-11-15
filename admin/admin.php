@@ -38,29 +38,12 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
-            <a href="prestamos.php" class="btn btn-success">Prestamos</a>
-            <table class="table mt-3">
-                <thead>
-                    <th scope="col">Tramitador</th>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha de realización</th>
-                </thead>
-                <tbody>
-                    <?php foreach($movimientos as $movimiento): ?>
-                        <tr>
-                            <td><?=$movimiento['cTramitador'] ?></td>
-                            <td><?=$movimiento['cOrigen'] ?></td>
-                            <td><?=$movimiento['cDestino'] ?></td>
-                            <td><?=$movimiento['tipo'] ?></td>
-                            <td>$<?=$movimiento['cantidad'] ?></td>
-                            <td><?=$movimiento['fecha'] ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            <h1>Administración del Banco StuBank</h1><hr>
+            <div class="col-md-6" style="border:solid 1px white;">
+                <h4 style="color:#8c52ff;">¡Bienvenido de nuevo, Administrador!</h4>
+                <h5>Selecciona una de las opciones del menú para comenzar a gestionar tu aplicación.</h5>
+                <img src="../src/arrow.gif" alt="Selección" width="50%" height="50%">
+            </div>
         </div>
     </div>
 </body>

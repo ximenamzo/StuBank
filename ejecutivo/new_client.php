@@ -42,9 +42,9 @@
         function SoloLetras(e){
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toString();
-            letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnopqrstuvwxyzáéíóú";
+            letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnopqrstuvwxyzáéíóú .";
             especiales = [8,13,48,49,50,51,52,53,54,55,56,57];
-            tecla_especial = false
+            tecla_especial = false;
             for(var i in especiales) {
                 if(key == especiales[i]){
                     tecla_especial = true;
@@ -70,17 +70,17 @@
         <form action="comprobar_cliente.php" method="post" class="form-registro" enctype="multipart/form-data">
             <h1>Registrar cliente</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Número de cuenta" class="input-50" required>
+                <input type="text" name="nCuenta" onkeypress="return SoloLetras(event);" placeholder="Número de cuenta" class="input-50" maxlength="8" required>
                 <input type="text" name="name_user" onkeypress="return SoloLetras(event);" placeholder="Nombre" class="input-50" required>
                 <input type="text" name="apellidoP" onkeypress="return SoloLetras(event);" placeholder="Apellido Paterno" class="input-50" required>
-                <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50" required>
+                <input type="text" name="apellidoM" onkeypress="return SoloLetras(event);" placeholder="Apellido Materno" class="input-50">
                 <input type="tel" maxlength="10" name="telefono_user" onkeypress="return valideKey(event);" placeholder="Telefono" class="input-100" required>
                 <input type="email" name="correo_user" class="input-100" placeholder="Email" required>
                 <input type="text" maxlength="18" name="curp" class="input-100" placeholder="CURP" required>
                 <label class="yearday">Fecha de nacimiento: </label>
                 <input type="date" name="fecNac" class="input-50" required>
                 <label class="yearday">Foto del cliente: </label><input type="file" name="foto" class="input-50" required accept="image/png, .jpeg, .jpg, image/gif">
-                <input type="submit" value="Registrarse" class="btn_enviar">
+                <input type="submit" value="Registrar" class="btn_enviar">
             </div>
         </form>
     </div>

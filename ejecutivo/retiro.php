@@ -108,7 +108,7 @@
 
                     <div style="width: 100%; display: flex; justify-content: center;">
                         <div style="text-align: center;">
-                            <input type="submit" value="Generar depósito" class="btn btn-success">
+                            <input type="submit" value="Generar ficha de retiro" class="btn btn-success">
                         </div>
                     </div>
 

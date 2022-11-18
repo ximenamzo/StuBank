@@ -51,7 +51,7 @@
     $tra = $cuenta;
     $or = $cuentaCred['cuenta'];
     $dest = 'Banco';
-    $ti = 'Pago';
+    $ti = 'Pago a préstamo';
     $cant = $dinero;
     $idP = $destino;
     $cu = $cuentaCred['cuenta'];

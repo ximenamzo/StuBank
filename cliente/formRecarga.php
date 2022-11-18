@@ -54,63 +54,57 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-6">
-            <h2 style="margin-bottom:1rem;">Pago de Servicio</h2>
+            <h2 style="margin-bottom:1rem;">Recargas y Paquetes</h2>
             <div class="card">
                 <div class="cont">
-                    <form action="setPagos.php" method="POST">
+                    <form action="setRecarga.php" method="POST">
                         </br>
                         <div class="row">
                             <div style="width:100%;">
                                 <select name="destino" class="form-select" style="width: 100%; margin:0.7rem 0 0.7rem 0;" id="myselect" required>
-                                    <option value="" disabled selected>Seleccione el servicio a pagar</option>
-                                        <option value="CFE">CFE</option>
-                                        <option value="CAPDAM">CAPDAM</option>
-                                        <option value="TELMEX">TELMEX</option>
-                                        <option value="INFONAVIT">INFONAVIT</option>
-                                        <option value="SKY">SKY</option>
-                                        <option value="TOTALPLAY">TOTALPLAY</option>
-                                        <option value="IZZI">IZZI</option>
-                                        <option value="TELCEL" hidden>TELCEL</option>
-                                        <option value="MOVISTAR" hidden>MOVISTAR</option>
-                                        <option value="AT&T"hidden>AT&T</option>
+                                    <option value="" disabled selected>Seleccione la compañia</option>
+                                        <option value="TELCEL">TELCEL</option>
+                                        <option value="MOVISTAR">MOVISTAR</option>
+                                        <option value="UNEFON">UNEFON</option>
+                                        <option value="AT&T">AT&T</option>
                                 </select>
                             </div>
-                            <div style="width:100%; margin:0.7rem 0 0 0;"><label class="form-label" for="referencia">Referencia: </label></div>
-                            <div style="width:100%; margin:0 0 1rem 0;"><input class="form-control" type="text" name="referencia" id="referencia" minlength="7" maxlength="7" placeholder="7 dígitos" required></div>
+                            <div style="width:100%; margin:0.7rem 0 0 0;"><label class="form-label" for="motivo">Número de teléfono: </label></div>
+                            <div style="width:100%; margin:0 0 1rem 0;"><input class="form-control" type="text" name="motivo" id="motivo" minlength="10" maxlength="13" placeholder="7 dígitos" required></div>
                         </div>
                         <div class="row">
                             <div style="width:50%;"><label class="form-label" for="dinero">Monto:</label></div>
                             <div style="width:50%;"><label class="form-label" for="pass">Contraseña: </label></div>
                         </div>
 
-                        <div class="row" style="margin-bottom:1rem;">
+                        <div class="row">
                             <div class="input-group mb-3" style="width:50%;">
-                                <span class="input-group-text" id="basic-addon1">$</span>
-
-                                <input class="form-control" type="number" name="dinero" id="dinero" placeholder="0.00" min="0" max="<?=$max?>" step="0.01" required>
-                                
-                                <?php if($tipo == 'D'):?>
-                                <select name="divisa" class="input-group-text" style="width: 33%;">
-                                    <option value="1" selected>MXN</option>
-                                    <option value="2">USD</option>
+                                <select type="number" name="dinero" class="form-select" style="width: 100%;" id="myselect" required>
+                                    <option value="" disabled selected>Seleccione el paquete (MXN)</option>
+                                        <option value="20">$20</option>
+                                        <option value="30">$30</option>
+                                        <option value="50">$50</option>
+                                        <option value="80">$80</option>
+                                        <option value="100">$100</option>
+                                        <option value="150">$150</option>
+                                        <option value="200">$200</option>
+                                        <option value="300">$300</option>
+                                        <option value="500">$500</option>
                                 </select>
-                                <?php else:?>
-                                    <span class="input-group-text" style="width: 25%;">MXN</span>
-                                <?php endif;?>
                             </div>
 
                             <div style="width:50%;"><input class="form-control" type="password" name="pass" id="pass" required></div>
                         </div>
 
                         <div class="row">
-                            <div style="width:70%;">
+                            <div style="width:70%; margin-top:1rem;">
                                 <div class="h-captcha" data-sitekey="d86ad688-fbcc-45d7-8cb4-ec8e394cdd80"></div>
                             </div>
                             <input type="hidden" name="cl" value="<?=$cl?>">
                             <?php //echo $cl?>
                             <?php //echo $cuenta?>
                             <div style="width:30%;">
-                                <input class="btn btn-success" type="submit" value="Realizar Pago" style=" margin:0.5rem 0 0 0;">
+                                <input class="btn btn-success" type="submit" value="Contratar" style=" margin:0.5rem 0 0 0;">
                             </div>
                         </div>
                     </form>

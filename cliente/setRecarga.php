@@ -1,6 +1,6 @@
 <?php
     $destino = $_POST['destino'];
-    $referencia = $_POST['referencia'];
+    $motivo = $_POST['motivo'];
     $cl = $_POST['cl'];
 
     require('../view/conexion.php');
@@ -60,9 +60,9 @@
 
             $newSaldoOri = $saldoOri - $dinero;
 
-            $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad, referencia) VALUES (?,?,?,?,?,?,?)");
-            $stmt_trans->bind_param("sssssds", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $referencia);
-            $tipo = 'Pago de Servicio';
+            $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad, motivo) VALUES (?,?,?,?,?,?,?)");
+            $stmt_trans->bind_param("sssssds", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $motivo);
+            $tipo = 'Recarga telefónica';
 
             $stmt_ori = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
             $stmt_ori->bind_param("ds", $newSaldoOri, $cl);
@@ -73,7 +73,7 @@
                 if(!$stmt_ori->execute()){
                     echo "Inserción fallida: (" . $mysqli->errno . ") " . $mysqli->error;
                 }else{
-                    echo '<script language="javascript">alert("Pago exitoso.");</script>';
+                    echo '<script language="javascript">alert("Mensaje de confirmación de recarga.");</script>';
                 }
             }
         }else{
@@ -99,7 +99,7 @@
 </head>
 <body class="text-center">
     <img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
-    <?php //echo $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $referencia?>
+    <?php //echo $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $motivo?>
     <div style="width: 100%; display: flex; justify-content: center; margin: 5px 0 5px 0;">
         <div style="color:grey; text-align:justify; width: 50%;">
             Conserve este comprobante. En caso de necesitar aclaraciones con el banco, usted podrá hacerlo dentro de los 60 días posteriores al movimiento presentando esta ficha.
@@ -117,12 +117,12 @@
                         <td style="text-align: right;"><?=$cl?></td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Servicio pagado:</td>
+                        <td style="text-align: left;">Compañía telefónica:</td>
                         <td style="text-align: right;"><?=$destino?></td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Referencia de Pago:</td>
-                        <td style="text-align: right;"><?=$referencia?></td>
+                        <td style="text-align: left;">Número de teléfono:</td>
+                        <td style="text-align: right;"><?=$motivo?></td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">Fecha:</td>
@@ -131,7 +131,7 @@
                 </tbody>
             </table>
 
-			<p>Pago a <?=$destino?> de <b>$<?=$dinero?></b></p>
+			<p>Recarga de <?=$destino?> de <b>$<?=$dinero?></b> pesos.</p>
 
             <div style="display: flex; justify-content: center;">
                 <div class="row" style="width: auto;">

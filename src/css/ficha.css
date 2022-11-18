@@ -1,7 +1,6 @@
 .card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
-    
 }
 
 .card:hover{
@@ -67,6 +66,19 @@
     color: rgb(179, 179, 179);
     margin-left: 0.1em;
 }
+
+.tit2{
+    padding: 0.2em 0 0.5em 0;
+    font-size: 1.4em;
+    color: #311270;
+    display: inline;
+    color: #969696;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
 .cont-purp{
     width: 80%;
     height: auto;
@@ -94,21 +106,20 @@
     margin: auto;
 }
 .columnasC{
-    margin-top: 10px;
+    margin-top: 1rem;
     border-bottom: .0625em solid #eee;
     padding: 0;
     display:flow-root;
-    height: 3.5em;
-
+    height: auto 3.5em;
+    width: 100%;
 }
 .histo-img{
     float: left;
-    height:68px;
-    width: 68px;
-
+    width: 20%;
+    margin-right: 0.5em;
 }
 .histo-img img {
-    margin-top: 0.1em;
+    margin: 0.1em 0.5em 0 0;
     background-position: center;
     top:50%;
     height: 100%;
@@ -119,15 +130,16 @@
 .clases{
     float:left;
     padding-left: 2em;
-    line-height: 1em;
+    line-height: 1.5em;
     font-size: 0.8em;
-
+    width: 40%;
 }
 .clases2{
     float: right;
     overflow: auto;
     line-height: 1em;
     font-size: 0.8em;
+    width: 40%;
 }
 .histBtn{
     overflow: auto;
@@ -137,19 +149,47 @@
     margin-top: 10px;
     display:flow-root;
     height: auto;
-
 }
 .fechaD{
     font-weight: bold;
+    font-size: 1rem;
 }
+.tarjeta{
+    border: 0px solid black;
+    border-radius: 10px;
+    width: 62%;
+    height: auto;
+    margin: 2rem 0;
+    margin-left: 19%;
+    padding: 0.75rem 0 1.25rem 0;
+    background-color: #ffe5f2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 8px 8px 0 white inset, 0 4px 8px 0 rgba(0, 0, 0, 0.3) inset;
+}
+.saldoCN{
+    text-align: center;
+    font-size: 3rem;
+    color: rgb(24, 24, 24);
+    margin: 0;
+}
+.saldoC{
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(83, 83, 83);
+    margin: 0;
+}
+
+.contBotones{
+    text-align: center;
+}
+
 @media screen and (max-width: 1500px){
     .clases{
         padding-left: 0.33em;
         font-size: 0.7em;
     }
-    .destinoT{
+    /*.destinoT{
         display: none;
-    }
+    }*/
     .clases2{
         font-size: 0.7em;
     }
@@ -164,13 +204,63 @@
         float: left;
     }
 }
-@media screen and (max-width: 744px){
+@media screen and (max-width: 600px){
     .clases2{
         float: right;
     }
     .fechaD{
         display: none;
     }
+    .cont-purp2{
+        width: 80%;
+        margin-left: 1rem;
+    }
+    .columnasC2{
+        width: 20%;
+    }
+    .clases{
+        width: 40%;
+    }
+    .clases2{
+        width: 40%;
+    }
+    .histBtn{
+        font-size: 1rem;
+    }
+    .form-control{
+        width: 100%;
+    }
 }
 
+
 /*style="width: 10pc;"*/
+
+  .btn-custom {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #8c52ff;
+    color: #fff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: 0.5s;
+    position: relative;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.btn-custom:hover {
+    background: #6935d2 !important;
+    color: #fff;
+    transition: 0.5s;
+    border: 1px solid #4b229c;
+}
+.btn-custom:focus {
+    box-shadow: 0 0 0 5px #00000044;
+}
+
+.btn-custom i{
+    font-size: 1.2rem;
+}

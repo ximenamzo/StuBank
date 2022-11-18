@@ -33,7 +33,7 @@
 <body>
     <div class="row">
         <?php include('menu.php');
-        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta'";
+        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC"; //ORDER BY descendiente, muestra lo más reciente
         $resultado = mysqli_query($mysqli,$obtencion);
         //Variables para la paginación
         $MovimientosXpagina = 8; // El total de movimientos por paginacion
@@ -53,7 +53,7 @@
         }
         $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
         $inicio = (string)$CalculoIncio;
-        $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' LIMIT $inicio,$MovimientosXpagina";
+        $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT $inicio,$MovimientosXpagina"; //ORDER BY descendiente
         $obtencionD = mysqli_query($mysqli,$sql);
         $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
         ?>

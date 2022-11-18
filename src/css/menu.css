@@ -2,7 +2,7 @@
     padding-top: 1rem;
     padding-bottom: 0.2rem;
     padding-left: 0.3rem;
-    position: sticky;
+    position: relative;
     top: 1rem;
     left: 0.5rem;
     bottom: 1rem;
@@ -28,8 +28,6 @@
 }
 .menu ul{
    position: relative;
-   top: 0;
-   left: 0;
    width: 100%;
    padding-left: 0.7rem;
    padding-top: 1rem;
@@ -44,7 +42,6 @@
 
 .menu ul li a{
     position: relative;
-    display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
@@ -86,3 +83,11 @@
     background-color: white;
     border: 1px solid #8C52FF;
 }
+
+@media only screen and (max-width: 600px) {
+    .menu {
+      width: 95%;
+      margin-bottom: 2rem;
+      margin-top: -1.5rem;
+    }
+  }

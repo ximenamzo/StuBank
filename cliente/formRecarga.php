@@ -70,7 +70,7 @@
                                 </select>
                             </div>
                             <div style="width:100%; margin:0.7rem 0 0 0;"><label class="form-label" for="motivo">Número de teléfono: </label></div>
-                            <div style="width:100%; margin:0 0 1rem 0;"><input class="form-control" type="text" name="motivo" id="motivo" minlength="10" maxlength="13" placeholder="7 dígitos" required></div>
+                            <div style="width:100%; margin:0 0 1rem 0;"><input class="form-control" type="text" name="motivo" id="motivo" minlength="10" maxlength="13" placeholder="10 a 13 dígitos" required></div>
                         </div>
                         <div class="row">
                             <div style="width:50%;"><label class="form-label" for="dinero">Monto:</label></div>

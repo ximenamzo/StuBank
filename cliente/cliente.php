@@ -18,7 +18,7 @@
     $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
 
     //sacar los datos para el historial
-    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC";
+    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 5";
     $resultado = mysqli_query($mysqli,$consulta);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 
@@ -106,6 +106,66 @@
                             <li class="columnasC">
                                 <div class="histo-img">
                                     <img src="/src/retiro.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p style="color:red;">- $<?=$dato['cantidad']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                        <?php if($tipo == "Prestamo"){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/prestamos.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p style="color:#8C52FF;">+ $<?=$dato['cantidad']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                        <?php if($tipo == ("Pago a préstamo")){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/retiro.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p style="color:red;">- $<?=$dato['cantidad']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                        <?php if($tipo == ("Pago de Servicio")){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/servicios.png">
+                                </div>
+                                <div class="clases">
+                                    <p><?=$dato['tipo']?></p>
+                                    <p></p>
+                                </div>
+                                <div class="clases2">
+                                    <p style="color:red;">- $<?=$dato['cantidad']?></p>
+                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                </div>
+                            </li>
+                        <?php } ?>
+                        <?php if($tipo == ("Recarga telefónica")){?>
+                            <li class="columnasC">
+                                <div class="histo-img">
+                                    <img src="/src/recargas.png">
                                 </div>
                                 <div class="clases">
                                     <p><?=$dato['tipo']?></p>

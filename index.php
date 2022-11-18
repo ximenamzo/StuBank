@@ -68,39 +68,38 @@
       </div>
     </section>
     
+    <h2>Al ser cliente podrás:</h2>
     <div class="row">
-      <h2>Al ser cliente podras:</h2>
       <div class="container_cards">
           <div class="card col-md-3" style="background-color:#8c52ff;  border-radius:50px;">
               <figure>
-                  <img src="./src/prestamo.png" alt="" width="100" height="150" >
+                  <img src="./src/prestamo.png" alt="" width="50%">
                   <div class="card-contenido">
-                      <h3>Solicitar prestamos</h3>
+                      <h5>Solicitar préstamos</h5>
                       <button type="button" class="btn btn-outline-light">Leer mas</button>
                   </div>
               </figure>
           </div>
           <div class="card col-md-3" style="background-color:#8c52ff;  border-radius:50px;">
               <figure>
-                  <img src="./src/transfe.png" alt="" width="100" height="150">
+                  <img src="./src/transfe.png" alt="" width="50%">
                   <div class="card-contenido">
-                      <h3>Hacer tranferencias</h3>
+                      <h5>Hacer tranferencias</h5>
                       <button type="button" class="btn btn-outline-light">Leer mas</button>
                   </div>
               </figure>
           </div>
           <div class="card col-md-3" style="background-color:#8c52ff; border-radius:50px;">
               <figure>
-                  <img src="./src/estado.png" alt="" width="100" height="150">
+                  <img src="./src/estado.png" alt="" width="50%">
                   <div class="card-contenido">
-                      <h3>Ver tu estado de cuenta</h3>
+                      <h5>Ver tu estado de cuenta</h5>
                       <button type="button" class="btn btn-outline-light">Leer mas</button>
                   </div>
               </figure>
           </div>
-
-      </div>
-</div>
+        </div>
+    </div>
   </main>
     <div>
         <a href="#top" class="scroll">

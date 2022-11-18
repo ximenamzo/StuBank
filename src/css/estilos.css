@@ -115,9 +115,9 @@ body{
 }
 
 .container_cards{
-    flex-flow: row wrap;
     width: 100%;
     /*display: grid;
+    flex-flow: row wrap;
     grid-template-columns: 33% 33% 33%;*/
     margin-top: 1em;
 }
@@ -135,6 +135,7 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     cursor: default;
     transition: 0.3s;
+    padding-top: 1rem;
 }
 .card:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
@@ -180,10 +181,10 @@ body{
 @media(max-width: 1024px)
 {
 .container_cards{
-    flex-flow: row wrap;
     width: 100%;
+    /*flex-flow: row wrap;
     display: grid;
-    grid-template-columns: 1;
+    grid-template-columns: 1;*/
 }
 }
 /*---------------------------------*/

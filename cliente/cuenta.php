@@ -13,16 +13,28 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM cuentas WHERE nCliente = '$cuenta'";
-    $resultado = mysqli_query($mysqli,$obtencion);
-    $cuentas = $resultado->fetch_all(MYSQLI_ASSOC);
+    $cl = $_REQUEST['cl'];
 
-    //sacar los datos para el historial
-    $consulta = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT 5";
-    $resultado = mysqli_query($mysqli,$consulta);
+    //Para cuenta
+    $obtC = "SELECT * FROM cuentas WHERE cuenta = '$cl' LIMIT 1";
+    $resC = $mysqli->query($obtC);
+    $cue = $resC->fetch_all(MYSQLI_ASSOC);
+    foreach ($cue as $cu) {
+        //printf("%s (%s)\n", $cu["titulo"], $cu["cuenta"]);
+    }
+    //var_dump ($cue);
+
+    $nCuenta = $cu["cuenta"];
+    $titulo = $cu["titulo"];
+    $saldo = $cu["saldo"];
+
+    //Para historial
+    $obtH = "SELECT * FROM transacciones WHERE cOrigen = '$cl' OR cDestino = '$cl' ORDER BY fecha DESC";
+    $resultado = mysqli_query($mysqli,$obtH);
     $datos = $resultado->fetch_all(MYSQLI_ASSOC);
 
     $tiposCuenta = ['', 'Débito', 'Crédito', 'Ahorro', 'Dólares', 'Débito (Secundaria)'];
+    $otro = $tiposCuenta[5];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,79 +59,112 @@
     <div class="row">
         <?php include('menu.php');?>
         <div class="col-md-4" style="margin-left:1.5rem;">
-            <div class="tit">
-                <p>Cuentas:</p>
+            <div class="tit2">
+                <p style="display:inline;">Cuenta <?=$titulo;?></p><p style="display:inline; font-style: italic; font-weight: bold;"> &#9679 <?=$nCuenta;?></p>
             </div>
-            <?php foreach($cuentas as $cu):?>
-                <div class="cont-purp mb-4">
-                    <h4 style="display:inline;"><?=$cu['titulo']?> - </h4><h5 style="display:inline;"><?=$cu['cuenta']?></h5>
-                    <h6>Saldo: $<?=$cu['saldo']?></h6>
+            <div class="contBotones">
+                <div class="tarjeta">
+                <p class="saldoCN">$<?=$saldo?></p>
+                <p class="saldoC">Saldo disponible</p>
                 </div>
-            <?php endforeach;?>
+            </div>
+            <?php if($titulo == "Débito"){?>
+                <div class="contBotones">
+                    <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-arrow-left-right"></i></a><br><br>
+                    <a href="formPagos.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Pagar servicio &nbsp;&nbsp;<i class="bi bi-receipt"></i></a><br><br>
+                    <a href="formRecarga.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Recargas y Paquetes &nbsp;&nbsp;<i class="bi bi-phone"></i></a><br><br>
+                </div>
+            <?php }?>
+            <?php if($titulo == "Crédito"){?>
+                <div class="contBotones">
+                    Cuenta en mantenimiento
+                </div>
+            <?php }?>
+            <?php if($titulo == "Ahorro"){?>
+                <div class="contBotones">
+                    Recuerda que puedes retirar el 10% de esta cuenta desde cualquier banco físico de StuBank
+                </div>
+            <?php }?>
+            <?php if($titulo == "Dólares"){?>
+                <div class="contBotones">
+                    <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-arrow-left-right"></i></a><br><br>
+                </div>
+            <?php }?>
+            <?php if($titulo == ("Débito (secundaria)")){?>
+                <div class="contBotones">
+                    <a href="formDest.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-arrow-left-right"></i></a><br><br>
+                    <a href="formPagos.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Pagar servicio &nbsp;&nbsp;<i class="bi bi-receipt"></i></a><br><br>
+                    <a href="formRecarga.php?cl=<?=$cu['cuenta']?>" class="btn-custom" style="background-color:#8c52ff; margin-bottom:1rem;">Recargas y Paquetes &nbsp;&nbsp;<i class="bi bi-phone"></i></a><br><br>
+                </div>
+            <?php }?>
         </div>
+
+
+
         <div class="col-md-4"> 
             <div class="tit">
-                <p>Tu actividad:</p>
+                <p>Actividad reciente:</p>
             </div>
-            <div class="cont-purp2" style="margin-bottom: 3rem;">
+            <div class="cont-purp2" style="margin-bottom: 3rem; align-items: center; align-content: center; align-self: center;">            
                 <u class="histoContainer">
-                    <?php foreach($datos as $dato):
-                        $tipo=$dato['tipo'];?> 
-                        <?php if($tipo == 'Transferencia'){?>
-                            <li class="columnasC">
-                                <div class="histo-img">
-                                    <img src="/src/transferencia.png">
-                                </div>
-                                <div class="clases">
-                                    <p><?=$dato['tipo']?></p>
-                                    <p class="destinoT">a <?=$dato['cDestino']?></p>
-                                </div>
-                                <div class="clases2">
-                                    <p>- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
-                                </div>
-                             </li>
-                        <?php }?>
-                        <?php if($tipo == "Deposito"){?>
-                            <li class="columnasC">
-                                <div class="histo-img">
-                                    <img src="/src/deposito.png">
-                                </div>
-                                <div class="clases">
-                                    <!--<p></?=$dato['tipo']?></p>-->
-                                    <p>Depósito</p>
-                                    <p></p>
-                                </div>
-                                <div class="clases2">
-                                    <p>+ $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
-                                </div>
-                            </li>
-                        <?php }?>
-                        <?php if($tipo == "Retiro"){?>
-                            <li class="columnasC">
-                                <div class="histo-img">
-                                    <img src="/src/retiro.png">
-                                </div>
-                                <div class="clases">
-                                    <p><?=$dato['tipo']?></p>
-                                    <p></p>
-                                </div>
-                                <div class="clases2">
-                                    <p>- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
-                                </div>
-                            </li>
-                        <?php } ?>
-                    <?php endforeach ?>
-                    <?php if ($datos != NULL){ ?>
-                        <li class="columnasC2">
-                            <h5><a class="histBtn"href="/cliente/movimientos.php">Ver más</a></h5>                            
-                        </li>
-                    <?php }else{?>
-                        <a class="histBtn1"href="/cliente/movimientos.php">Realiza tu primer movimiento aquí</a>
-                    <?php } ?>
-                </u>
+                    <div class="row">
+                            <?php foreach($datos as $dato):
+                                $tipo=$dato['tipo'];?> 
+                                <?php if($tipo == 'Transferencia'){?>
+                                    <li class="columnasC">  
+                                        <div class="histo-img">
+                                            <img src="/src/transferencia.png">
+                                        </div>
+                                        <div class="col clases">
+                                            <p><?=$dato['tipo']?> a <?=$dato['cDestino']?></p>
+                                        </div>
+                                        <div class="col clases2">
+                                            <p>- $<?=$dato['cantidad']?></p>
+                                            <p class="fechaD"><?=$dato['fecha']?></p>
+                                        </div>
+                                    </li>
+                                <?php }?>
+                                <?php if($tipo == "Deposito"){?>
+                                    <li class="columnasC">
+                                        <div class="histo-img">
+                                            <img src="/src/deposito.png">
+                                        </div>
+                                        <div class="clases">
+                                            <!--<p></?=$dato['tipo']?></p>-->
+                                            <p>Depósito</p>
+                                            <p></p>
+                                        </div>
+                                        <div class="clases2">
+                                            <p>+ $<?=$dato['cantidad']?></p>
+                                            <p class="fechaD"><?=$dato['fecha']?></p>
+                                        </div>
+                                    </li>
+                                <?php }?>
+                                <?php if($tipo == "Retiro"){?>
+                                    <li class="columnasC">
+                                        <div class="histo-img">
+                                            <img src="/src/retiro.png">
+                                        </div>
+                                        <div class="clases">
+                                            <p><?=$dato['tipo']?></p>
+                                            <p></p>
+                                        </div>
+                                        <div class="clases2">
+                                            <p>- $<?=$dato['cantidad']?></p>
+                                            <p class="fechaD"><?=$dato['fecha']?></p>
+                                        </div>
+                                    </li>
+                                <?php } ?>
+                            <?php endforeach ?>
+                            <?php if ($datos != NULL){ ?>
+                                <li class="columnasC2">
+                                    <h5><a class="histBtn"href="/cliente/movimientos.php">Ver más</a></h5>                            
+                                </li>
+                            <?php }else{?>
+                                <a class="histBtn1"href="/cliente/movimientos.php">Realiza tu primer movimiento aquí</a>
+                            <?php } ?>
+                        </u>
+                    </div>
             </div>  
         </div>
     </div>

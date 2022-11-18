@@ -1,4 +1,4 @@
-const showOnPx = 100;
+const showOnPx = 1000;
 const backToTopButton = document.querySelector(".back-to-top");
 const pageProgressBar = document.querySelector(".progress-bar");
 
@@ -19,7 +19,7 @@ document.addEventListener("scroll", () => {
   const scrolledPercentage =
     (scrollContainer().scrollTop /
       (scrollContainer().scrollHeight - scrollContainer().clientHeight)) *
-    100;
+    1000;
 
   pageProgressBar.style.width = `${scrolledPercentage}%`;
 

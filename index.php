@@ -68,10 +68,10 @@
       </div>
     </section>
     
-    <section class="seccion3">
+    <div class="row">
       <h2>Al ser cliente podras:</h2>
       <div class="container_cards">
-          <div class="card" style="background-color:#8c52ff;  border-radius:50px;">
+          <div class="card col-md-3" style="background-color:#8c52ff;  border-radius:50px;">
               <figure>
                   <img src="./src/prestamo.png" alt="" width="100" height="150" >
                   <div class="card-contenido">
@@ -80,7 +80,7 @@
                   </div>
               </figure>
           </div>
-          <div class="card" style="background-color:#8c52ff;  border-radius:50px;">
+          <div class="card col-md-3" style="background-color:#8c52ff;  border-radius:50px;">
               <figure>
                   <img src="./src/transfe.png" alt="" width="100" height="150">
                   <div class="card-contenido">
@@ -89,7 +89,7 @@
                   </div>
               </figure>
           </div>
-          <div class="card" style="background-color:#8c52ff; border-radius:50px;">
+          <div class="card col-md-3" style="background-color:#8c52ff; border-radius:50px;">
               <figure>
                   <img src="./src/estado.png" alt="" width="100" height="150">
                   <div class="card-contenido">
@@ -100,7 +100,7 @@
           </div>
 
       </div>
-   </section>
+</div>
   </main>
     <div>
         <a href="#top" class="scroll">

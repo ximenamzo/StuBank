@@ -62,7 +62,7 @@
                 $dest = $cuenta;
         		if($stmt_sal->execute()){
                     if($stmt_trans->execute()){
-                        echo '<script language="javascript">alert("Prestamo aprobado. Dinero depositado a la cuenta de credito.");window.location.href="prestamos.php"</script>';
+                        echo '<script language="javascript">alert("Prestamo aprobado. Dinero depositado a la cuenta de crédito.");window.location.href="prestamos.php"</script>';
                     }
                 }
             }else{

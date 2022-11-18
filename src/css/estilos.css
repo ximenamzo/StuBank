@@ -117,8 +117,8 @@ body{
 .container_cards{
     flex-flow: row wrap;
     width: 100%;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
+    /*display: grid;
+    grid-template-columns: 33% 33% 33%;*/
     margin-top: 1em;
 }
 .seccion3 h2{

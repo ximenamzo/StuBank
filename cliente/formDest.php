@@ -44,7 +44,7 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
+        <div class="col-md-9" style="padding-left:2rem;">
             <h1>Destino de transferencia</h1><hr>
             <h5 style="margin-bottom:1rem;">Ingresa la cuenta a transferir:</h5>
             <form action="dest.php" method="POST" style="margin-bottom:2rem;">
@@ -61,11 +61,11 @@
                 <div class="trans" style="width:25%;">
                     <div class="row" style="width: 100%;">
                         <div style="width: 80%;">
-                            <h5><?=$cu['titulo']?></h5>
+                            <h6><?=$cu['titulo']?></h6>
                             <!--Saldo disponible: $<?=$cu['saldo']?><br>-->
                         </div>
                         <div style="width: 20%;">
-                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                            <a href="destSelf.php?id=<?=$cu['cuenta']?>&cl=<?=$cl?>" class="btn btn-primary btn-sm" type="submit"><i class="bi bi-chevron-double-right"></i></a>
                         </div>
                     </div>
                 </div>

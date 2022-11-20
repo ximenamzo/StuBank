@@ -105,13 +105,13 @@
                         </ul>
                     </nav>
                 </div>
-
+                <!--
                 <div class="col-md-3">
                     <a href="selectCuenta.php" class="btn btn-success">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-plus-circle-fill"></i></a><br>
                 </div>
                 <div class="col-md-3">
                     <a href="seCuPa.php" class="btn btn-dark">Pagar servicio &nbsp;&nbsp;<i class="bi bi-cash-coin"></i></a><br>
-                </div>
+                </div>-->
             </div>
 
         </div>

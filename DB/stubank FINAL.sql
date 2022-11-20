@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2022 a las 17:04:50
+-- Tiempo de generación: 20-11-2022 a las 05:59:01
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -76,12 +76,12 @@ CREATE TABLE `cuentas` (
 
 INSERT INTO `cuentas` (`id_cuenta`, `nCliente`, `cuenta`, `tipo`, `titulo`, `saldo`) VALUES
 (21, '20220001', '20220001A', 'A', 'Débito', 14000),
-(22, '20220042', '20220042A', 'A', 'Débito', 9457),
-(23, '20220042', '20220042C', 'C', 'Ahorro', 3350),
+(22, '20220042', '20220042A', 'A', 'Débito', 9454),
+(23, '20220042', '20220042C', 'C', 'Ahorro', 3352),
 (24, '20220042', '20220042B', 'B', 'Crédito', 15924.84),
 (26, '20220042', '20220042E', 'E', 'Débito (secundaria)', 4679),
 (27, '20220042', '20220042D', 'D', 'Dólares', 480),
-(28, '20220043', '20220043A', 'A', 'Débito', 5500),
+(28, '20220043', '20220043A', 'A', 'Débito', 5501),
 (29, '20220043', '20220043B', 'B', 'Crédito', 0),
 (30, '20220001', '20220001B', 'B', 'Crédito', 0),
 (31, '2022AAAL', '2022AAALA', 'A', 'Débito', 0);
@@ -234,7 +234,10 @@ INSERT INTO `transacciones` (`id_mov`, `cTramitador`, `solicitante`, `cOrigen`, 
 (76, '2022MACX', '20220042', 'Banco', '20220042B', 'Prestamo', 500, NULL, NULL, '2022-11-18 02:06:38'),
 (77, '20220042', '20220042', '20220042E', 'SKY', 'Pago de Servicio', 121, '1234567', NULL, '2022-11-18 02:20:18'),
 (78, '20220042', '20220042', '20220042A', 'TELCEL', 'Pago de Servicio', 50, NULL, NULL, '2022-11-18 02:48:38'),
-(79, '20220042', '20220042', '20220042E', 'AT&T', 'Recarga telefónica', 100, NULL, '+523141234567', '2022-11-18 02:54:41');
+(79, '20220042', '20220042', '20220042E', 'AT&T', 'Recarga telefónica', 100, NULL, '+523141234567', '2022-11-18 02:54:41'),
+(80, '20220042', '20220042', '20220042A', '20220042C', 'Transferencia', 1, NULL, '123', '2022-11-19 20:10:29'),
+(81, '20220042', '20220042', '20220042A', '20220043A', 'Transferencia', 1, NULL, 'Tacos de perro', '2022-11-19 20:12:17'),
+(82, '20220042', '20220042', '20220042A', '20220042C', 'Transferencia', 1, '6116576', 'Tacos de caca', '2022-11-19 20:21:34');
 
 --
 -- Índices para tablas volcadas
@@ -317,7 +320,7 @@ ALTER TABLE `trabajadores`
 -- AUTO_INCREMENT de la tabla `transacciones`
 --
 ALTER TABLE `transacciones`
-  MODIFY `id_mov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_mov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

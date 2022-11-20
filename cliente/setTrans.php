@@ -18,6 +18,22 @@
 
     $captcha = new Captcha();
 
+    $n = 7;
+    function getRandomString($n)
+    {
+    $characters = '0123456789';
+    $randomString = '';
+
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+
+    return $randomString;
+    }
+
+    $referencia = getRandomString($n);
+
     if(true){
         $pass = $_POST['pass'];
         $salt = "invalid";
@@ -90,8 +106,14 @@
                 }
             }
 
-            $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad) VALUES (?,?,?,?,?,?)");
-            $stmt_trans->bind_param("sssssd", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero);
+            if(isset($_POST['motivo'])){
+                $motivo = $_POST['motivo'];
+                $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad, referencia, motivo) VALUES (?,?,?,?,?,?,?,?)");
+                $stmt_trans->bind_param("sssssdss", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $referencia, $motivo);
+            }else{
+                $stmt_trans = $mysqli->prepare("INSERT INTO transacciones (cTramitador, solicitante, cOrigen, cDestino, tipo, cantidad, referencia) VALUES (?,?,?,?,?,?,?)");
+                $stmt_trans->bind_param("sssssds", $cuenta, $cuenta, $cl, $destino, $tipo, $dinero, $referencia);
+            }
             $tipo = 'Transferencia';
 
             $stmt_ori = $mysqli->prepare("UPDATE cuentas SET saldo = ? WHERE cuenta = ?");
@@ -154,6 +176,16 @@
                     <tr>
                         <td style="text-align: left;">Cuenta de destino:</td>
                         <td style="text-align: right;"><?=$destino?></td>
+                    </tr>
+                    <?php if($motivo!=NULL):?>
+                    <tr>
+                        <td style="text-align: left;">Motivo de pago:</td>
+                        <td style="text-align: right;"><?=$motivo?></td>
+                    </tr>
+                    <?php endif;?>
+                    <tr>
+                        <td style="text-align: left;">Referencia:</td>
+                        <td style="text-align: right;"><?=$referencia?></td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">Fecha:</td>

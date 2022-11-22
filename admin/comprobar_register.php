@@ -10,14 +10,14 @@
         die();
     }
 
-    $cuenta = $_POST['nCuenta'];
-    $userR = $_POST['name_user'];
-    $apellidoP = $_POST['apellidoP'];
-    $apellidoM = $_POST['apellidoM'];
-    $correoR = $_POST['correo_user'];
-    $telefonoR = $_POST['telefono_user'];
+    $cuenta = filter_var($_POST['nCuenta'], FILTER_SANITIZE_STRING);
+    $userR = filter_var($_POST['name_user'], FILTER_SANITIZE_STRING);
+    $apellidoP = filter_var($_POST['apellidoP'], FILTER_SANITIZE_STRING);
+    $apellidoM = filter_var($_POST['apellidoM'], FILTER_SANITIZE_STRING);
+    $correoR = filter_var($_POST['correo_user'], FILTER_SANITIZE_EMAIL);
+    $telefonoR = filter_var($_POST['telefono_user'], FILTER_SANITIZE_NUMBER_INT);
     $nacimiento = $_POST['fecNac'];
-    $curp = $_POST['curp'];
+    $curp = filter_var($_POST['curp'], FILTER_SANITIZE_STRING);
     $fecha = date('Y-m-d');
     $foto = $_FILES['foto']['name'];
     $guardar_img = $_FILES['foto']['tmp_name'];

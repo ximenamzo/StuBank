@@ -1,5 +1,5 @@
 <?php
-	$id = $_REQUEST['id'];
+	$id = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING);
 
     session_start();
 

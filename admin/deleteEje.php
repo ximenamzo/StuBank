@@ -12,7 +12,7 @@
 
     include('../view/conexion.php');
 
-	$idEje = $_REQUEST['id'];
+	$idEje = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING);
 
 	$stmt_borrar = $mysqli->prepare("UPDATE trabajadores SET estatus = ? WHERE nCuenta = ?");
     $stmt_borrar->bind_param("is",$est,$idEje);

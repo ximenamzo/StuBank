@@ -72,8 +72,8 @@
                     <?php $meses--; }?>
                     <tr>
                         <td>Total</td>
-                        <td>$<?=$totPago?></td>
-                        <td>$<?=$totInt?></td>
+                        <td>$<?=round($totPago)?></td>
+                        <td>$<?=round($totInt)?></td>
                         <td>$<?=round($totAmort)?></td>
                         <td>-</td>
                     </tr>

@@ -100,8 +100,8 @@
                     <?php $meses--; }?>
                     <tr>
                         <td>Total</td>
-                        <td>$<?=$totPago?></td>
-                        <td>$<?=$totInt?></td>
+                        <td>$<?=round($totPago)?></td>
+                        <td>$<?=round($totInt)?></td>
                         <td>$<?=round($totAmort)?></td>
                         <td>-</td>
                     </tr>
@@ -113,7 +113,7 @@
                 <input type="hidden" name="dinero" value="<?=$_POST['dinero']?>">
                 <input type="hidden" name="meses" value="<?=$_POST['meses']?>">
                 <input type="hidden" name="metodo" value="<?=$metodo?>">
-                <input type="hidden" name="deuda" value="<?=$totPago?>">
+                <input type="hidden" name="deuda" value="<?=round($totPago)?>">
                 <input type="submit" class="btn btn-success" value="Solicitar">
             </form>
         </div>

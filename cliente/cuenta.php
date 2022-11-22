@@ -33,11 +33,13 @@
     if($tipo == 'B'){
         $obtD = "SELECT * FROM prestamos WHERE solicitanteCl = '$cl' and estatus = 2 LIMIT 1";
         $resD = $mysqli->query($obtD);
-        $deu = $resD->fetch_all(MYSQLI_ASSOC);
-        foreach ($deu as $de) {
-            //printf("%s (%s)\n", $cu["titulo"], $cu["cuenta"]);
+        $deu = $resD->fetch_assoc();
+
+        if($resD->num_rows > 0){
+            $deuda = $deu["deuda"];
+        }else{
+            $deuda = 0;
         }
-        $deuda = $de["deuda"];
     }
 
     //Para historial

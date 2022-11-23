@@ -13,17 +13,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/css/estilos.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="src/icono.png">
+    <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="/src/js/scroll.js"></script>
     <title>StuBank</title>
 </head>
 
 <header>
-    <?php include('view/navbar.php'); ?>
+    <?php include('navbar.php'); ?>
 </header>
 <body>
     <div class="cabecera">
@@ -78,9 +78,9 @@
             <div class="col-md-4">
                 <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
                     <figure>
-                        <img src="./src/estado.png" alt="" width="50%">
-                        <h5>Ver tu estado de cuenta</h5>
-                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
+                        <img src="./src/prestamo.png" alt="" width="50%">
+                        <h5>Solicitar préstamos</h5>
+                        <button type="button" class="btn btn-outline-light">Leer más</button>
                     </figure>
                 </div>
             </div>
@@ -89,17 +89,17 @@
                     <figure>
                         <img src="./src/transfe.png" alt="" width="50%">
                         <h5>Hacer transferencias</h5>
-                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
+                        <button type="button" class="btn btn-outline-light">Leer más</button>
                     </figure>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
                     <figure>
-                        <img src="./src/prestamo.png" alt="" width="50%">
-                        <h5>Solicitar préstamos</h5>
-                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
-                    </figure>                    
+                        <img src="./src/estado.png" alt="" width="50%">
+                        <h5>Ver tu estado de cuenta</h5>
+                        <button type="button" class="btn btn-outline-light">Leer más</button>
+                    </figure>
                 </div>
             </div>
         </div>

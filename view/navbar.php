@@ -12,10 +12,10 @@
                     <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/view/info.php">Información</a>
+                    <a class="nav-link active" aria-current="page" href="/view/informacion.php">Información</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/view/nosotros.php">Sobre nosotros</a>
+                    <a class="nav-link active" aria-current="page" href="/view/negocios.php">Negocios</a>
                 </li>
                 <?php if(isset($_SESSION['nombre'])):?>
                 <?php if($rol == 1):?>

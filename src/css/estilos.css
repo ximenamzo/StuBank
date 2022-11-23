@@ -50,17 +50,17 @@ body{
     text-decoration: none;
     color: #8C52FF;
 }
-.card{
+.cardIX{
     color: white;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
-    padding-top: 1rem;
+    padding: 1rem 0 1rem 0;
     border-radius: 50px;
     background-color: #8C52FF;
     margin: 2rem 3rem;
 }
-.card:hover{
+.cardIX:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
     transform: scale(110%);
 }
@@ -70,6 +70,7 @@ body{
     background-color: #8c52ff;
     color: #fff;
 }
+
 @media(max-width: 2000px)
 {
     .alineamiento{padding-left: 10%;}
@@ -114,4 +115,40 @@ body{
     color: rgb(17, 195, 17);
     font-weight: bolder;
     transition: .5s;
+}
+/*---------------------------------*/
+.info-cont{
+    background: url(../info.jpg) #8c52ff4d;
+    background-size: cover;
+    background-blend-mode: multiply;
+    height: 860px;
+    text-align: center;
+    margin-top: -1rem;
+}
+.info-col{
+    text-align: center;
+    padding: 3rem 2rem 3rem 2rem;
+    margin-top: -1rem;
+}
+.info-card{
+    background-color: #fff;
+    border-radius: 40px;
+    color: black;
+    width: 90%;
+    margin-left: 5%;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+.info-card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(105%);
+}
+.info-card h2{
+    color: #8c52ff;
+    font-weight: bold;
+}
+.info-card h5{
+    color: #8c52ff;
+    font-weight: bold;
 }

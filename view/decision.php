@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="..\src\css\styles-decision.css">
+	<link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<title>Stubank</title>
@@ -22,4 +23,7 @@
 		<a href="login_tr.php"><button class="btn-subir">Trabajador</button></a>
 	</div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

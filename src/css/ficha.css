@@ -201,12 +201,20 @@
     .histo-img{
         height:48px;
         width: 48px;
-    
+    }
+    .pad{
+        padding-left: 2rem;
+    }
+    .mx{
+        text-align: center;
     }
 }
 @media screen and (max-width: 1170px){
     .clases2{
         float: left;
+    }
+    .mx{
+        text-align: center;
     }
 }
 @media screen and (max-width: 600px){
@@ -235,12 +243,18 @@
     .form-control{
         width: 100%;
     }
+    .btn-custom-outline{
+        margin: 1rem 0 1rem 0;
+    }
+    .mx{
+        margin: 1rem 0 1rem 0;
+    }
 }
 
 
 /*style="width: 10pc;"*/
 
-  .btn-custom {
+.btn-custom {
     margin: 2rem 0;
     font-size: 1rem;
     width: auto;
@@ -267,5 +281,34 @@
 }
 
 .btn-custom i{
+    font-size: 1.2rem;
+}
+
+.btn-custom-outline {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    color: #8c52ff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #8c52ff;
+    transition: 0.4s;
+    position: relative;
+    text-decoration: none;
+}
+.btn-custom-outline:hover {
+    background: #8c52ff !important;
+    color: #fff;
+    transition: 0.4s;
+    border: 1px solid #6935d2;
+}
+.btn-custom-outline:focus {
+    box-shadow: 0 0 0 5px #00000044;
+}
+
+.btn-custom-outline i{
     font-size: 1.2rem;
 }

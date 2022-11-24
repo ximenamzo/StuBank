@@ -12,7 +12,7 @@
         die();
     }
 
-    $id = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING);
+    $id = $_REQUEST['id'];
 
     $nuevoEje = $_POST['nuevoEje'];
 

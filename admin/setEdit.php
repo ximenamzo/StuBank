@@ -12,13 +12,13 @@
         die();
     }
 
-    $id = filter_var($_POST['id'], FILTER_SANITIZE_STRING);
-    $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
-    $aP = filter_var($_POST['aP'], FILTER_SANITIZE_STRING);
-    $aM = filter_var($_POST['aM'], FILTER_SANITIZE_STRING);
-    $tel = filter_var($_POST['tel'], FILTER_SANITIZE_NUMBER_INT);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $curp = filter_var($_POST['curp'], FILTER_SANITIZE_STRING);
+    $id = $_POST['id'];
+    $nom = $_POST['nom'];
+    $aP = $_POST['aP'];
+    $aM = $_POST['aM'];
+    $tel = $_POST['tel'];
+    $email = $_POST['email'];
+    $curp = $_POST['curp'];
     $fecha = $_POST['fNa'];
     $guardar_img = $_FILES['foto']['tmp_name'];
 

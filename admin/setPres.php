@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-	$id = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING);
-	$aux = filter_var($_REQUEST['aux'], FILTER_SANITIZE_NUMBER_INT);
+	$id = $_REQUEST['id'];
+	$aux = $_REQUEST['aux'];
 
     $nombre = $_SESSION['nombre'];
     $rol = $_SESSION['rol'];

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2022 a las 05:59:01
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 24-11-2022 a las 05:15:42
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL,
-  `nCuenta` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
-  `nEjecutivo` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `apellidoP` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `apellidoM` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `foto` varchar(9) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `telefono` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `nCuenta` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nEjecutivo` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidoP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidoM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecNac` date NOT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `curp` varchar(18) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curp` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rol` int(11) NOT NULL DEFAULT 3,
   `fecInscrip` date NOT NULL,
   `estatus` int(11) NOT NULL DEFAULT 1
@@ -63,10 +63,10 @@ INSERT INTO `clientes` (`id_cliente`, `nCuenta`, `nEjecutivo`, `nombre`, `apelli
 
 CREATE TABLE `cuentas` (
   `id_cuenta` int(11) NOT NULL,
-  `nCliente` varchar(9) NOT NULL,
-  `cuenta` varchar(10) NOT NULL,
-  `tipo` varchar(1) NOT NULL,
-  `titulo` varchar(20) NOT NULL,
+  `nCliente` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cuenta` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `saldo` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -83,8 +83,7 @@ INSERT INTO `cuentas` (`id_cuenta`, `nCliente`, `cuenta`, `tipo`, `titulo`, `sal
 (27, '20220042', '20220042D', 'D', 'Dólares', 480),
 (28, '20220043', '20220043A', 'A', 'Débito', 5501),
 (29, '20220043', '20220043B', 'B', 'Crédito', 0),
-(30, '20220001', '20220001B', 'B', 'Crédito', 0),
-(31, '2022AAAL', '2022AAALA', 'A', 'Débito', 0);
+(30, '20220001', '20220001B', 'B', 'Crédito', 123);
 
 -- --------------------------------------------------------
 
@@ -95,7 +94,7 @@ INSERT INTO `cuentas` (`id_cuenta`, `nCliente`, `cuenta`, `tipo`, `titulo`, `sal
 CREATE TABLE `pagos` (
   `id_pago` int(11) NOT NULL,
   `id_prest` int(11) NOT NULL,
-  `cuenta` varchar(10) NOT NULL,
+  `cuenta` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cantidad` double NOT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -119,8 +118,8 @@ INSERT INTO `pagos` (`id_pago`, `id_prest`, `cuenta`, `cantidad`, `fecha`) VALUE
 
 CREATE TABLE `prestamos` (
   `id_prest` int(11) NOT NULL,
-  `solicitanteEje` varchar(9) NOT NULL,
-  `solicitanteCl` varchar(9) NOT NULL,
+  `solicitanteEje` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `solicitanteCl` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cantidad` double NOT NULL,
   `meses` int(11) NOT NULL,
   `deuda` double NOT NULL,
@@ -136,7 +135,8 @@ CREATE TABLE `prestamos` (
 INSERT INTO `prestamos` (`id_prest`, `solicitanteEje`, `solicitanteCl`, `cantidad`, `meses`, `deuda`, `metodo`, `fecha`, `estatus`) VALUES
 (18, '2022MACX', '20220042B', 10000, 24, 0, 2, '2022-11-13 19:50:37', 4),
 (19, '2022MACX', '20220042B', 1000, 6, 0, 1, '2022-11-14 00:23:25', 4),
-(20, '2022MACX', '20220042B', 500, 2, 537.8, 2, '2022-11-18 02:06:21', 2);
+(20, '2022MACX', '20220042B', 500, 2, 537.8, 2, '2022-11-18 02:06:21', 2),
+(21, '2022MACX', '20220001B', 123, 5, 142, 2, '2022-11-21 21:13:45', 2);
 
 -- --------------------------------------------------------
 
@@ -146,16 +146,16 @@ INSERT INTO `prestamos` (`id_prest`, `solicitanteEje`, `solicitanteCl`, `cantida
 
 CREATE TABLE `trabajadores` (
   `id_user` int(11) NOT NULL,
-  `nCuenta` varchar(9) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellidoP` varchar(50) NOT NULL,
-  `apellidoM` varchar(50) DEFAULT NULL,
-  `foto` varchar(9) DEFAULT NULL,
-  `telefono` varchar(10) NOT NULL,
+  `nCuenta` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidoP` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidoM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecNac` date NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `curp` varchar(18) NOT NULL,
-  `password` varchar(150) DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curp` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rol` int(11) NOT NULL DEFAULT 2,
   `fecInscrip` date DEFAULT NULL,
   `estatus` int(11) NOT NULL DEFAULT 1
@@ -167,7 +167,7 @@ CREATE TABLE `trabajadores` (
 
 INSERT INTO `trabajadores` (`id_user`, `nCuenta`, `nombre`, `apellidoP`, `apellidoM`, `foto`, `telefono`, `fecNac`, `email`, `curp`, `password`, `rol`, `fecInscrip`, `estatus`) VALUES
 (1, '2022AAAA', 'Administrador', 'Stubank', 'UCOL', NULL, '3141111111', '2003-04-15', 'admin@ucol.mx', 'NOLC030415HCMLGRA2', '2ac3510fc601c5b63a510ad408d41199', 1, NULL, 1),
-(35, '2022MACX', 'Ximena', 'Manzo', 'Castrejón', '2022MACX', '3141234567', '2003-05-07', 'ximena@email.com', '123456789123456789', 'b439fa89d982921d8dc85daebc658a87', 2, '2022-11-13', 1),
+(35, '2022MACX', 'Ximena', 'Manzo', 'Castrejón', '2022MACX', '3141234567', '2003-05-07', 'ximena@email.com', '123456789123456789', 'c38620e3221d07f8bce62fed98344170', 2, '2022-11-13', 1),
 (36, '2022AAAB', 'Alfredo Manuel', 'Encina', 'Bautista', '2022AAAB', '3141234567', '1998-01-01', 'aencina@email.com', '123456789123456789', 'c38620e3221d07f8bce62fed98344170', 2, '2022-11-13', 1),
 (37, '2022AAAC', 'Alejandro', 'Mejía', 'Bautista', '2022AAAC', '3141234567', '1990-01-01', 'amejia@email.com', '123456789123456789', NULL, 2, '2022-11-13', 1),
 (38, '2022AAAD', 'Juan Miguel', 'Vázquez', 'Verde', '2022AAAD', '3141234567', '1984-01-01', 'jvazquez@email.com', '123456789123456789', NULL, 2, '2022-11-13', 1),
@@ -187,14 +187,14 @@ INSERT INTO `trabajadores` (`id_user`, `nCuenta`, `nombre`, `apellidoP`, `apelli
 
 CREATE TABLE `transacciones` (
   `id_mov` int(11) NOT NULL,
-  `cTramitador` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
-  `solicitante` varchar(9) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cOrigen` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `cDestino` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `tipo` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `cTramitador` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `solicitante` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cOrigen` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cDestino` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cantidad` double NOT NULL,
-  `referencia` varchar(7) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `motivo` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `referencia` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `motivo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -237,7 +237,8 @@ INSERT INTO `transacciones` (`id_mov`, `cTramitador`, `solicitante`, `cOrigen`, 
 (79, '20220042', '20220042', '20220042E', 'AT&T', 'Recarga telefónica', 100, NULL, '+523141234567', '2022-11-18 02:54:41'),
 (80, '20220042', '20220042', '20220042A', '20220042C', 'Transferencia', 1, NULL, '123', '2022-11-19 20:10:29'),
 (81, '20220042', '20220042', '20220042A', '20220043A', 'Transferencia', 1, NULL, 'Tacos de perro', '2022-11-19 20:12:17'),
-(82, '20220042', '20220042', '20220042A', '20220042C', 'Transferencia', 1, '6116576', 'Tacos de caca', '2022-11-19 20:21:34');
+(82, '20220042', '20220042', '20220042A', '20220042C', 'Transferencia', 1, '6116576', 'Tacos de caca', '2022-11-19 20:21:34'),
+(83, '2022MACX', '20220001', 'Banco', '20220001B', 'Prestamo', 123, NULL, NULL, '2022-11-21 21:14:05');
 
 --
 -- Índices para tablas volcadas
@@ -248,33 +249,40 @@ INSERT INTO `transacciones` (`id_mov`, `cTramitador`, `solicitante`, `cOrigen`, 
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id_cliente`),
-  ADD UNIQUE KEY `nCuenta` (`nCuenta`);
+  ADD UNIQUE KEY `nCuenta` (`nCuenta`) USING BTREE,
+  ADD KEY `fk_cuentaEje` (`nEjecutivo`) USING BTREE;
 
 --
 -- Indices de la tabla `cuentas`
 --
 ALTER TABLE `cuentas`
   ADD PRIMARY KEY (`id_cuenta`),
-  ADD UNIQUE KEY `cuenta` (`cuenta`);
+  ADD UNIQUE KEY `cuenta` (`cuenta`),
+  ADD KEY `fk_cliente` (`nCliente`);
 
 --
 -- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id_pago`);
+  ADD PRIMARY KEY (`id_pago`),
+  ADD KEY `fk_id_prest` (`id_prest`),
+  ADD KEY `fk_nCuenta` (`cuenta`);
 
 --
 -- Indices de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  ADD PRIMARY KEY (`id_prest`);
+  ADD PRIMARY KEY (`id_prest`),
+  ADD KEY `fk_ejecuivo` (`solicitanteEje`),
+  ADD KEY `fk_cuentaCliente` (`solicitanteCl`);
 
 --
 -- Indices de la tabla `trabajadores`
 --
 ALTER TABLE `trabajadores`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `nCuenta` (`nCuenta`);
+  ADD UNIQUE KEY `unique` (`nCuenta`,`foto`,`email`,`curp`) USING BTREE,
+  ADD KEY `Indice` (`nCuenta`);
 
 --
 -- Indices de la tabla `transacciones`
@@ -308,7 +316,7 @@ ALTER TABLE `pagos`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_prest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `trabajadores`
@@ -320,7 +328,37 @@ ALTER TABLE `trabajadores`
 -- AUTO_INCREMENT de la tabla `transacciones`
 --
 ALTER TABLE `transacciones`
-  MODIFY `id_mov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_mov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `actualizar` FOREIGN KEY (`nEjecutivo`) REFERENCES `trabajadores` (`nCuenta`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cuentas`
+--
+ALTER TABLE `cuentas`
+  ADD CONSTRAINT `fk_cliente` FOREIGN KEY (`nCliente`) REFERENCES `clientes` (`nCuenta`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD CONSTRAINT `fk_id_prest` FOREIGN KEY (`id_prest`) REFERENCES `prestamos` (`id_prest`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_nCuenta` FOREIGN KEY (`cuenta`) REFERENCES `cuentas` (`cuenta`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  ADD CONSTRAINT `fk_cuentaCliente` FOREIGN KEY (`solicitanteCl`) REFERENCES `cuentas` (`cuenta`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ejecuivo` FOREIGN KEY (`solicitanteEje`) REFERENCES `trabajadores` (`nCuenta`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

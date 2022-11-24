@@ -25,12 +25,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="../src/js/funciones.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>StuBank</title>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTbody tr").filter(function() {
+                    $(this).toggle($(this).text()
+                    .toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 
 <header>
@@ -52,7 +65,7 @@
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
                 </span>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por cuenta..." class="form-control" style="width: 30%;">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar..." class="form-control" style="width: 30%;">
             </div>
             
             <table class="table mt-3" id="myTable">
@@ -63,7 +76,7 @@
                     <th scope="col">Apellido materno</th>
                     <th scope="col">Seleccionar</th>
                 </thead>
-                <tbody>
+                <tbody id="myTbody">
                     <?php foreach($clientes as $cliente): ?>
                         <tr>
                             <td><?=$cliente['nCuenta'] ?></td>
@@ -85,4 +98,7 @@
         </div>
     </div>
 </body>
+<footer style="margin-top:14rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

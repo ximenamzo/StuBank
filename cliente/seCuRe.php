@@ -58,7 +58,7 @@
                                 </div>
                                 <div style="width: 20%;">
                                     <input type="hidden" name="cu" value="<?=$cu['cuenta']?>">
-                                    <a href="formPagos.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
+                                    <a href="formRecarga.php?cl=<?=$cu['cuenta']?>" class="btn btn-primary mt-2" type="submit"><i class="bi bi-chevron-double-right"></i></a>
                                 </div>
 
                         </div>

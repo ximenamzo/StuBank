@@ -39,7 +39,7 @@
     </div>
 
     <main>
-        <div class="row" style="text-align:center; margin-top:4rem;" id="sobre">
+        <div class="row" style="text-align:center; margin-top:6rem;" id="sobre">
             <div class="col-md-7" style="text-align:center;">
                     <h2 class="subtitulo alineamiento">Sobre StuBank</h2>
                     <p class="texto1 alineamiento">
@@ -49,13 +49,13 @@
                     </p>
             </div>
             <div class="col-md-5">
-                <img src="./src/undraw_my_password_re_ydq7.svg" width="60%" alt="">
+                <img src="./src/sobre.png" width="70%" alt="">
             </div>
         </div>
 
         <div class="row" style="text-align:center; margin-top:4rem;">
             <div class="col-md-5">
-                <img src="./src/undraw_pay_online_re_aqe6.svg"  width="60%" alt="">
+                <img src="./src/beneficios.png"  width="70%" alt="">
             </div>
             <div class="col-md-7">
                     <h2 class="subtitulo alineamiento2 x">Beneficios de ser cliente</h2>
@@ -76,30 +76,30 @@
         <div class="row" style="text-align:center; margin:5rem 0 4rem 0;">
             <h2 class="subtitulo" style="display:inline;">Al ser cliente podrás...</h2>
             <div class="col-md-4">
-                <div class="card" style="background-color:#8c52ff; border-radius:50px;">
-                    <figure>
-                        <img src="./src/prestamo.png" alt="" width="50%">
-                        <h5>Solicitar préstamos</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
-                    </figure>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="background-color:#8c52ff; border-radius:50px;">
-                    <figure>
-                        <img src="./src/transfe.png" alt="" width="50%">
-                        <h5>Hacer transferencias</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
-                    </figure>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="background-color:#8c52ff; border-radius:50px;">
+                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
                     <figure>
                         <img src="./src/estado.png" alt="" width="50%">
                         <h5>Ver tu estado de cuenta</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
+                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
                     </figure>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
+                    <figure>
+                        <img src="./src/transfe.png" alt="" width="50%">
+                        <h5>Hacer transferencias</h5>
+                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
+                    <figure>
+                        <img src="./src/prestamo.png" alt="" width="50%">
+                        <h5>Solicitar préstamos</h5>
+                        <a href="view/informacion.php" type="button" class="btn btn-outline-light">Leer más</a>
+                    </figure>                    
                 </div>
             </div>
         </div>
@@ -112,38 +112,9 @@
         </a>
     </div>
 </body>
-
-<div id="footer">
-    <div class="row cont-foot">
-
-        <div class="col-md-4 fc" style="text-align:center;">
-            <img src="./src/StuBankNe.png" class="img" alt=""><br><br><br>
-        </div>
-
-        <div class="col-md-4 fc">
-            <h3>Equipo de desarrollo</h3>
-            <p class="texto2">Cruz Lopez Claudia Sofia Guadalupe</p><br>
-            <p class="texto2">Lopez Murillo Isaac Valentin</p><br>
-            <p class="texto2">Manzo Castrejon Ximena</p><br>
-            <p class="texto2">Nolazco Lagunas Carlos</p><br><br>
-        </div>
-
-        <div class="col-md-4 fc">
-            <h3>Contacto</h3>
-            <a href = "mailto: contacto.stubank@gmail.com" class="mail">
-                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-envelope" viewBox="0 0 20 20"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>
-                contacto.stubank@gmail.com
-            </a>
-            <br><br>
-            <h3>Sobre tu Privacidad</h3>
-            <a href="https://docs.google.com/document/d/1C0ugjE7HFMpuzbWW8WhSEKDSPbeVlBeGNm_zh7IAD3k/edit?usp=sharing"><h6>Política de Privacidad de Stubank</h6></a>
-        </div>
-    </div>
-
-   <div class="container-footer2">
-       <h6>&copy; <b>StuBank</b>-Todos los derechos reservados</h6>
-   </div>
-</div>
+<footer style="margin-top:10rem;">
+    <?php include('view/footer.php'); ?>
+</footer>
 <script>
     function goto(url)
     {

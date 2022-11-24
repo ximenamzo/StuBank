@@ -50,17 +50,17 @@ body{
     text-decoration: none;
     color: #8C52FF;
 }
-.card{
+.cardIX{
     color: white;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
-    padding-top: 1rem;
+    padding: 1rem 0 1rem 0;
     border-radius: 50px;
     background-color: #8C52FF;
     margin: 2rem 3rem;
 }
-.card:hover{
+.cardIX:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
     transform: scale(110%);
 }
@@ -70,6 +70,7 @@ body{
     background-color: #8c52ff;
     color: #fff;
 }
+
 @media(max-width: 2000px)
 {
     .alineamiento{padding-left: 10%;}
@@ -80,6 +81,11 @@ body{
         color: white;
         padding: 3rem 0 2rem 0;
     }
+    .negimg{text-align: right; padding-left: 1rem;}
+    .neginfo{text-align: justify; padding-left: 2rem;}
+    .colinfo{padding: 0 1.5rem 0 1rem;}
+    .titne{margin-bottom: 2rem;}
+    .btnneg{text-align:left; padding:1rem;}
 }
 @media(max-width: 767px)
 {
@@ -93,6 +99,11 @@ body{
         padding: 1rem 0 4rem 0;
         text-align: center;
     }
+    .negimg{text-align: center;}
+    .neginfo{text-align: center; margin-top: 2rem; padding-top: 1rem;}
+    .colinfo{padding: 1rem 1rem 0 0;}
+    .titne{margin-bottom: 1rem;}
+    .btnneg{text-align:center; margin:1rem 0 2rem 0;}
 }
 /*---------------------------------*/
 .scroll {
@@ -114,4 +125,106 @@ body{
     color: rgb(17, 195, 17);
     font-weight: bolder;
     transition: .5s;
+}
+/*---------------------------------*/
+.info-cont{
+    background: url(../info.jpg) #8c52ff4d;
+    background-size: cover;
+    background-blend-mode: multiply;
+    height: auto;
+    text-align: center;
+    margin-top: -1rem;
+}
+.info-col{
+    text-align: center;
+    padding: 3rem 2rem 3rem 2rem;
+    margin-top: -1rem;
+}
+.info-card{
+    background-color: #fff;
+    border-radius: 40px;
+    color: black;
+    width: 90%;
+    margin-left: 5%;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+.info-card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(105%);
+}
+.info-card h2{
+    color: #8c52ff;
+    font-weight: bold;
+}
+.info-card h5{
+    color: #8c52ff;
+    font-weight: bold;
+}
+.negh1{
+    color: #8C52FF;
+    font-weight: bolder;
+}
+.nego1{
+    margin-top: 4rem;
+}
+.negh1-2{
+    color: #8C52FF;
+    font-weight: bolder;
+    transition: 0.3s;
+}
+.negh1-2:hover{
+    font-weight: bolder;
+    transition: 0.3s;
+    scale: 110%;
+    animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite;
+}
+.tuyo{
+    font-size: 5rem;
+    font-weight: bolder;
+    animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite;
+}
+.tuyop{
+    font-size: 1.5rem;
+}
+@keyframes rainbow{
+    100%,0%{
+        color: rgb(255,0,0);
+    }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(0,127,255);
+    }
+    66%{
+        color: rgb(0,0,255);
+    }
+    75%{
+        color: rgb(127,0,255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
 }

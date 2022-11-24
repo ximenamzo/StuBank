@@ -11,6 +11,30 @@
     }
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC"; //ORDER BY descendiente, muestra lo más reciente
+    $resultado = mysqli_query($mysqli,$obtencion);
+    //Variables para la paginación
+    $MovimientosXpagina = 8; // El total de movimientos por paginacion
+    if ($stmt = $mysqli->prepare($obtencion)) {
+        $stmt->execute();
+        $stmt->store_result();
+        $totalDatos = $stmt->num_rows;
+    }
+    $paginas = $totalDatos/$MovimientosXpagina;
+    $paginas = ceil($paginas);
+    //Condiciones de paginacion
+    if (empty($_GET['pagina'])){
+        $pagina = 1;
+    }
+    else{
+        $pagina = $_GET['pagina'];
+    }
+    $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
+    $inicio = (string)$CalculoIncio;
+    $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT $inicio,$MovimientosXpagina"; //ORDER BY descendiente
+    $obtencionD = mysqli_query($mysqli,$sql);
+    $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +44,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -32,33 +59,22 @@
 </header>
 <body>
     <div class="row">
-        <?php include('menu.php');
-        $obtencion = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC"; //ORDER BY descendiente, muestra lo más reciente
-        $resultado = mysqli_query($mysqli,$obtencion);
-        //Variables para la paginación
-        $MovimientosXpagina = 8; // El total de movimientos por paginacion
-        if ($stmt = $mysqli->prepare($obtencion)) {
-            $stmt->execute();
-            $stmt->store_result();
-            $totalDatos = $stmt->num_rows;
-        }
-        $paginas = $totalDatos/$MovimientosXpagina;
-        $paginas = ceil($paginas);
-        //Condiciones de paginacion
-        if (empty($_GET['pagina'])){
-            $pagina = 1;
-        }
-        else{
-            $pagina = $_GET['pagina'];
-        }
-        $CalculoIncio = ($pagina-1)*$MovimientosXpagina;
-        $inicio = (string)$CalculoIncio;
-        $sql = "SELECT * FROM transacciones WHERE solicitante='$cuenta' OR cTramitador='$cuenta' ORDER BY fecha DESC LIMIT $inicio,$MovimientosXpagina"; //ORDER BY descendiente
-        $obtencionD = mysqli_query($mysqli,$sql);
-        $resultado_Datos=$obtencionD->fetch_all(MYSQLI_ASSOC);
-        ?>
-        <div class="col-md-9">
-            <h2>Historial de movimientos</h2><hr>
+        <?php include('menu.php');?>
+        <div class="col-md-9 pad">
+            <h2>Menú de movimientos</h2><hr>
+            <div class="row" style="text-align:center;">
+                <div class="col-md-3 mx" style="text-align:center;">
+                    <a href="selectCuenta.php" class="btn-custom-outline" style="margin:0 1rem 2rem 0;">Transferir a cuenta &nbsp;&nbsp;<i class="bi bi-arrow-left-right"></i></a>
+                </div>
+                <div class="col-md-3 mx" style="text-align:center;">
+                    <a href="seCuPa.php" class="btn-custom-outline" style="margin:0 1rem 2rem 0;">Pagar servicio &nbsp;&nbsp;<i class="bi bi-receipt"></i></a>
+                </div>
+                <div class="col-md-4 mx" style="text-align:center;">
+                    <a href="seCuRe.php" class="btn-custom-outline" style="margin:0 1rem 2rem 0;">Recargas y paquetes &nbsp;&nbsp;<i class="bi bi-phone"></i></i></a>
+                </div>
+            </div>
+            
+            <h2 style="margin-top:2.5rem;">Historial de movimientos</h2><hr>
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Origen</th>
@@ -81,10 +97,10 @@
             </table>
 
             <?php if($paginas == NULL){?>
-                <br><br><h3>No cuenta con movimientos.</h3><br><br>
+                <h5 style="color:#8c52ff;">--No cuenta con movimientos--</h5>
             <?php } ?>
 
-            <div class="row">
+            <div class="row"  style="margin-bottom:5rem;">
                 <div class="col-md-5">
                     <nav aria-label="movimientoP">
                         <ul class="pagination">
@@ -113,8 +129,10 @@
                     <a href="seCuPa.php" class="btn btn-dark">Pagar servicio &nbsp;&nbsp;<i class="bi bi-cash-coin"></i></a><br>
                 </div>-->
             </div>
-
         </div>
     </div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

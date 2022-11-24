@@ -28,6 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -59,7 +60,7 @@
                     <div class="col-md-5">
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
-                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="19000" step="0.01" required>
+                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="1" max="19000" step="0.01" required>
                             <?php if($tipo == 'D'):?>
                                 <select name="divisa" class="input-group-text" style="width: 33%;">
                                     <option value="1" selected>MXN</option>
@@ -103,4 +104,7 @@
         </div><!-- col-md-5 -->
     </div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

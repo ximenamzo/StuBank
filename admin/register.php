@@ -58,6 +58,7 @@
         }
     </script>
 
+        <!--<link rel="stylesheet" href="../src/css/bootstrap.min.css">-->
     <title>StuBank</title>
 </head>
 <header>
@@ -83,6 +84,9 @@
             </div>
         </form>
     </div>
+    <!--<script type="text/javascript" src="../src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/js/popper.min.js"></script>
+    <script type="text/javascript" src="../src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:5rem;">
     <?php include('../view/footer.php'); ?>

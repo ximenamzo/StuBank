@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <!--<link rel="stylesheet" href="../src/css/bootstrap.min.css">-->
     <title>StuBank</title>
 </head>
 
@@ -106,6 +107,9 @@
 
         </div>
     </div>
+    <!--<script type="text/javascript" src="../src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/js/popper.min.js"></script>
+    <script type="text/javascript" src="../src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:10rem;">
     <?php include('../view/footer.php'); ?>

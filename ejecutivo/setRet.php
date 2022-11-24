@@ -107,7 +107,8 @@
 	<link rel="stylesheet" href="../src/css/ficha.css">
 	<link rel="stylesheet" href="../src/css/estilos.css">
 	<link rel="icon" type="image/png" href="../src/icono.png">
-	<title>StuBank</title>
+	    <!--<link rel="stylesheet" href="../src/css/bootstrap.min.css">-->
+    <title>StuBank</title>
 </head>
 <body class="text-center">
 	<img src="../src/StuBank.png" width="18%" class="mx-auto mb-2" style="margin: 7px 0 3px 0;"><br>
@@ -167,6 +168,9 @@
 			print();
 		}
 	</script>
+    <!--<script type="text/javascript" src="../src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/js/popper.min.js"></script>
+    <script type="text/javascript" src="../src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:10rem;">
     <?php include('../view/footer.php'); ?>

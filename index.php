@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="src/icono.png">
     <script src="/src/js/scroll.js"></script>
+    <!--<link rel="stylesheet" href="./src/css/bootstrap.min.css">-->
     <title>StuBank</title>
 </head>
 
@@ -111,6 +112,9 @@
             </svg>
         </a>
     </div>
+    <!--<script type="text/javascript" src="./src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./src/js/popper.min.js"></script>
+    <script type="text/javascript" src="./src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:10rem;">
     <?php include('view/footer.php'); ?>

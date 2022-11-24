@@ -74,7 +74,7 @@
         </div>
     </div>
 </body>
-<footer style="margin-top:10rem;">
+<footer style="margin-top:16rem;">
     <?php include('../view/footer.php'); ?>
 </footer>
 </html>

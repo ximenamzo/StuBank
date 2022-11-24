@@ -7,13 +7,16 @@
     }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
+<!--
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/estilos.css">
+    <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -26,81 +29,69 @@
     <?php include('navbar.php'); ?>
 </header>
 <body>
-    <div class="cabecera">
-        <div class="container">
-        <section class="banner-container">
-            <div class="banner-texts">
-            <img src="./src/Stubankk.png" width="40%" alt="" style="margin:6rem 0 6rem 0;">
-            <h4 class="banner-sub" style="margin:0 0 4rem 0;">Aplicación web de gestión de finanzas ideal para movimientos bancarios y pago a servicios.</h4>
-            <button type="button" class="btn btn-outline-light btn-lg" onclick="goto('#sobre')">¡Leer más!</button>
-            </div>
-        </section>
-        </div>
-    </div>
-
     <main>
-        <div class="row" style="text-align:center; margin-top:4rem;" id="sobre">
-            <div class="col-md-7" style="text-align:center;">
-                    <h2 class="subtitulo alineamiento">Sobre StuBank</h2>
-                    <p class="texto1 alineamiento">
-                        Stubank es una aplicación para gestión financiera que optimiza los servicios de una institución bancaria. 
-                        Desde esta aplicación, los ejecutivos y clientes pueden realizar los movimientos principales dentro de 
-                        las diferentes cuentas que el gestor admite.
-                    </p>
+        <div class="row" style="text-align:center;">
+            <h1 class="negh1">¿Te gustaría trabajar en StuBank?</h1>            
+        </div>
+
+        <div class="row" style="margin-top:3rem;">
+            <div class="col-md-3 negimg">
+                <img src="../src/ejeneg.png"  width="90%" alt="">
             </div>
-            <div class="col-md-5">
-                <img src="./src/undraw_my_password_re_ydq7.svg" width="60%" alt="">
+            <div class="col-md-9 neginfo">
+                <div class="row neginfo">
+                    <h3 style="margin-bottom:2rem;">Aquí hay algunos puestos que podrían interesarte...</h3>
+                </div>
+                <div class="row neginfo">
+                    <div class="col-md-4 colinfo">
+                        <h4 class="colinfo" style="color:#8c52ff;">Ejecutivo</h4>
+                        <h6 class="colinfo">Sé parte de nuestro equipo de ejecutivos y ten a tu servicio a clientes...</h6>
+                        <h5 class="colinfo">Requisitos:</h5>
+                        <h6 class="colinfo">&#9679; Bachillerato terminado<br>&#9679; Acta de nacimiento<br>&#9679; CURP<br>&#9679; Número telefónico<br>&#9679; Email activo<br>&#9679; Fotografía vigente<br>&#9679; Responsabilidad</h6>
+                        <div class="btnneg">
+                            <a href="mailto: stubank.contacto@gmail.com" class="btn-custom">Aplicar</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 colinfo">
+                        <h4 class="colinfo" style="color:#8c52ff;">Desarrollador</h4>
+                        <h6 class="colinfo">Programa y da mantenimiento a nuestra aplicación web!</h6>
+                        <h5 class="colinfo">Requisitos:</h5>
+                        <h6 class="colinfo">&#9679; Conocimientos en web dev<br>&#9679; Acta de nacimiento<br>&#9679; CURP<br>&#9679; Número telefónico<br>&#9679; Email activo<br>&#9679; Fotografía vigente</h6>
+                        <div class="btnneg">
+                            <a class="btn-custom-disabled" disabled>No disponible</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 colinfo">
+                        <h4 class="colinfo" style="color:#8c52ff;">Tester</h4>
+                        <h6 class="colinfo">Gana dinero por navegar por nuestra aplicación y reportar errores.</h6>
+                        <h5 class="colinfo">Requisitos:</h5>
+                        <h6 class="colinfo">&#9679; Conocimientos en web dev<br>&#9679; Documentación de software<br>&#9679; Técnico programador<br>&#9679; Acta de nacimiento<br>&#9679; CURP<br>&#9679; Número telefónico<br>&#9679; Email activo<br>&#9679; Fotografía vigente</h6>
+                        <div class="btnneg">
+                            <a class="btn-custom-disabled" disabled>No disponible</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+
 
         <div class="row" style="text-align:center; margin-top:4rem;">
-            <div class="col-md-5">
-                <img src="./src/undraw_pay_online_re_aqe6.svg"  width="60%" alt="">
-            </div>
-            <div class="col-md-7">
-                    <h2 class="subtitulo alineamiento2 x">Beneficios de ser cliente</h2>
-                    <p class="texto1 alineamiento2">
-                        - Podrás depositar y retirar efectivo en los centros de StuBank
-                        <br> <br>
-                        - Tendrás acceso a tu cuenta las 24 hrs del dia los 7 dias de la semana
-                        <br><br>
-                        - Podras realizar transferencias a otras cuentas del mismo banco
-                        <br><br>
-                        - Puedes pagar tus servicios y contratar tiempo aire
-                        <br><br>
-                        - Tienes la oportunidad de abrir hasta 5 cuentas!
-                    </p>
-            </div>
+            <h1 class="negh1-2">¿Necesitas el gestor de StuBank para tu propio negocio bancario?</h1>            
         </div>
 
-        <div class="row" style="text-align:center; margin:5rem 0 4rem 0;">
-            <h2 class="subtitulo" style="display:inline;">Al ser cliente podrás...</h2>
-            <div class="col-md-4">
-                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
-                    <figure>
-                        <img src="./src/prestamo.png" alt="" width="50%">
-                        <h5>Solicitar préstamos</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
-                    </figure>
-                </div>
+        <div class="row" style="margin-top:3rem;">
+            <div class="col-md-3" style="text-align:center;">
+                <img src="../src/company.png"  width="90%" alt="">
             </div>
-            <div class="col-md-4">
-                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
-                    <figure>
-                        <img src="./src/transfe.png" alt="" width="50%">
-                        <h5>Hacer transferencias</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
-                    </figure>
-                </div>
+            <div class="col-md-6 neginfo" style="text-align:center;">
+                <p class="tuyo">¡ES TUYO!</p>
+                <p class="tuyop">Contáctanos vía email y agendaremos una serie de reuniones para que los servicios de gestión de StuBank sean para ti y tu negocio.</p>
+                <a class="btn-custom"><i class="bi bi-arrow-down"></i>A un click del éxito de tu empresa<i class="bi bi-arrow-down"></i></a> <br><br>
+                <a href="mailto: stubank.contacto@gmail.com" class="btn-custom-outline"><i class="bi bi-hand-index-thumb-fill"></i></a>
             </div>
-            <div class="col-md-4">
-                <div class="cardIX" style="background-color:#8c52ff; border-radius:50px;">
-                    <figure>
-                        <img src="./src/estado.png" alt="" width="50%">
-                        <h5>Ver tu estado de cuenta</h5>
-                        <button type="button" class="btn btn-outline-light">Leer más</button>
-                    </figure>
-                </div>
+            <div class="col-md-3" style="text-align:center;">
+                <img src="../src/acuerdo.png"  width="90%" alt="">
             </div>
         </div>
     </main>
@@ -113,7 +104,7 @@
     </div>
 </body>
 <footer style="margin-top:10rem;">
-    <?php include('view/footer.php'); ?>
+    <?php include('footer.php'); ?>
 </footer>
 <script>
     function goto(url)

@@ -80,7 +80,7 @@
                 <button type="submit" class="btn btn-danger">
                     Eliminar
                 </button><br>
-                <a href="ejecutivo.php" class="btn btn-secondary mt-2">Regresar</a>
+                <a href="clientes.php" class="btn btn-secondary mt-2">Regresar</a>
             </form>
         </div>
     </div>

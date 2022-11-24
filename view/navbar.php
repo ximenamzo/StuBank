@@ -15,7 +15,7 @@
                     <a class="nav-link active" aria-current="page" href="/view/informacion.php">Información</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/view/negocios.php">Negocios</a>
+                    <a class="nav-link active" aria-current="page" href="/view/negocios.php">Empleos</a>
                 </li>
                 <?php if(isset($_SESSION['nombre'])):?>
                 <?php if($rol == 1):?>

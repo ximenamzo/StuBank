@@ -20,7 +20,7 @@
     margin: 25px auto;
     background-color: #9120bd;
     color: white;
-    width: 75%;
+    width: 90%;
     height: 50px;
     border-radius: 7px;
     border-style: none;
@@ -59,4 +59,25 @@
 .img-exe{
     object-fit: cover;
     width:100%;
+}
+
+@media(max-width: 767px)
+{
+    .client-img{
+        object-fit: cover;
+        width:50%;
+    }
+    .img-exe{
+        object-fit: cover;
+        width:50%;
+    }
+    .imagen {
+        width: 60%;
+        margin:  0 auto;
+    }
+    .imgr{
+        width: 370px; 
+        height: 200px;
+        object-fit: cover;
+    }
 }

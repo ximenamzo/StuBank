@@ -94,7 +94,7 @@
                             <input type="date" name="fNa" id="fNa" class="form-control" value="<?=$cliente['fecNac']?>" required><br>
                         </div>
                     </div>
-                    <a href="ejecutivo.php" class="btn btn-secondary">Regresar</a>
+                    <a href="clientes.php" class="btn btn-secondary">Regresar</a>
                     <input class="btn btn-primary" type="submit" value="Editar">
                 </form>
                 </div><!-- cont -->

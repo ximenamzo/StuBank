@@ -39,7 +39,7 @@
     </div>
 
     <main>
-        <div class="row" style="text-align:center; margin-top:4rem;" id="sobre">
+        <div class="row" style="text-align:center; margin-top:6rem;" id="sobre">
             <div class="col-md-7" style="text-align:center;">
                     <h2 class="subtitulo alineamiento">Sobre StuBank</h2>
                     <p class="texto1 alineamiento">
@@ -49,13 +49,13 @@
                     </p>
             </div>
             <div class="col-md-5">
-                <img src="./src/undraw_my_password_re_ydq7.svg" width="60%" alt="">
+                <img src="./src/sobre.png" width="70%" alt="">
             </div>
         </div>
 
         <div class="row" style="text-align:center; margin-top:4rem;">
             <div class="col-md-5">
-                <img src="./src/undraw_pay_online_re_aqe6.svg"  width="60%" alt="">
+                <img src="./src/beneficios.png"  width="70%" alt="">
             </div>
             <div class="col-md-7">
                     <h2 class="subtitulo alineamiento2 x">Beneficios de ser cliente</h2>

@@ -22,13 +22,13 @@
 	$con = $row['password'];
 	
     if($con != null){
-		echo '<script language="javascript">alert("Usuario ya registrado.");window.location.href="/index.php"</script>';
+		echo '<script language="javascript">alert("Usuario ya registrado. Inicie Sesión.");window.location.href="../view/login_tr.php"</script>';
 	}
 
     if($cont==1){
     	$_SESSION['cuenta'] = $cuenta;
     	echo '<script language="javascript">alert("Datos correctos, defina su contraseña.");window.location.href="asignar_pass.php"</script>';
     }else{
-    	echo '<script language="javascript">alert("Datos incorrectos.");window.location.href="/index.php"</script>';
+    	echo '<script language="javascript">alert("Datos incorrectos.");window.location.href="register_eje.php"</script>';
     }
 ?>

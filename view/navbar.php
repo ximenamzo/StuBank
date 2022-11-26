@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.php">
+        <a class="navbar-brand" href="/">
             <img src="/src/StuBank.png" width="100pc">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,13 +9,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.php">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/view/info.php">Información</a>
+                    <a class="nav-link active" aria-current="page" href="/view/informacion.php">Información</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/view/nosotros.php">Sobre nosotros</a>
+                    <a class="nav-link active" aria-current="page" href="/view/negocios.php">Empleos</a>
                 </li>
                 <?php if(isset($_SESSION['nombre'])):?>
                 <?php if($rol == 1):?>
@@ -49,7 +49,7 @@
                             <i class="bi bi-coin"></i> Hola, <?php echo $nombre;?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../cliente/cuenta.php">Administrar cuenta</a></li>
+                            <li><a class="dropdown-item" href="../cliente/cliente.php">Administrar cuenta</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../view/logout.php">Cerrar sesion</a></li>
                         </ul>

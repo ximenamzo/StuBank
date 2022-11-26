@@ -3,7 +3,7 @@
 }
 .banner{
     position: relative;
-    background: blueviolet;
+    background: #8C52FF;
     top: 150;
     left: 0;
     color: #fff;
@@ -25,7 +25,7 @@
 }
 .contenedor-beneficios{
 position: relative;
-background-color: #8F15EF;
+background-color: #8C52FF;
 width: 445px;
 height: 543px;
 left: 75px;
@@ -35,7 +35,7 @@ border-radius: 100px;
 
 .contenedor-beneficios h2{
 position: relative;
-color: #8F15EF;
+color: #8C52FF;
 font-size: 42px;
 width: 612px;
 height: 72px;
@@ -43,8 +43,31 @@ left: 500px;
 }
 .contenedor-beneficios p{
 position: relative;
-color: #8F15EF;
+color: #8C52FF;
 width: 412px;
 height: 0px;
 left: 500px;
+}
+
+/*---------------------------------*/
+.scroll {
+    width: 50px;
+    height: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+
+    text-decoration: none;
+    color: #8C52FF;
+    font-weight: bolder;
+}
+
+.scroll:hover {
+    color: rgb(17, 195, 17);
+    font-weight: bolder;
+    transition: .5s;
 }

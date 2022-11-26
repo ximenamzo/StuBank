@@ -7,8 +7,51 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
 
+.cuenta{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 2% 4% 2% 4%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.cuenta:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cuenta-btn{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 4% 8% 4% 8%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.cuenta-btn:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.trans{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    padding: 2% 4% 2% 2%;
+    margin: 1rem 0 1rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+}
+
+.trans:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
 .cont{
     padding: 0 5% 5% 5%;
+}
+
+.contenido{
+    padding: 5%;
 }
 
 @media print {
@@ -23,10 +66,23 @@
     color: rgb(179, 179, 179);
     margin-left: 0.1em;
 }
+
+.tit2{
+    padding: 0.2em 0 0.5em 0;
+    font-size: 1.4em;
+    color: #311270;
+    display: inline;
+    color: #969696;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
 .cont-purp{
     width: 80%;
     height: auto;
-    padding: 1.2em;
+    padding: 0.8rem 1rem 0.8rem 1.4rem;
     border-radius: 0.6em;
     border: 0.5em #8C52FF;
     box-shadow: -10px -10px #8c52ff, 3px 3px 8px #969696;
@@ -50,21 +106,20 @@
     margin: auto;
 }
 .columnasC{
-    margin-top: 10px;
+    margin-top: 1rem;
     border-bottom: .0625em solid #eee;
     padding: 0;
     display:flow-root;
-    height: 3.5em;
-
+    height: auto 3.5em;
+    width: 100%;
 }
 .histo-img{
     float: left;
-    height:68px;
-    width: 68px;
-
+    width: 15%;
+    margin-right: 0.5em;
 }
 .histo-img img {
-    margin-top: 0.1em;
+    margin: 0.1em 0.5em 0 0;
     background-position: center;
     top:50%;
     height: 100%;
@@ -75,59 +130,223 @@
 .clases{
     float:left;
     padding-left: 2em;
-    line-height: 1em;
+    line-height: 1.5em;
     font-size: 0.8em;
-
+    width: 40%;
 }
 .clases2{
     float: right;
     overflow: auto;
     line-height: 1em;
     font-size: 0.8em;
+    width: 40%;
 }
 .histBtn{
-    overflow: auto;
-    float: right;
+    float: left;
+    color:#8C52FF;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+.histBtn:hover{
+    color: #000;
 }
 .columnasC2{
     margin-top: 10px;
     display:flow-root;
     height: auto;
-
 }
 .fechaD{
-    font-weight: bold;
+    font-size: 1rem;
 }
+.tarjeta{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 62%;
+    height: auto;
+    margin: 2rem 0;
+    margin-left: 19%;
+    padding: 0.75rem 0 1.25rem 0;
+    background-color: #000000;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 8px 8px 0 rgba(255, 255, 255, 0.537) inset, 0 4px 8px 0 rgba(0, 0, 0, 0.3) inset;
+}
+.saldoCN{
+    text-align: center;
+    font-size: 2.5rem;
+    color: rgb(255, 255, 255);
+    margin: 0;
+}
+.saldoC{
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0.5rem;
+}
+.chip{
+    position: relative;
+    width: 10%;
+}
+
+.contBotones{
+    text-align: center;
+}
+
 @media screen and (max-width: 1500px){
     .clases{
         padding-left: 0.33em;
         font-size: 0.7em;
     }
-    .destinoT{
+    /*.destinoT{
         display: none;
-    }
+    }*/
     .clases2{
         font-size: 0.7em;
     }
     .histo-img{
         height:48px;
         width: 48px;
-    
+    }
+    .pad{
+        padding-left: 2rem;
+    }
+    .mx{
+        text-align: center;
     }
 }
 @media screen and (max-width: 1170px){
     .clases2{
         float: left;
     }
+    .mx{
+        text-align: center;
+    }
 }
-@media screen and (max-width: 744px){
+@media screen and (max-width: 600px){
     .clases2{
         float: right;
     }
     .fechaD{
         display: none;
     }
+    .cont-purp2{
+        width: 80%;
+        margin-left: 1rem;
+    }
+    .columnasC2{
+        width: 20%;
+    }
+    .clases{
+        width: 40%;
+    }
+    .clases2{
+        width: 40%;
+    }
+    .histBtn{
+        font-size: 1rem;
+    }
+    .form-control{
+        width: 100%;
+    }
+    .btn-custom-outline{
+        margin: 1rem 0 1rem 0;
+    }
+    .mx{
+        margin: 1rem 0 1rem 0;
+    }
 }
 
-/*style="width: 10pc;"
 
+/*style="width: 10pc;"*/
+
+.btn-custom {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #8c52ff;
+    color: #fff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: 0.5s;
+    position: relative;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.btn-custom:hover {
+    background: #6935d2 !important;
+    color: #fff;
+    transition: 0.5s;
+    border: 1px solid #4b229c;
+}
+.btn-custom:focus {
+    box-shadow: 0 0 0 5px #00000044;
+}
+
+.btn-custom i{
+    font-size: 1.2rem;
+}
+
+.btn-custom-outline {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    color: #8c52ff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #8c52ff;
+    transition: 0.4s;
+    position: relative;
+    text-decoration: none;
+}
+.btn-custom-outline:hover {
+    background: #8c52ff !important;
+    color: #fff;
+    transition: 0.4s;
+    border: 1px solid #6935d2;
+}
+.btn-custom-outline:focus {
+    box-shadow: 0 0 0 5px #00000044;
+}
+
+.btn-custom-outline i{
+    font-size: 1.2rem;
+}
+
+
+.btn-custom-disabled {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #b28efb;
+    color: #fff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: 0.5s;
+    position: relative;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.btn-custom-disabled:hover {
+    margin: 2rem 0;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: #b28efb;
+    color: #fff;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: 0.5s;
+    position: relative;
+    text-decoration: none;
+    transition: 0.5s;
+}

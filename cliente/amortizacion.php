@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -20,6 +22,7 @@
     $totAmort = 0;
     $p_mes =round(($prestamo * $p)/(1-(pow((1+$p),-$meses))),2); //Pago por mes
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +30,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="../src/js/funciones.js"></script>
     <title>StuBank</title>
 </head>
 <header>
@@ -40,12 +45,13 @@
     <div class="row">
         <?php include('menu.php'); ?>
         <div class="col-md-9">
+            <div id="GFG"> <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
             <table class="table mt-3">
                 <thead>
                     <th scope="col">Periodo</th>
-                    <th scope="col">Pago realizado</th>
-                    <th scope="col">Interes</th>
-                    <th scope="col">Amortizacion</th>
+                    <th scope="col">Pago</th>
+                    <th scope="col">Interés</th>
+                    <th scope="col">Amortización</th>
                     <th scope="col">Pendiente</th>
                 </thead>
                 <tbody>
@@ -67,20 +73,24 @@
                     <?php $meses--; }?>
                     <tr>
                         <td>Total</td>
-                        <td>$<?=$totPago?></td>
-                        <td>$<?=$totInt?></td>
+                        <td>$<?=round($totPago)?></td>
+                        <td>$<?=round($totInt)?></td>
                         <td>$<?=round($totAmort)?></td>
                         <td>-</td>
                     </tr>
                 </tbody>
-            </table>
-            <p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado.</p><br>
-            <div>
+            </table></div>
+            
+            <div style="color:#808080;"><p>*Si le interesa este u otros prestamos dirijase al banco con su ejecutivo asignado.</p></div>
+            <div style="margin-bottom:5%;">
                 <a href="calc.php" class="btn btn-primary">Calcular otro prestamo</a>
-                <button class="btn btn-success" onclick="print()">Imprimir</button>
+                <button class="btn btn-success" onclick="printDivStyle()">Obtener formato de impresión</button>
             </div>
         </div>
+
     </div>
 </body>
-
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

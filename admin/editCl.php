@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -49,6 +51,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+<link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -95,7 +98,7 @@
                                 <?php endforeach ?>
                             </select><br><br>
 
-                            <a href="admin_cl.php" class="btn btn-secondary">Regresar al menú</a>
+                            <a href="infoCl.php?id=<?php echo $cliente['nCuenta'];?>" class="btn btn-secondary">Volver</a>
                             <input class="btn btn-primary" type="submit" value="Cambiar Ejecutivo">
                         </form>
                     </div><!--cont-->
@@ -117,6 +120,8 @@
             }
         }
     </script>
-
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

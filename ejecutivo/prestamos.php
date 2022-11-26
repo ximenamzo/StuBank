@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -26,6 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -44,7 +47,7 @@
             <a href="selecPres.php" class="btn btn-success">Solicitar préstamo <i class="bi bi-hand-index-thumb"></i></a><br>
             <table class="table mt-3">
                 <thead>
-                    <th scope="col">#C Solicitante</th>
+                    <th scope="col">Cuenta Solicitante</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Meses</th>
                     <th scope="col">Metodo</th>
@@ -56,7 +59,7 @@
                     <?php foreach($prestamos as $prestamo): ?>
                         <tr>
                             <td><?=$prestamo['solicitanteCl']?></td>
-                            <td><?=$prestamo['cantidad']?></td>
+                            <td>$<?=$prestamo['cantidad']?></td>
                             <td><?=$prestamo['meses']?></td>
                             <td><?=$metodo[$prestamo['metodo']]?></td>
                             <td><?=$prestamo['fecha']?></td>
@@ -71,4 +74,7 @@
         </div>
     </div>
 </body>
+<footer style="margin-top:16rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 1){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -31,6 +33,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+<link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -50,7 +53,7 @@
 
             <div class="card">
                 <?php foreach($ejecutivos as $ejecutivo): ?>
-                    <img style="display: block; margin: 5% auto 2% auto; height: 13pc;" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
+                    <img style="display: block; margin: 5% auto 2% auto;" width="50%" src="../src/fotos/<?=$ejecutivo['foto']?>"><br>
                     <div class="cont">
                         <label>Número de trabajador:</label> <b><?=$ejecutivo['nCuenta']?></b><br>
                         <label>Nombre:</label> <b><?=$ejecutivo['nombre']." ".$ejecutivo['apellidoP']." ".$ejecutivo['apellidoM']?></b><br>
@@ -73,4 +76,7 @@
         const conf = _ => confirm("¿Desea eliminar a este ejecutivo?");
     </script>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

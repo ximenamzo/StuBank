@@ -38,7 +38,7 @@
                             border:1.5px solid red;
                             border-radius: 1em 1em 1em 1em;
                             width: 35%;'>
-                            La contraseña es incorrecta. Inténtalo de nuevo.
+                            Usuario o contraseña incorrectos. Inténtelo de nuevo.
                         </div>
                     </div>";
             }
@@ -60,7 +60,6 @@
                 </div>";
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +71,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../src/css/styles-register.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
@@ -121,11 +121,14 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-login">
             <h1>Iniciar Sesión</h1>
             <div class="contenedor-inputs">
-                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" required>
+                <input type="text" name="nCuenta" placeholder="Número de cuenta" class="input-100" maxlength="8" required>
                 <input type="password" name="passw_user" placeholder="Contraseña"class="input-100" required>
-                <input type="submit" value="Iniciar" class="btn_login">
+                <input type="submit" value="Entrar" class="btn_login">
             </div>
         </form>
     </div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

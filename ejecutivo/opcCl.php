@@ -7,7 +7,9 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -32,6 +34,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -61,18 +64,21 @@
                     <label>CURP:</label> <b><?=$cliente['curp']?></b><br>
                     <label>Activo desde el:</label> <b><?=$cliente['fecInscrip']?></b><br>
                 </div>
-
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="col-md-4 mt-2">
-            <a href="editCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-primary mt-5">Editar</a><br>
+        <div class="col-md-3 mt-5">
+            <a href="cuentasCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-success mt-2">Cuentas</a><hr>
+            <a href="editCl.php?id=<?=$cliente['nCuenta']?>" class="btn btn-primary mt-2">Editar</a><br>
             <a href="deleteCl.php?id=<?=$cliente['nCuenta']?>" onclick="return conf(event)" class="btn btn-danger mt-2">Borrar</a><br>
-            <a href="ejecutivo.php" class="btn btn-secondary mt-2">Regresar</a>
+            <a href="clientes.php" class="btn btn-secondary mt-2">Regresar</a>
         </div>
     </div>
     <script language="javascript">
         const conf = _ => confirm("¿Desea eliminar a este cliente?");
     </script>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

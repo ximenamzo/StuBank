@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 3){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
@@ -32,6 +34,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
@@ -46,12 +49,12 @@
 <body>
     <div class="row">
         <?php include('menu.php'); ?>
-        <div class="col-md-9">
-            Prestamo de: $<?=$prestamo['cantidad']?><br>
-            Solicitado el: <?=$prestamo['fecha']?><br>
-            Estatus: <?=$estados[$prestamo['estatus']]?><br>
-            Metodo: <?=$metodo[$prestamo['metodo']]?><br>
-            Deuda restante: $<?=$prestamo['deuda']?>
+        <div class="col-md-5">
+            <b>Prestamo de:</b> $<?=$prestamo['cantidad']?><br>
+            <b>Solicitado el:</b> <?=$prestamo['fecha']?><br>
+            <b>Estatus:</b> <?=$estados[$prestamo['estatus']]?><br>
+            <b>Metodo:</b> <?=$metodo[$prestamo['metodo']]?><br>
+            <b>Deuda restante:</b> $<?=round($prestamo['deuda'],2)?>
 
 
             <?php if($pagos != null):?>
@@ -75,4 +78,7 @@
         </div>
     </div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

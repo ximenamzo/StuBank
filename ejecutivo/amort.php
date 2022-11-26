@@ -6,7 +6,9 @@
     $cuenta = $_SESSION['cuenta'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     require('../view/conexion.php');
@@ -57,6 +59,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+<link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -98,8 +101,8 @@
                     <?php $meses--; }?>
                     <tr>
                         <td>Total</td>
-                        <td>$<?=$totPago?></td>
-                        <td>$<?=$totInt?></td>
+                        <td>$<?=round($totPago)?></td>
+                        <td>$<?=round($totInt)?></td>
                         <td>$<?=round($totAmort)?></td>
                         <td>-</td>
                     </tr>
@@ -111,12 +114,15 @@
                 <input type="hidden" name="dinero" value="<?=$_POST['dinero']?>">
                 <input type="hidden" name="meses" value="<?=$_POST['meses']?>">
                 <input type="hidden" name="metodo" value="<?=$metodo?>">
-                <input type="hidden" name="deuda" value="<?=$totPago?>">
+                <input type="hidden" name="deuda" value="<?=round($totPago)?>">
                 <input type="submit" class="btn btn-success" value="Solicitar">
             </form>
         </div>
     </div>
 
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 
 </html>

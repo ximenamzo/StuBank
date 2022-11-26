@@ -7,10 +7,18 @@
     $rol = $_SESSION['rol'];
 
     if($rol != 2){
-        header("Location: ../index.php");
+        session_destroy();
+        header("Location: ../");
+        die();
     }
 
     include('../view/conexion.php');
+
+    $obtencion = "SELECT * FROM cuentas WHERE cuenta = '$id'";
+    $resultado = $mysqli->query($obtencion);
+    $cuenta = $resultado->fetch_assoc();
+
+    $tipo = $cuenta['tipo'];
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/menu.css">
+    <link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="stylesheet" href="../src/css/ficha.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -42,13 +51,24 @@
                 <form action="setDep.php" method="POST">
 
                     <div class="col-md-9" style="margin-top:1rem;">
-                        <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
+                        <?php if($tipo == 'D'):?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar y su divisa:</label>
+                        <?php else:?>
+                            <label for="basic-url" class="form-label">Ingrese la cantidad de dinero a depositar:</label>
+                        <?php endif;?>
                     </div>
                     <div class="col-md-5">
                         <div class="input-group mb-1">
                             <span class="input-group-text" style="width: 11%;">$</span>
-                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="0" max="15000" step="0.01" required>
-                            <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <input type="number" name="dinero" class="form-control" style="width: 20%;" placeholder="0.00" min="1" max="19000" step="0.01" required>
+                            <?php if($tipo == 'D'):?>
+                                <select name="divisa" class="input-group-text" style="width: 33%;">
+                                    <option value="1" selected>MXN</option>
+                                    <option value="2">USD</option>
+                                </select>
+                            <?php else:?>
+                                <span class="input-group-text" style="width: 25%;">MXN</span>
+                            <?php endif;?>
                         </div><br>
                     </div>
 
@@ -84,4 +104,7 @@
         </div><!-- col-md-5 -->
     </div>
 </body>
+<footer style="margin-top:10rem;">
+    <?php include('../view/footer.php'); ?>
+</footer>
 </html>

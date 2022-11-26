@@ -7,7 +7,8 @@
 	<link rel="stylesheet" href="../src/css/estilos.css">
     <link rel="icon" type="image/png" href="../src/icono.png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<title>Stubank</title>
+	    <!--<link rel="stylesheet" href="../src/css/bootstrap.min.css">-->
+    <title>Stubank</title>
 </head>
 <body>
 	<div class="contenedor mt-5">
@@ -32,6 +33,9 @@
 			</div>
 		</div>
 	</div>
+    <!--<script type="text/javascript" src="../src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/js/popper.min.js"></script>
+    <script type="text/javascript" src="../src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:11rem;">
     <?php include('../view/footer.php'); ?>

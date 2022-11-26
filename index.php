@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="src/icono.png">
     <script src="/src/js/scroll.js"></script>
+    <!--<link rel="stylesheet" href="./src/css/bootstrap.min.css">-->
     <title>StuBank</title>
 </head>
 
@@ -58,18 +59,18 @@
                 <img src="./src/beneficios.png"  width="70%" alt="">
             </div>
             <div class="col-md-7">
-                    <h2 class="subtitulo alineamiento2 x">Beneficios de ser cliente</h2>
-                    <p class="texto1 alineamiento2">
-                        - Podrás depositar y retirar efectivo en los centros de StuBank
-                        <br> <br>
-                        - Tendrás acceso a tu cuenta las 24 hrs del dia los 7 dias de la semana
-                        <br><br>
-                        - Podras realizar transferencias a otras cuentas del mismo banco
-                        <br><br>
-                        - Puedes pagar tus servicios y contratar tiempo aire
-                        <br><br>
-                        - Tienes la oportunidad de abrir hasta 5 cuentas!
-                    </p>
+                <h2 class="subtitulo alineamiento2 x">Beneficios de ser cliente</h2>
+                <p class="texto1 alineamiento2">
+                    - Podrás depositar y retirar efectivo en los centros de StuBank
+                    <br> <br>
+                    - Tendrás acceso a tu cuenta las 24 hrs del dia los 7 dias de la semana
+                    <br><br>
+                    - Podrás realizar transferencias a otras cuentas del mismo banco
+                    <br><br>
+                    - Puedes pagar tus servicios y contratar tiempo aire
+                    <br><br>
+                    - Tienes la oportunidad de abrir hasta 5 cuentas!
+                </p>
             </div>
         </div>
 
@@ -111,6 +112,9 @@
             </svg>
         </a>
     </div>
+    <!--<script type="text/javascript" src="./src/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./src/js/popper.min.js"></script>
+    <script type="text/javascript" src="./src/js/bootstrap.min.js"></script>-->
 </body>
 <footer style="margin-top:10rem;">
     <?php include('view/footer.php'); ?>

@@ -18,7 +18,7 @@
     $resultado = $mysqli->query($obtencion);
 
     if($resultado->num_rows > 0){
-        echo '<script language="javascript">alert("Ejecutivo con clientes asignados, reasigne sus clientes a otro ejecutivo para procedes");window.location.href="admin_eje.php"</script>';
+        echo '<script language="javascript">alert("Ejecutivo con clientes asignados, reasigne sus clientes a otro ejecutivo para proceder");window.location.href="admin_eje.php"</script>';
         die();
     }
 

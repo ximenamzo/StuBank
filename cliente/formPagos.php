@@ -68,6 +68,7 @@
                                         <option value="CFE">CFE</option>
                                         <option value="CAPDAM">CAPDAM</option>
                                         <option value="TELMEX">TELMEX</option>
+                                        <option value="TELCEL">TELCEL</option>
                                         <option value="INFONAVIT">INFONAVIT</option>
                                         <option value="SKY">SKY</option>
                                         <option value="TOTALPLAY">TOTALPLAY</option>

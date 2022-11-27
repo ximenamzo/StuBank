@@ -95,7 +95,7 @@
             <?php if($titulo == "Crédito"){?>
                 <div class="contBotones">
                     <?php if($deuda != 0):?>
-                        Esta cuenta tiene una deuda acutal de $<?=$deuda?>, para abonar dirígete al apartado de <a href="prestamos.php">préstamos</a>.
+                        Esta cuenta tiene una deuda acutal de $<?php echo round($deuda); ?>. Para abonar dirígete al apartado de <a href="prestamos.php">préstamos</a>.
                     <?php endif?>
                 </div>
             <?php }?>

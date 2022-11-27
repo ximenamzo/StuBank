@@ -36,6 +36,7 @@
     position: relative;
     list-style: none;
     width: 100%;
+    height: auto;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -43,6 +44,7 @@
 .menu ul li a{
     position: relative;
     width: 100%;
+    height: auto;
     display: flex;
     text-decoration: none;
     color: white;
@@ -60,10 +62,19 @@
 }
 .menu ul li a .tittle{
     position: relative;
-    display: block;
+    display: flex;
     padding-left: 10px;
-    height: 60px;
-    line-height: 60px;
+    padding-right: 10px;
+    height: auto;
+    line-height: 4rem;
+}
+.menu ul li a .tittle2{
+    position: relative;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: auto;
+    line-height: 4rem;
 }
 
 .menu ul li a:hover{
@@ -90,4 +101,43 @@
       margin-bottom: 2rem;
       margin-top: -1.5rem;
     }
-  }
+}
+@media(max-width: 1024px)
+{
+    .menu ul li a .tittle{
+        padding-left: 1rem;
+    }
+    .menu ul li a .tittle2{
+        position: relative;
+        display: flex;
+        padding-left: 1.2rem;
+        height: auto;
+        line-height: 2rem;
+    }
+}
+@media(max-width: 770px)
+{
+    .menu ul li a .tittle{
+        padding-left: 0.5rem;
+    }
+    .menu ul li a .tittle2{
+        position: relative;
+        display: flex;
+        padding-left: 0.7rem;
+        height: auto;
+        line-height: 1.5rem;
+    }
+}
+@media(max-width: 425px)
+{
+    .menu ul li a .tittle{
+        padding-left: 0.5rem;
+    }
+    .menu ul li a .tittle2{
+        position: relative;
+        display: flex;
+        padding-left: 0.7rem;
+        height: auto;
+        line-height: 4rem;
+    }
+}

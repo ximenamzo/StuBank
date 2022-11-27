@@ -127,7 +127,8 @@
             <div class="cont-purp2" style="margin-bottom: 3rem; width:98%; align-items: center; align-content: center; align-self: center;">            
                 <u class="histoContainer">
                     <?php foreach($datos as $dato):
-                        $tipo=$dato['tipo'];?> 
+                        $tipo=$dato['tipo'];
+                        $date = date_create($dato['fecha']);?> 
                         <?php if($tipo == 'Transferencia'){?>
                             <?php if($nCuenta == $dato['cOrigen']){?>
                                 <li class="columnasC">
@@ -139,7 +140,7 @@
                                     </div>
                                     <div class="clases2">
                                         <p style="color:red;">- $<?=$dato['cantidad']?></p>
-                                        <p class="fechaD"><?=$dato['fecha']?></p>
+                                        <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                     </div>
                                  </li>
                             <?php }?>
@@ -153,7 +154,7 @@
                                     </div>
                                     <div class="clases2">
                                         <p style="color:green;">+ $<?=$dato['cantidad']?></p>
-                                        <p class="fechaD"><?=$dato['fecha']?></p>
+                                        <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                     </div>
                                  </li>
                             <?php }?>
@@ -170,7 +171,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:green;">+ $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php }?>
@@ -185,7 +186,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:red;">- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php } ?>
@@ -200,7 +201,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:#8C52FF;">+ $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php } ?>
@@ -215,7 +216,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:red;">- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php } ?>
@@ -230,7 +231,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:red;">- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php } ?>
@@ -245,7 +246,7 @@
                                 </div>
                                 <div class="clases2">
                                     <p style="color:red;">- $<?=$dato['cantidad']?></p>
-                                    <p class="fechaD"><?=$dato['fecha']?></p>
+                                    <p class="fechaD"><?php echo date_format($date,"d M h:ia")?></p>
                                 </div>
                             </li>
                         <?php } ?>

@@ -142,8 +142,13 @@
     width: 40%;
 }
 .histBtn{
-    overflow: auto;
-    float: right;
+    float: left;
+    color:#8C52FF;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+.histBtn:hover{
+    color: #000;
 }
 .columnasC2{
     margin-top: 10px;

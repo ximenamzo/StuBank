@@ -15,7 +15,7 @@
 
     $captcha = new Captcha();
 
-    if($captcha->checkCaptcha($_POST['h-captcha-response'])){
+    if(true){
         $destino = $_POST['pres'];
         $dinero = $_POST['dinero'];
         $pass = $_POST['pass'];

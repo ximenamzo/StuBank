@@ -33,9 +33,7 @@
     $cont=0;
     
     while($consulta = mysqli_fetch_array($resultado)){
-        echo $consulta['nCuenta'];
         $cont++;
-        echo $cont;
     } 
     
     $stmt_reg = $mysqli->prepare("INSERT INTO trabajadores (nCuenta, nombre, apellidoP, apellidoM, foto, telefono, fecNac, email, curp, fecInscrip) VALUES (?,?,?,?,?,?,?,?,?,?)");

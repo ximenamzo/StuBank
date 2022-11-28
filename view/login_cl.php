@@ -8,21 +8,28 @@
         $cuenta = $_POST['nCuenta'];
         $password = $_POST['passw_user'];
 
-        $sql = "SELECT * FROM clientes WHERE nCuenta = '$cuenta'";
-        $resultado = $mysqli->query($sql);
-        $num = $resultado->num_rows;
+        $stmt_login = $mysqli->prepare("SELECT nCuenta, nombre, password, rol FROM clientes WHERE nCuenta = ?");
+        $stmt_login->bind_param('s', $cuenta);
+        $stmt_login->execute();
+        $stmt_login->bind_result($nCuenta_bd, $nombre_bd, $pass_bd, $rol_bd);
+
+        $num = 0;
+        while($stmt_login->fetch()){
+            $nCuenta = $nCuenta_bd;
+            $nombre = $nombre_bd;
+            $pass = $pass_bd;
+            $rol = $rol_bd;
+            $num++;
+        }
 
         if($num > 0){
             $salt = "invalid";
-            $row = $resultado->fetch_assoc();
-            $pass_bd = $row['password'];
-
             $passFull = md5($salt.$password);
 
-            if($pass_bd == $passFull){
-                $_SESSION['nombre'] = $row['nombre'];
-                $_SESSION['cuenta'] = $row['nCuenta'];
-                $_SESSION['rol'] = $row['rol'];
+            if($pass == $passFull){
+                $_SESSION['nombre'] = $nombre;
+                $_SESSION['cuenta'] = $nCuenta;
+                $_SESSION['rol'] = $rol;
 
                 header("Location: /index.php");
             }else{

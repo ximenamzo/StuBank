@@ -19,7 +19,7 @@
 
     $captcha = new Captcha();
 
-    if(true){
+    if($captcha->checkCaptcha($_POST['h-captcha-response'])){
         $pass = $_POST['pass'];
         $salt = "invalid";
         $passFull = md5($salt.$pass);

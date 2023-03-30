@@ -35,7 +35,7 @@
 <body>
     <div class="row">
         <?php include('menu.php');
-            $obtencion = "SELECT * FROM transacciones";
+            $obtencion = "SELECT * FROM transacciones ORDER BY fecha desc";
             $resultado = mysqli_query($mysqli,$obtencion);
             //Variables para la paginación
             $MovimientosXpagina = 8;

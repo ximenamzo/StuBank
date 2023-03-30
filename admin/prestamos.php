@@ -13,7 +13,7 @@
 
     include('../view/conexion.php');
 
-    $obtencion = "SELECT * FROM prestamos";
+    $obtencion = "SELECT * FROM prestamos ORDER BY fecha desc";
     $resultado = mysqli_query($mysqli,$obtencion);
     $prestamos = $resultado->fetch_all(MYSQLI_ASSOC);
 
